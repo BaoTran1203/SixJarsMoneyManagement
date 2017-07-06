@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/itemOverview"
+            android:icon="@drawable/ic_overview"
+            android:title="@string/overview" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/itemWallet"
+            android:icon="@drawable/ic_wallet"
+            android:title="@string/wallet" />
+        <item
+            android:id="@+id/itemManagement"
+            android:icon="@drawable/ic_management"
+            android:title="@string/money_management" />
+        <item
+            android:id="@+id/itemStatistical"
+            android:icon="@drawable/ic_statistical"
+            android:title="@string/statistical" />
+        <item
+            android:id="@+id/itemEstimate"
+            android:icon="@drawable/ic_estimate"
+            android:title="@string/estimate" />
+    </group>
+
+    <item android:title="@string/settings">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/itemJarConfig"
+                    android:icon="@drawable/ic_settings"
+                    android:title="@string/jar_config" />
+
+                <item
+                    android:id="@+id/itemCatalog"
+                    android:icon="@drawable/ic_catalog"
+                    android:title="@string/catalog" />
+
+                <item
+                    android:id="@+id/itemLanguage"
+                    android:icon="@drawable/ic_language"
+                    android:title="@string/language" />
+            </group>
+        </menu>
+    </item>
+</menu>

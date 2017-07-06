@@ -1,0 +1,232 @@
+﻿{
+  "jars": [
+    {
+      "id": 1,
+      "name": "NEC",
+      "percent": 55,
+      "name_eng": "Necessity Account",
+      "description_eng": "This account is for managing your everyday expenses and bills. This would include things like your rent, mortgage, utilities, bills, taxes, food, clothes, etc. Basically it includes anything that you need to live, the necessities.",
+      "name_vie": "Tài khoản chi tiêu cần thiết ",
+      "description_vie": "Tài khoản này dùng để quản lý các khoản chi phí và hoá đơn hàng ngày của bạn. Bao gồm những thứ như thuê nhà, thế chấp, tiện ích, hóa đơn, thuế, thực phẩm, quần áo, v..v. Về cơ bản nó bao gồm bất cứ thứ gì bạn cần để sống, nhu yếu phẩm."
+    },
+    {
+      "id": 2,
+      "name": "LTS",
+      "percent": 10,
+      "name_eng": "Long-term saving for spending Account",
+      "description_eng": "Money in this jar is for bigger, nice-to-have purchases. Use the money for vacations, extravagances, a plasma TV, contingency fund, your children's education etc. A small monthly contribution can go a long way. You may have more than one LTS jar. If you have more than one LTS, divide the 10% between the jars according to your priorities.",
+      "name_vie": "Tài khoản tiết kiệm dài hạn",
+      "description_vie": "aa"
+    },
+    {
+      "id": 3,
+      "name": "EDU",
+      "percent": 5,
+      "name_eng": "Education Account",
+      "description_eng": "Money in this jar is meant to further your education and personal growth. An investment in yourself is a great way to use your money. You are your most valuable asset. Never forget this. Education money can be used to purchase books, CD’s, courses or anything else that has educational value.",
+      "name_vie": "Tài khoản giáo dục",
+      "description_vie": "bb"
+    },
+    {
+      "id": 4,
+      "name": "FFA",
+      "percent": 10,
+      "name_eng": "Financial Freedom Account",
+      "description_eng": "This is your golden goose. This jar is your ticket to financial freedom. The money that you put into this jar is used for investments and building your passive income streams. You never spend this money. The only time you would spend this money is once you become financially free. Even then you would only spend the returns on your investment. Never spend the principal.",
+      "name_vie": "Tài khoản tự do tài chính",
+      "description_vie": "cc"
+    },
+    {
+      "id": 5,
+      "name": "PLY",
+      "percent": 10,
+      "name_eng": "Play Account",
+      "description_eng": "PLAY money is spent every month on purchases you wouldn’t normally make. The purpose of this jar is to nurture yourself. You could purchase an expensive bottle of wine at dinner, get a massage or go on a weekend getaway. Play can be anything your heart desires. You and a spouse can each receive your own play money, and not even ask what the other person spends it on!",
+      "name_vie": "Tài khoản hưởng thụ",
+      "description_vie": "dd"
+    },
+    {
+      "id": 6,
+      "name": "GIV",
+      "percent": 10,
+      "name_eng": "Give Account",
+      "description_eng": "Money in this jar is for giving away. Use the money for family and friends on birthdays, special occasions and holidays. You can also give away your time as opposed to giving away money. You could house sit for a neighbor, take a friend’s dog for a walk or volunteer in your community or for your favorite charity.",
+      "name_vie": "Tài khoản từ thiện",
+      "description_vie": "ee"
+    }
+  ],
+  "revenue_types": [
+    {
+      "id": 1,
+      "type": "Salary",
+      "description": "My salary from work"
+    },
+    {
+      "id": 2,
+      "type": "Profit",
+      "description": "Profit earned from something"
+    },
+    {
+      "id": 3,
+      "type": "Trade",
+      "description": "Trading some products"
+    },
+    {
+      "id": 4,
+      "type": "Lottery",
+      "description": "Winning lottery tickets"
+    },
+    {
+      "id": 5,
+      "type": "Reward",
+      "description": "Be rewarded from work"
+    },
+    {
+      "id": 6,
+      "type": "Gift",
+      "description": "Receive gifts from someone"
+    },
+    {
+      "id": 7,
+      "type": "Rent",
+      "description": "For rent something"
+    },
+    {
+      "id": 8,
+      "type": "Stocks",
+      "description": "Profit from playing stocks"
+    },
+    {
+      "id": 9,
+      "type": "Inherit",
+      "description": "Inheritance from someone"
+    }
+  ],
+  "expenditure_types": [
+    {
+      "id": 1,
+      "type": "Electric",
+      "description": "Payment of electricity"
+    },
+    {
+      "id": 2,
+      "type": "Water",
+      "description": "Payment of water"
+    },
+    {
+      "id": 3,
+      "type": "Internet",
+      "description": "Payment of internet"
+    },
+    {
+      "id": 4,
+      "type": "House",
+      "description": "Pay rent house"
+    },
+    {
+      "id": 5,
+      "type": "Food",
+      "description": "Buy food, drink or go to restaurant"
+    },
+    {
+      "id": 6,
+      "type": "Shopping",
+      "description": "Go shopping buy something"
+    },
+    {
+      "id": 7,
+      "type": "Health",
+      "description": "Buy medicine or medical examination"
+    },
+    {
+      "id": 8,
+      "type": "Tuition",
+      "description": "Pay tuition"
+    },
+    {
+      "id": 9,
+      "type": "Book",
+      "description": "Buy some book"
+    },
+    {
+      "id": 10,
+      "type": "Travle",
+      "description": "Travle to somewhere"
+    },
+    {
+      "id": 11,
+      "type": "Party",
+      "description": "Join in some parties"
+    },
+    {
+      "id": 12,
+      "type": "Feast",
+      "description": "Join in some feasts"
+    },
+    {
+      "id": 13,
+      "type": "Charity",
+      "description": "Giveaways to someone"
+    },
+    {
+      "id": 14,
+      "type": "Insurance",
+      "description": "Buy some insurance"
+    }
+  ],
+  "wallets": [
+    {
+      "id": 0,
+      "type": "Wallet",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    },
+    {
+      "id": 1,
+      "type": "NEC",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    },
+    {
+      "id": 2,
+      "type": "LTS",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    },
+    {
+      "id": 3,
+      "type": "EDU",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    },
+    {
+      "id": 4,
+      "type": "FFA",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    },
+    {
+      "id": 5,
+      "type": "PLY",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    },
+    {
+      "id": 6,
+      "type": "GIV",
+      "amount_all_time": 0.0,
+      "amount_available": 0.0,
+      "amount_expend": 0.0
+    }
+  ],
+  "revenues": [
+  ],
+  "expenditures": [
+  ]
+}

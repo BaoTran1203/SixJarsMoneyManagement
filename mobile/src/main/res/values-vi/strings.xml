@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Six Jars</string>
+    <string name="overview">Tổng quan</string>
+    <string name="wallet">Ví tiền</string>
+    <string name="money_management">Quản lý chi tiêu</string>
+    <string name="estimate">Ước tính</string>
+    <string name="settings">Cài đặt</string>
+    <string name="navigation_drawer_open">Mở thanh điều hướng</string>
+    <string name="navigation_drawer_close">Đóng thanh điều hướng</string>
+    <string name="revenue">DOANH THU</string>
+    <string name="expenditure">CHI TIÊU</string>
+    <string name="jar_config">Thiết lập</string>
+    <string name="statistical">Thống kê</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="catalog">Danh mục</string>
+    <string name="save">Lưu</string>
+    <string name="revenue_type">Loại doanh thu</string>
+    <string name="expenditure_type">Loại chi tiêu</string>
+    <string name="add">Thêm</string>
+    <string name="edit">Sửa</string>
+    <string name="delete">Xóa</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="cancel">Hủy bỏ</string>
+</resources>
