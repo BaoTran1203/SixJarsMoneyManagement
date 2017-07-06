@@ -13,7 +13,6 @@ import com.trangiabao.sixjars.adapter.JarRatioApdater
 import com.trangiabao.sixjars.model.Jar
 import com.trangiabao.sixjars.presenter.JarPresenter
 import com.trangiabao.sixjars.view.JarView
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.fragment_jar_ratio.view.*
 
 class JarRatioFragment : Fragment(), JarView {
@@ -23,28 +22,36 @@ class JarRatioFragment : Fragment(), JarView {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater!!.inflate(R.layout.fragment_jar_ratio, container, false)
-        addControl(view)
-        presenter = JarPresenter(context, this)
-        presenter!!.getAllJar()
-
-        view.btnSave.setOnClickListener {
-            presenter!!.updateJar(adapter!!.getRatios())
-        }
+        addControls(view)
+        addEvents(view)
         return view
     }
 
-    fun addControl(view: View) {
+    private fun addControls(view: View) {
         view.recyclerView.setHasFixedSize(true)
         view.recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = JarRatioApdater()
         view.recyclerView.adapter = adapter
     }
 
-    override fun onJarLoaded(jars: RealmResults<Jar>) {
-        adapter!!.updateList(jars)
+    private fun addEvents(view: View) {
+        presenter = JarPresenter(context, this)
+        presenter!!.getAll()
+
+        view.btnSave.setOnClickListener {
+            presenter!!.update(adapter!!.List)
+        }
     }
 
-    override fun onJarUpdateSucessed(result: Boolean) {
-        Toast.makeText(context, "$result", Toast.LENGTH_SHORT).show()
+    override fun onGetListResult(list: MutableList<Jar>) {
+        adapter!!.List = list
+    }
+
+    override fun onUpdateResult(result: Boolean) {
+        if (result) {
+            Toast.makeText(context, "Update thanh cong", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Update that bai", Toast.LENGTH_SHORT).show()
+        }
     }
 }

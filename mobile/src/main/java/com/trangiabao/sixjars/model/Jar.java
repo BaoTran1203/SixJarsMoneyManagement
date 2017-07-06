@@ -8,12 +8,9 @@ import io.realm.annotations.PrimaryKey;
 
 public class Jar extends RealmObject {
 
-    @SerializedName("id")
-    @Expose
-    @PrimaryKey
-    private Integer id;
     @SerializedName("name")
     @Expose
+    @PrimaryKey
     private String name;
     @SerializedName("percent")
     @Expose
@@ -34,23 +31,14 @@ public class Jar extends RealmObject {
     public Jar() {
     }
 
-    public Jar(Integer id, String name, Integer percent, String nameEng, String descriptionEng, String nameVie, String descriptionVie) {
+    public Jar(String name, Integer percent, String nameEng, String descriptionEng, String nameVie, String descriptionVie) {
         super();
-        this.id = id;
         this.name = name;
         this.percent = percent;
         this.nameEng = nameEng;
         this.descriptionEng = descriptionEng;
         this.nameVie = nameVie;
         this.descriptionVie = descriptionVie;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

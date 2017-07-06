@@ -1,6 +1,11 @@
 package com.trangiabao.sixjars.presenter
 
+import com.trangiabao.sixjars.model.Jar
+
 interface JarPresenterImpl {
-    fun getAllJar()
-    fun updateJar(ratios: ArrayList<Int>)
+
+    fun getAll()
+
+    fun update(list: MutableList<Jar>)
+
 }

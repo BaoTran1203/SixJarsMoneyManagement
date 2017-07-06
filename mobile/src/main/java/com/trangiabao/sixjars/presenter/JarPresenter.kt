@@ -4,29 +4,43 @@ import android.content.Context
 import com.trangiabao.sixjars.model.Jar
 import com.trangiabao.sixjars.view.JarView
 import io.realm.Realm
-import io.realm.RealmResults
+import io.realm.exceptions.RealmException
 
-class JarPresenter(private var context: Context, private var view: JarView) : JarPresenterImpl {
+class JarPresenter(context: Context, private var view: JarView) : JarPresenterImpl {
 
-    override fun getAllJar() {
+    private var realm: Realm? = null
+
+    init {
         Realm.init(context)
-        val realm = Realm.getDefaultInstance()
-        view.onJarLoaded(realm.where(Jar::class.java).findAll())
+        realm = Realm.getDefaultInstance()
     }
 
-    override fun updateJar(ratios: ArrayList<Int>) {
-        if (ratios.sum() == 100) {
-            Realm.init(context)
-            val realm = Realm.getDefaultInstance()
-            val jars: RealmResults<Jar> = realm.where(Jar::class.java).findAll()
-            realm.beginTransaction()
-            var i = 0
-            for (jar in jars) {
-                jar.percent = ratios[i++]
+    override fun getAll() {
+        var list: MutableList<Jar> = mutableListOf()
+        try {
+            list = realm!!.copyFromRealm(realm!!.where(Jar::class.java).findAll()).toMutableList()
+        } catch (e: RealmException) {
+            e.printStackTrace()
+        }
+        view.onGetListResult(list)
+    }
+
+    override fun update(list: MutableList<Jar>) {
+        val sum = list.sumBy { x -> x.percent }
+        if (sum != 100) {
+            view.onUpdateResult(false)
+        } else {
+            try {
+                realm!!.run {
+                    beginTransaction()
+                    copyToRealmOrUpdate(list)
+                    commitTransaction()
+                }
+                view.onUpdateResult(true)
+            } catch (e: RealmException) {
+                e.printStackTrace()
+                view.onUpdateResult(false)
             }
-            realm.commitTransaction()
-            view.onJarUpdateSucessed(true)
-        } else
-            view.onJarUpdateSucessed(false)
+        }
     }
 }

@@ -3,23 +3,25 @@ package com.trangiabao.sixjars.adapter
 import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
-import android.view.View
 import com.trangiabao.sixjars.model.Jar
 import com.trangiabao.sixjars.system.LocaleHelper
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.item_jar.view.*
 
 class JarApdater : RecyclerView.Adapter<JarApdater.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private var lists: RealmResults<Jar>? = null
+    private var lists: MutableList<Jar> = mutableListOf()
 
-    fun updateList(lists: RealmResults<Jar>) {
-        this.lists = lists
-    }
+    var List: MutableList<Jar>
+        get() = this.lists
+        set(value) {
+            this.lists = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar, parent, false))
@@ -27,7 +29,7 @@ class JarApdater : RecyclerView.Adapter<JarApdater.ViewHolder>() {
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        val model: Jar = lists!![position]
+        val model: Jar = lists[position]
         holder!!.itemView.run {
             txtName.text = model.name
             txtPercent.text = "${model.percent}%"
@@ -42,6 +44,6 @@ class JarApdater : RecyclerView.Adapter<JarApdater.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return lists!!.size
+        return lists.size
     }
 }

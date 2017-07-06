@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/parentLayoutMargin"
     android:orientation="horizontal"
     tools:ignore="RtlHardcoded,ContentDescription,HardcodedText">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="@dimen/parentLayoutMargin">
 
         <ImageView
             android:layout_width="100dp"
@@ -31,7 +31,7 @@
                 android:text="NEC"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="22sp"
+                android:textSize="@dimen/bigTextSize"
                 android:textStyle="italic" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:text="55%"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="22sp"
+                android:textSize="@dimen/bigTextSize"
                 android:textStyle="italic" />
         </LinearLayout>
     </RelativeLayout>
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="Necessity Account"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
+            android:textSize="@dimen/titleTextSize"
             android:textStyle="bold" />
 
         <com.trangiabao.sixjars.ui.JustifyTextView
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@string/font_family_medium"
             android:text="This account is for managing your everyday expenses and bills. This would include things like your rent, mortgage, utilities, bills, taxes, food, clothes, etc. Basically it includes anything that you need to live, the necessities."
-            android:textSize="16sp" />
-
+            android:textSize="@dimen/normalTextSize"
+            android:textStyle="italic" />
     </LinearLayout>
 </LinearLayout>

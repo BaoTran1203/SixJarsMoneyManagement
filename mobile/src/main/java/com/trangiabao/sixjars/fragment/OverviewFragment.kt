@@ -12,19 +12,17 @@ import com.trangiabao.sixjars.adapter.JarApdater
 import com.trangiabao.sixjars.model.Jar
 import com.trangiabao.sixjars.presenter.JarPresenter
 import com.trangiabao.sixjars.view.JarView
-import io.realm.RealmResults
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 
-class JarFragment : Fragment(), JarView {
+class OverviewFragment : Fragment(), JarView {
 
     private var adapter: JarApdater? = null
-    private var presenter: JarPresenter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater!!.inflate(R.layout.fragment_overview, container, false)
         addControl(view)
-        presenter = JarPresenter(context, this)
-        presenter!!.getAllJar()
+        val presenter: JarPresenter = JarPresenter(context, this)
+        presenter.getAll()
         return view
     }
 
@@ -35,11 +33,11 @@ class JarFragment : Fragment(), JarView {
         view.recyclerView.adapter = adapter
     }
 
-    override fun onJarLoaded(jars: RealmResults<Jar>) {
-        adapter!!.updateList(jars)
+    override fun onGetListResult(list: MutableList<Jar>) {
+        adapter!!.List = list
     }
 
-    override fun onJarUpdateSucessed(result: Boolean) {
-
+    override fun onUpdateResult(result: Boolean) {
+        // TODO("Do nothing")
     }
 }
