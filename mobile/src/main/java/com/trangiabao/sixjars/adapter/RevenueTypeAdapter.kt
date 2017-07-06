@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.model.ExpenditureType
 import com.trangiabao.sixjars.model.RevenueType
 import kotlinx.android.synthetic.main.item_catalog.view.*
 
@@ -43,7 +42,19 @@ class RevenueTypeAdapter(private var listener: ItemClickListener) : RecyclerView
 
     fun addItem(model: RevenueType) {
         lists.add(model)
-        notifyItemInserted(lists.size)
+        notifyDataSetChanged()
+    }
+
+    fun updateItem(model: RevenueType) {
+        val newList: MutableList<RevenueType> = mutableListOf()
+        for (item in lists) {
+            if (item.id == model.id)
+                newList.add(model)
+            else
+                newList.add(item)
+        }
+        lists = newList
+        notifyDataSetChanged()
     }
 
     fun removeItem(position: Int) {

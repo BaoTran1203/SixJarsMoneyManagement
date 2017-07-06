@@ -11,7 +11,7 @@ public class RevenueType extends RealmObject {
     @SerializedName("id")
     @Expose
     @PrimaryKey
-    private Integer id;
+    private String id;
     @SerializedName("type")
     @Expose
     private String type;
@@ -22,18 +22,18 @@ public class RevenueType extends RealmObject {
     public RevenueType() {
     }
 
-    public RevenueType(Integer id, String type, String description) {
+    public RevenueType(String id, String type, String description) {
         super();
         this.id = id;
         this.type = type;
         this.description = description;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

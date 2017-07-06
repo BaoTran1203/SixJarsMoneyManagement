@@ -41,7 +41,19 @@ class ExpenditureTypeAdapter(private var listener: ItemClickListener) : Recycler
 
     fun addItem(model: ExpenditureType) {
         lists.add(model)
-        notifyItemInserted(lists.size)
+        notifyDataSetChanged()
+    }
+
+    fun updateItem(model: ExpenditureType) {
+        val newList: MutableList<ExpenditureType> = mutableListOf()
+        for (item in lists) {
+            if (item.id == model.id)
+                newList.add(model)
+            else
+                newList.add(item)
+        }
+        lists = newList
+        notifyDataSetChanged()
     }
 
     fun removeItem(position: Int) {

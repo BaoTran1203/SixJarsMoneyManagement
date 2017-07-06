@@ -11,7 +11,7 @@ public class ExpenditureType extends RealmObject {
     @SerializedName("id")
     @Expose
     @PrimaryKey
-    private Integer id;
+    private String id;
     @SerializedName("type")
     @Expose
     private String type;
@@ -22,18 +22,17 @@ public class ExpenditureType extends RealmObject {
     public ExpenditureType() {
     }
 
-    public ExpenditureType(Integer id, String type, String description) {
-        super();
+    public ExpenditureType(String id, String type, String description) {
         this.id = id;
         this.type = type;
         this.description = description;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
