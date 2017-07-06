@@ -1,7 +1,6 @@
 ﻿{
   "jars": [
     {
-      "id": 1,
       "name": "NEC",
       "percent": 55,
       "name_eng": "Necessity Account",
@@ -10,7 +9,6 @@
       "description_vie": "Tài khoản này dùng để quản lý các khoản chi phí và hoá đơn hàng ngày của bạn. Bao gồm những thứ như thuê nhà, thế chấp, tiện ích, hóa đơn, thuế, thực phẩm, quần áo, v..v. Về cơ bản nó bao gồm bất cứ thứ gì bạn cần để sống, nhu yếu phẩm."
     },
     {
-      "id": 2,
       "name": "LTS",
       "percent": 10,
       "name_eng": "Long-term saving for spending Account",
@@ -19,7 +17,6 @@
       "description_vie": "aa"
     },
     {
-      "id": 3,
       "name": "EDU",
       "percent": 5,
       "name_eng": "Education Account",
@@ -28,7 +25,6 @@
       "description_vie": "bb"
     },
     {
-      "id": 4,
       "name": "FFA",
       "percent": 10,
       "name_eng": "Financial Freedom Account",
@@ -37,7 +33,6 @@
       "description_vie": "cc"
     },
     {
-      "id": 5,
       "name": "PLY",
       "percent": 10,
       "name_eng": "Play Account",
@@ -46,7 +41,6 @@
       "description_vie": "dd"
     },
     {
-      "id": 6,
       "name": "GIV",
       "percent": 10,
       "name_eng": "Give Account",
@@ -57,168 +51,168 @@
   ],
   "revenue_types": [
     {
-      "id": 1,
+      "id": "1",
       "type": "Salary",
       "description": "My salary from work"
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "Profit",
       "description": "Profit earned from something"
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "Trade",
       "description": "Trading some products"
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "Lottery",
       "description": "Winning lottery tickets"
     },
     {
-      "id": 5,
+      "id": "5",
       "type": "Reward",
       "description": "Be rewarded from work"
     },
     {
-      "id": 6,
+      "id": "6",
       "type": "Gift",
       "description": "Receive gifts from someone"
     },
     {
-      "id": 7,
+      "id": "7",
       "type": "Rent",
       "description": "For rent something"
     },
     {
-      "id": 8,
+      "id": "8",
       "type": "Stocks",
       "description": "Profit from playing stocks"
     },
     {
-      "id": 9,
+      "id": "9",
       "type": "Inherit",
       "description": "Inheritance from someone"
     }
   ],
   "expenditure_types": [
     {
-      "id": 1,
+      "id": "1",
       "type": "Electric",
       "description": "Payment of electricity"
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "Water",
       "description": "Payment of water"
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "Internet",
       "description": "Payment of internet"
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "House",
       "description": "Pay rent house"
     },
     {
-      "id": 5,
+      "id": "5",
       "type": "Food",
       "description": "Buy food, drink or go to restaurant"
     },
     {
-      "id": 6,
+      "id": "6",
       "type": "Shopping",
       "description": "Go shopping buy something"
     },
     {
-      "id": 7,
+      "id": "7",
       "type": "Health",
       "description": "Buy medicine or medical examination"
     },
     {
-      "id": 8,
+      "id": "8",
       "type": "Tuition",
       "description": "Pay tuition"
     },
     {
-      "id": 9,
+      "id": "9",
       "type": "Book",
       "description": "Buy some book"
     },
     {
-      "id": 10,
+      "id": "10",
       "type": "Travle",
       "description": "Travle to somewhere"
     },
     {
-      "id": 11,
+      "id": "11",
       "type": "Party",
       "description": "Join in some parties"
     },
     {
-      "id": 12,
+      "id": "12",
       "type": "Feast",
       "description": "Join in some feasts"
     },
     {
-      "id": 13,
+      "id": "13",
       "type": "Charity",
       "description": "Giveaways to someone"
     },
     {
-      "id": 14,
+      "id": "14",
       "type": "Insurance",
       "description": "Buy some insurance"
     }
   ],
   "wallets": [
     {
-      "id": 0,
+      "id": "0",
       "type": "Wallet",
       "amount_all_time": 0.0,
       "amount_available": 0.0,
       "amount_expend": 0.0
     },
     {
-      "id": 1,
+      "id": "1",
       "type": "NEC",
       "amount_all_time": 0.0,
       "amount_available": 0.0,
       "amount_expend": 0.0
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "LTS",
       "amount_all_time": 0.0,
       "amount_available": 0.0,
       "amount_expend": 0.0
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "EDU",
       "amount_all_time": 0.0,
       "amount_available": 0.0,
       "amount_expend": 0.0
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "FFA",
       "amount_all_time": 0.0,
       "amount_available": 0.0,
       "amount_expend": 0.0
     },
     {
-      "id": 5,
+      "id": "5",
       "type": "PLY",
       "amount_all_time": 0.0,
       "amount_available": 0.0,
       "amount_expend": 0.0
     },
     {
-      "id": 6,
+      "id": "6",
       "type": "GIV",
       "amount_all_time": 0.0,
       "amount_available": 0.0,

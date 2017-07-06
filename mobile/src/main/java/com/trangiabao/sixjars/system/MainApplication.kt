@@ -11,20 +11,14 @@ import io.realm.Realm
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.util.*
 
-@Suppress("unused")
 class MainApplication : Application() {
 
     private val PREF_FILE_NAME: String = "Save"
     private var context: Context? = null
     private var pre: SharedPreferences? = null
     private var editor: SharedPreferences.Editor? = null
-
-    var Context: Context?
-        get() = this.context
-        set(value) {
-            this.context = value
-        }
 
     override fun onCreate() {
         super.onCreate()
@@ -42,39 +36,32 @@ class MainApplication : Application() {
 
     @SuppressLint("CommitPrefEdits")
     fun createDefaultDatabase() {
+        val raw: InputStream = resources.openRawResource(R.raw.default_database)
+        val rd: BufferedReader = BufferedReader(InputStreamReader(raw))
+        val db: Database = Gson().fromJson(rd, Database::class.java)
+
         Realm.init(context)
         val realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        val raw: InputStream = resources.openRawResource(R.raw.default_database)
-        val rd: BufferedReader = BufferedReader(InputStreamReader(raw))
-        val gson: Gson = Gson()
-        val db: Database = gson.fromJson(rd, Database::class.java)
-        realm.copyToRealmOrUpdate(db.jars)
-        realm.copyToRealmOrUpdate(db.expenditureTypes)
-        realm.copyToRealmOrUpdate(db.revenueTypes)
-        realm.copyToRealmOrUpdate(db.wallets)
-        realm.copyToRealmOrUpdate(db.revenues)
-        realm.copyToRealmOrUpdate(db.expenditures)
+        realm.copyToRealm(db.jars)
+
+        for (type in db.expenditureTypes) {
+            type.id = UUID.randomUUID().toString()
+            realm.copyToRealm(type)
+        }
+
+        for (type in db.revenueTypes) {
+            type.id = UUID.randomUUID().toString()
+            realm.copyToRealm(type)
+        }
+
+        realm.copyToRealm(db.wallets)
+        realm.copyToRealm(db.revenues)
+        realm.copyToRealm(db.expenditures)
         realm.commitTransaction()
+        realm.close()
         editor = pre!!.edit()
         editor!!.putBoolean("isFirst", false)
         editor!!.apply()
-    }
-
-    fun restoreDatabase() {
-        Realm.init(context)
-        val realm = Realm.getDefaultInstance()
-        realm.beginTransaction()
-        val raw: InputStream = resources.openRawResource(R.raw.database)
-        val rd: BufferedReader = BufferedReader(InputStreamReader(raw))
-        val gson: Gson = Gson()
-        val db: Database = gson.fromJson(rd, Database::class.java)
-        realm.copyToRealmOrUpdate(db.jars)
-        realm.copyToRealmOrUpdate(db.expenditureTypes)
-        realm.copyToRealmOrUpdate(db.revenueTypes)
-        realm.copyToRealmOrUpdate(db.wallets)
-        realm.copyToRealmOrUpdate(db.revenues)
-        realm.copyToRealmOrUpdate(db.expenditures)
-        realm.commitTransaction()
     }
 }

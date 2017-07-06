@@ -1,17 +1,17 @@
 package com.trangiabao.sixjars.activity
 
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.custom_app_bar.*
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.View
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.fragment.*
 import com.trangiabao.sixjars.system.BaseActivity
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.custom_app_bar.*
 
 class HomeActivity : BaseActivity() {
 
-    private var curFragment: Class<*> = JarFragment::class.java
+    private var curFragment: Class<*> = OverviewFragment::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class HomeActivity : BaseActivity() {
             val id = menuItem.itemId
             when (id) {
                 R.id.itemOverview -> {
-                    curFragment = JarFragment::class.java
+                    curFragment = OverviewFragment::class.java
                 }
                 R.id.itemWallet -> {
                     curFragment = WalletFragment::class.java
