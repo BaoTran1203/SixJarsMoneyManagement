@@ -2,25 +2,24 @@ package com.trangiabao.sixjars.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.adapter.RevenueTypeAdapter
 import com.trangiabao.sixjars.model.RevenueType
 import com.trangiabao.sixjars.presenter.RevenueTypePresenter
+import com.trangiabao.sixjars.system.BaseFragment
 import com.trangiabao.sixjars.view.RevenueTypeView
 import kotlinx.android.synthetic.main.dialog.view.*
 import kotlinx.android.synthetic.main.fragment_type.view.*
 import java.util.*
 
-class RevenueTypeFragment : Fragment(), RevenueTypeView {
+class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
 
     private var adapter: RevenueTypeAdapter? = null
     private var presenter: RevenueTypePresenter? = null
@@ -38,117 +37,112 @@ class RevenueTypeFragment : Fragment(), RevenueTypeView {
         view.recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = RevenueTypeAdapter(object : RevenueTypeAdapter.ItemClickListener {
             override fun onClickListener(type: RevenueType, position: Int) {
-                openEditDialog(type)
+                openEditDialog(type).show()
             }
 
             override fun onLongClickListener(type: RevenueType, position: Int): Boolean {
                 AlertDialog.Builder(context)
-                        .setTitle("")
-                        .setMessage("")
-                        .setIcon(R.drawable.ic_info)
-                        .setPositiveButton(getString(R.string.confirm)) { dialog, _ ->
+                        .setTitle(R.string.confirm)
+                        .setMessage(R.string.deletion)
+                        .setIcon(R.drawable.ic_delete)
+                        .setNegativeButton(R.string.cancel, null)
+                        .setPositiveButton(R.string.confirm) { dialog, _ ->
                             presenter!!.delete(type.id)
                             adapter!!.removeItem(position)
                             dialog.dismiss()
-                        }
-                        .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                        .show()
+                        }.show()
                 return true
             }
         })
         view.recyclerView.adapter = adapter
-        view.fab.setOnClickListener {
-            openAddDialog()
-        }
+        view.fab.setOnClickListener { openAddDialog().show() }
     }
 
     @SuppressLint("InflateParams")
-    private fun openAddDialog() {
+    private fun openAddDialog(): AlertDialog {
         val dialogView: View = layoutInflater.inflate(R.layout.dialog, null)
         val alertDialog = AlertDialog.Builder(context)
-        alertDialog.setView(dialogView)
-        alertDialog.setTitle(getString(R.string.add))
-        alertDialog.setMessage("Add bla bla bla")
-        alertDialog.setIcon(R.drawable.ic_add)
-        alertDialog.setPositiveButton(getString(R.string.confirm)) { dialog, _ ->
-            val type: RevenueType = RevenueType()
-            type.id = UUID.randomUUID().toString()
-            type.type = dialogView.txtType.text.toString().trim()
-            type.description = dialogView.txtDescription.text.toString().trim()
-            if (type.type == "")
-                dialogView.txtType.error = "Fill plz"
-            else {
-                presenter!!.add(type)
-                dialog.dismiss()
+                .setView(dialogView)
+                .setTitle(R.string.add)
+                .setIcon(R.drawable.ic_add)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.confirm, null)
+                .create()
+
+        alertDialog.setOnShowListener { dialog ->
+            val btn = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            btn.setOnClickListener {
+                val type: RevenueType = RevenueType()
+                type.id = UUID.randomUUID().toString()
+                type.type = dialogView.txtType.text.toString().trim()
+                type.description = dialogView.txtDescription.text.toString().trim()
+                if (type.type == "")
+                    dialogView.txtType.error = getString(R.string.required_field)
+                else {
+                    presenter!!.add(type)
+                    dialog.dismiss()
+                }
             }
         }
-        alertDialog.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.dismiss()
-        }
-        alertDialog.show()
+        return alertDialog
     }
 
     @SuppressLint("InflateParams")
-    private fun openEditDialog(obj: RevenueType) {
+    private fun openEditDialog(obj: RevenueType): AlertDialog {
         val dialogView: View = layoutInflater.inflate(R.layout.dialog, null)
         dialogView.txtType.setText(obj.type, TextView.BufferType.EDITABLE)
         dialogView.txtDescription.setText(obj.description, TextView.BufferType.EDITABLE)
-
         val alertDialog = AlertDialog.Builder(context)
-        alertDialog.setView(dialogView)
-        alertDialog.setTitle(getString(R.string.edit))
-        alertDialog.setMessage("Edit bla bla bla")
-        alertDialog.setIcon(R.drawable.ic_estimate)
-        alertDialog.setPositiveButton(getString(R.string.confirm)) { dialog, _ ->
-            obj.type = dialogView.txtType.text.toString().trim()
-            obj.description = dialogView.txtDescription.text.toString().trim()
-            if (obj.type == "")
-                dialogView.txtType.error = "Fill plz"
-            else {
-                presenter!!.update(obj)
-                dialog.dismiss()
+                .setView(dialogView)
+                .setTitle(R.string.edit)
+                .setIcon(R.drawable.ic_estimate)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.confirm, null)
+                .create()
+
+        alertDialog.setOnShowListener { dialog ->
+            val btn = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            btn.setOnClickListener {
+                obj.type = dialogView.txtType.text.toString().trim()
+                obj.description = dialogView.txtDescription.text.toString().trim()
+                if (obj.type == "")
+                    dialogView.txtType.error = getString(R.string.required_field)
+                else {
+                    presenter!!.update(obj)
+                    dialog.dismiss()
+                }
             }
         }
-        alertDialog.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.dismiss()
-        }
-        alertDialog.show()
+        return alertDialog
     }
 
     override fun onGetListResult(list: MutableList<RevenueType>) {
-        if (list.size > 0) {
-            Toast.makeText(context, "Load list thanh cong", Toast.LENGTH_SHORT).show()
-            adapter!!.updateList(list)
-        } else {
-            Toast.makeText(context, "Load list that bai", Toast.LENGTH_SHORT).show()
-        }
+        adapter!!.updateList(list)
     }
 
     override fun onAddResult(obj: RevenueType?) {
         if (obj != null) {
-            Toast.makeText(context, "Add thanh cong", Toast.LENGTH_SHORT).show()
             adapter!!.addItem(obj)
+            toast(R.string.item_added)
         } else {
-            Toast.makeText(context, "Add that bai", Toast.LENGTH_SHORT).show()
+            toast("Add that bai")
         }
     }
 
     override fun onUpdateResult(obj: RevenueType?) {
         if (obj != null) {
-            Toast.makeText(context, "Update thanh cong", Toast.LENGTH_SHORT).show()
             adapter!!.updateItem(obj)
+            toast(R.string.update_successful)
         } else {
-            Toast.makeText(context, "Update that bai", Toast.LENGTH_SHORT).show()
+            toast("Update that bai")
         }
     }
 
     override fun onDeleteResult(result: Boolean) {
         if (result) {
-            Toast.makeText(context, "Xoa thanh cong", Toast.LENGTH_SHORT).show()
+            toast(R.string.item_deleted)
         } else {
-            Toast.makeText(context, "Xoa that bai", Toast.LENGTH_SHORT).show()
+            toast("Xoa that bai")
         }
     }
 

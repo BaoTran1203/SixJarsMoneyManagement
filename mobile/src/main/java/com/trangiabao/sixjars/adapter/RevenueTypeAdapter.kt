@@ -16,8 +16,7 @@ class RevenueTypeAdapter(private var listener: ItemClickListener) : RecyclerView
     private var lists: MutableList<RevenueType> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent!!.context).inflate(R.layout.item_catalog, parent, false)
-        return ViewHolder(v)
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_catalog, parent, false))
     }
 
     @SuppressLint("SetTextI18n")
