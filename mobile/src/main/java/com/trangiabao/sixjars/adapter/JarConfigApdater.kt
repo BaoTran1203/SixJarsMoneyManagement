@@ -8,7 +8,7 @@ import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.model.Jar
 import kotlinx.android.synthetic.main.item_jar_config.view.*
 
-class JarRatioApdater : RecyclerView.Adapter<JarRatioApdater.ViewHolder>() {
+class JarConfigApdater : RecyclerView.Adapter<JarConfigApdater.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -22,8 +22,7 @@ class JarRatioApdater : RecyclerView.Adapter<JarRatioApdater.ViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar_config, parent, false)
-        return ViewHolder(v)
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar_config, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
