@@ -10,8 +10,11 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type"
-        app:errorEnabled="true">
+        android:hint="@string/type"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true">
 
         <EditText
             android:id="@+id/txtType"
@@ -25,7 +28,10 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description">
+        android:hint="@string/description"
+        app:counterEnabled="true"
+        app:hintAnimationEnabled="true"
+        app:hintEnabled="true">
 
         <EditText
             android:id="@+id/txtDescription"

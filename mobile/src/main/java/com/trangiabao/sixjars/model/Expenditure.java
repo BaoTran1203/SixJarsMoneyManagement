@@ -3,6 +3,8 @@ package com.trangiabao.sixjars.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -11,10 +13,10 @@ public class Expenditure extends RealmObject {
     @SerializedName("id")
     @Expose
     @PrimaryKey
-    private Integer id;
+    private String id;
     @SerializedName("datetime")
     @Expose
-    private String datetime;
+    private Date datetime;
     @SerializedName("amount")
     @Expose
     private Double amount;
@@ -29,9 +31,15 @@ public class Expenditure extends RealmObject {
     private String detail;
 
     public Expenditure() {
+        id = "";
+        datetime = new Date();
+        amount = 0.0;
+        jar = new Jar();
+        type = new ExpenditureType();
+        detail = "";
     }
 
-    public Expenditure(Integer id, String datetime, Double amount, Jar jar, ExpenditureType type, String detail) {
+    public Expenditure(String id, Date datetime, Double amount, Jar jar, ExpenditureType type, String detail) {
         this.id = id;
         this.datetime = datetime;
         this.amount = amount;
@@ -40,19 +48,19 @@ public class Expenditure extends RealmObject {
         this.detail = detail;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getDatetime() {
+    public Date getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(String datetime) {
+    public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 

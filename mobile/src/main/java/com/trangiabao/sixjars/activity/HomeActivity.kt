@@ -47,7 +47,7 @@ class HomeActivity : BaseActivity() {
 
                 }
                 R.id.itemJarConfig -> {
-                    curFragment = JarRatioFragment::class.java
+                    curFragment = ConfigFragment::class.java
                 }
                 R.id.itemCatalog -> {
                     curFragment = CatalogFragment::class.java
