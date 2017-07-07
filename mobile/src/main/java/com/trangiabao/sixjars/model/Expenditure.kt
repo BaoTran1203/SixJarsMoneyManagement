@@ -11,20 +11,20 @@ import java.util.*
 open class Expenditure : RealmObject() {
 
     @PrimaryKey @SerializedName("id") @Expose
-    open var id: String? = null
+    open var id: String = ""
 
     @SerializedName("datetime") @Expose
-    open var datetime: Date? = null
+    open var datetime: Date = Date()
 
     @SerializedName("amount") @Expose
-    open var amount: Double? = null
+    open var amount: Double = 0.0
 
     @SerializedName("jar") @Expose
-    open var jar: Jar? = null
+    open var jar: Jar = Jar()
 
     @SerializedName("type") @Expose
-    open var type: ExpenditureType? = null
+    open var type: ExpenditureType = ExpenditureType()
 
     @SerializedName("detail") @Expose
-    open var detail: String? = null
+    open var detail: String = ""
 }

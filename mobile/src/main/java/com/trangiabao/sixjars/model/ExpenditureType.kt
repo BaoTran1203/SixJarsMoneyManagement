@@ -10,11 +10,11 @@ import io.realm.annotations.RealmClass
 open class ExpenditureType : RealmObject() {
 
     @PrimaryKey @SerializedName("id") @Expose
-    open var id: String? = null
+    open var id: String = ""
 
     @SerializedName("type") @Expose
-    open var type: String? = null
+    open var type: String = ""
 
     @SerializedName("description") @Expose
-    open var description: String? = null
+    open var description: String = ""
 }

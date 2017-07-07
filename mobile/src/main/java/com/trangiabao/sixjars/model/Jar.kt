@@ -10,21 +10,21 @@ import io.realm.annotations.RealmClass
 open class Jar : RealmObject() {
 
     @PrimaryKey @SerializedName("name") @Expose
-    open var name: String? = null
+    open var name: String = ""
 
     @SerializedName("percent") @Expose
-    open var percent: Int? = null
+    open var percent: Int = 0
 
     @SerializedName("name_eng") @Expose
-    open var nameEng: String? = null
+    open var nameEng: String = ""
 
     @SerializedName("description_eng") @Expose
-    open var descriptionEng: String? = null
+    open var descriptionEng: String = ""
 
     @SerializedName("name_vie") @Expose
-    open var nameVie: String? = null
+    open var nameVie: String = ""
 
     @SerializedName("description_vie") @Expose
-    open var descriptionVie: String? = null
+    open var descriptionVie: String = ""
 
 }

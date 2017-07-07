@@ -11,18 +11,18 @@ import java.util.*
 open class Revenue : RealmObject() {
 
     @PrimaryKey @SerializedName("id") @Expose
-    open var id: String? = null
+    open var id: String = ""
 
     @SerializedName("datetime") @Expose
-    open var datetime: Date? = null
+    open var datetime: Date = Date()
 
     @SerializedName("amount") @Expose
-    open var amount: Double? = null
+    open var amount: Double = 0.0
 
     @SerializedName("type") @Expose
-    open var type: RevenueType? = null
+    open var type: RevenueType = RevenueType()
 
     @SerializedName("detail") @Expose
-    open var detail: String? = null
+    open var detail: String = ""
 
 }

@@ -11,11 +11,11 @@ import io.realm.annotations.Required
 open class RevenueType : RealmObject() {
 
     @PrimaryKey @SerializedName("id") @Expose
-    open var id: String? = null
+    open var id: String = ""
 
     @Required @SerializedName("type") @Expose
-    open var type: String? = null
+    open var type: String = ""
 
     @SerializedName("description") @Expose
-    open var description: String? = null
+    open var description: String = ""
 }
