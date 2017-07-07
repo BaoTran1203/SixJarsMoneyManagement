@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.model.Jar
 import com.trangiabao.sixjars.system.LocaleHelper
-import kotlinx.android.synthetic.main.item_jar.view.*
+import kotlinx.android.synthetic.main.item_jar_overview.view.*
 
-class JarApdater : RecyclerView.Adapter<JarApdater.ViewHolder>() {
+class JarOverviewApdater : RecyclerView.Adapter<JarOverviewApdater.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -24,7 +24,7 @@ class JarApdater : RecyclerView.Adapter<JarApdater.ViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar, parent, false))
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar_overview, parent, false))
     }
 
     @SuppressLint("SetTextI18n")
