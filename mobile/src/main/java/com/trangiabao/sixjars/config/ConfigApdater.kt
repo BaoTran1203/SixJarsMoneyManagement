@@ -1,16 +1,14 @@
-package com.trangiabao.sixjars.adapter
+package com.trangiabao.sixjars.config
 
-import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.model.Jar
-import com.trangiabao.sixjars.system.LocaleHelper
-import kotlinx.android.synthetic.main.item_jar_overview.view.*
+import kotlinx.android.synthetic.main.item_config.view.*
 
-class JarOverviewApdater : RecyclerView.Adapter<JarOverviewApdater.ViewHolder>() {
+class ConfigApdater : RecyclerView.Adapter<ConfigApdater.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -24,21 +22,18 @@ class JarOverviewApdater : RecyclerView.Adapter<JarOverviewApdater.ViewHolder>()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar_overview, parent, false))
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_config, parent, false))
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val model: Jar = lists[position]
         holder!!.itemView.run {
             txtName.text = model.name
-            txtPercent.text = "${model.percent}%"
-            if (LocaleHelper.getLanguage(context) == "vi") {
-                txtDescription.text = model.descriptionVie
-                txtFullName.text = model.nameVie
-            } else {
-                txtDescription.text = model.descriptionEng
-                txtFullName.text = model.nameEng
+            numberPickerPercent.minValue = 0
+            numberPickerPercent.value = model.percent
+            numberPickerPercent.maxValue = 100
+            numberPickerPercent.setOnValueChangedListener { _, _, newVal ->
+                model.percent = newVal
             }
         }
     }

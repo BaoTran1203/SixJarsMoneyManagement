@@ -1,11 +1,8 @@
-package com.trangiabao.sixjars.presenter
+package com.trangiabao.sixjars.config
 
 import com.trangiabao.sixjars.model.Jar
 
-interface JarPresenterImpl {
-
+interface ConfigPresenterImpl {
     fun getAll()
-
     fun update(list: MutableList<Jar>)
-
 }

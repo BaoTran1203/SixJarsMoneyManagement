@@ -23,6 +23,7 @@ public class NumericEditText extends android.support.v7.widget.AppCompatEditText
     private String mPreviousText = "";
     private String mNumberFilterRegex = "[^\\d\\" + DECIMAL_SEPARATOR + "]";
     private List<NumericValueWatcher> mNumericListeners = new ArrayList<>();
+
     private final TextWatcher mTextWatcher = new TextWatcher() {
         private boolean validateLock = false;
 
@@ -32,7 +33,7 @@ public class NumericEditText extends android.support.v7.widget.AppCompatEditText
                 return;
             if (countMatches(s.toString(), String.valueOf(DECIMAL_SEPARATOR)) > 1) {
                 validateLock = true;
-                setText(mPreviousText); // cancel change and revert to previous input
+                setText(mPreviousText);
                 setSelection(mPreviousText.length());
                 validateLock = false;
                 return;

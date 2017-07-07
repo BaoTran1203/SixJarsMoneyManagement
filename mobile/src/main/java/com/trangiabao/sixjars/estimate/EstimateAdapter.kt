@@ -1,4 +1,4 @@
-package com.trangiabao.sixjars.adapter
+package com.trangiabao.sixjars.estimate
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.model.Jar
-import kotlinx.android.synthetic.main.item_jar_estimate.view.*
+import kotlinx.android.synthetic.main.item_estimate.view.*
 import java.math.BigDecimal
 import java.text.DecimalFormat
 
-class JarEstimateAdapter(private var salary: Double, private var year: Int = 1) : RecyclerView.Adapter<JarEstimateAdapter.ViewHolder>() {
+class EstimateAdapter(private var salary: Double, private var year: Int = 1) : RecyclerView.Adapter<EstimateAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -39,7 +39,7 @@ class JarEstimateAdapter(private var salary: Double, private var year: Int = 1) 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_jar_estimate, parent, false))
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_estimate, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {

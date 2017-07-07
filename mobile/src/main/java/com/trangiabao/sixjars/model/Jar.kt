@@ -9,6 +9,9 @@ import io.realm.annotations.RealmClass
 @RealmClass
 open class Jar : RealmObject() {
 
+    val NAME: String = "name"
+    val PERCENT: String = "percent"
+
     @PrimaryKey @SerializedName("name") @Expose
     open var name: String = ""
 
