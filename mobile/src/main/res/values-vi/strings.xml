@@ -22,4 +22,14 @@
     <string name="delete">Xóa</string>
     <string name="confirm">Xác nhận</string>
     <string name="cancel">Hủy bỏ</string>
+    <string name="required_field">Trường bắt buộc</string>
+    <string name="item_deleted">Dữ liệu đã được xóa</string>
+    <string name="item_added">Dữ liệu đã được thêm</string>
+    <string name="deletion">Bạn có chắc muốn xóa ?</string>
+    <string name="type">Loại</string>
+    <string name="description">Mô tả</string>
+    <string name="update_successful">Cập nhật thành công</string>
+    <string name="total">Tổng</string>
+    <string name="year">năm tới</string>
+    <string name="my_money">Số tiền của tôi trong</string>
 </resources>

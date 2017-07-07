@@ -24,4 +24,14 @@
     <string name="delete">Delete</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="required_field">Required field</string>
+    <string name="item_deleted">Item has been removed</string>
+    <string name="item_added">Item has been added</string>
+    <string name="deletion">Are you sure to delete ?</string>
+    <string name="type">Type</string>
+    <string name="description">Description</string>
+    <string name="update_successful">Update successful</string>
+    <string name="total">Total</string>
+    <string name="year">year(s)</string>
+    <string name="my_money">My money for the next</string>
 </resources>
