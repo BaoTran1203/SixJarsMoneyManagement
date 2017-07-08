@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:theme="@style/CardViewStyle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/parentLayoutMargin"
+            android:layout_marginRight="@dimen/parentLayoutMargin"
+            android:drawableLeft="@drawable/ic_money"
+            android:drawablePadding="5dip"
+            android:drawableStart="@drawable/ic_money"
+            android:text="2.000.000"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/titleTextSize"
+            android:textStyle="bold" />
+
+        <include layout="@layout/custom_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/parentLayoutMargin"
+                android:layout_marginRight="@dimen/parentLayoutMargin"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_estimate"
+                android:drawablePadding="5dip"
+                android:drawableStart="@drawable/ic_estimate"
+                android:text="Salary"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/normalTextSize" />
+
+            <TextView
+                android:id="@+id/txtDateTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/parentLayoutMargin"
+                android:layout_marginRight="@dimen/parentLayoutMargin"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_time"
+                android:drawablePadding="5dip"
+                android:drawableStart="@drawable/ic_time"
+                android:text="Salary"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/normalTextSize" />
+        </LinearLayout>
+
+        <include layout="@layout/custom_line_horizontal" />
+
+        <TextView
+            android:id="@+id/txtDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/parentLayoutMargin"
+            android:layout_marginRight="@dimen/parentLayoutMargin"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/normalTextSize"
+            android:textStyle="italic" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

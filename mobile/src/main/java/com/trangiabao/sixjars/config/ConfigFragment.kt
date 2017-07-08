@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.model.Jar
-import com.trangiabao.sixjars.system.BaseFragment
 import kotlinx.android.synthetic.main.fragment_config.view.*
 
 class ConfigFragment : BaseFragment(), ConfigView {
@@ -41,8 +41,8 @@ class ConfigFragment : BaseFragment(), ConfigView {
         presenter!!.getAll()
     }
 
-    override fun onListLoaded(list: MutableList<Jar>) {
-        adapter!!.List = list
+    override fun onListLoaded(list: List<Jar>) {
+        adapter!!.List = list.toMutableList()
     }
 
     override fun onUpdateResult(result: Boolean, msg: String) {

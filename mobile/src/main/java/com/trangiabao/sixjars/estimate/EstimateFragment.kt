@@ -8,9 +8,9 @@ import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.base.BaseFragment
+import com.trangiabao.sixjars.base.ui.NumericEditText
 import com.trangiabao.sixjars.model.Jar
-import com.trangiabao.sixjars.system.BaseFragment
-import com.trangiabao.sixjars.ui.NumericEditText
 import kotlinx.android.synthetic.main.fragment_estimate.view.*
 
 class EstimateFragment : BaseFragment(), EstimateView {
@@ -71,7 +71,7 @@ class EstimateFragment : BaseFragment(), EstimateView {
         presenter!!.getAll()
     }
 
-    override fun onListLoaded(list: MutableList<Jar>) {
+    override fun onListLoaded(list: List<Jar>) {
         adapter!!.List = list
     }
 }

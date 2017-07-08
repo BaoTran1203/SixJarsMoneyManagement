@@ -34,4 +34,6 @@
     <string name="total">Total</string>
     <string name="year">year(s)</string>
     <string name="my_money">My money for the next</string>
+    <string name="detail">Detail</string>
+    <string name="datetime_format">dd-MMM-yyyy HH:mm</string>
 </resources>

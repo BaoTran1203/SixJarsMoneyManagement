@@ -61,7 +61,7 @@
             android:textSize="@dimen/titleTextSize"
             android:textStyle="bold" />
 
-        <com.trangiabao.sixjars.ui.JustifyTextView
+        <com.trangiabao.sixjars.base.ui.JustifyTextView
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

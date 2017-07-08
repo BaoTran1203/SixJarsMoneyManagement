@@ -4,5 +4,5 @@ import com.trangiabao.sixjars.model.Jar
 
 interface ConfigPresenterImpl {
     fun getAll()
-    fun update(list: MutableList<Jar>)
+    fun update(list: List<Jar>)
 }

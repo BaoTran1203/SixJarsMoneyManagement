@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.model.Jar
-import com.trangiabao.sixjars.system.LocaleHelper
 import kotlinx.android.synthetic.main.item_overview.view.*
 
 class OverviewApdater : RecyclerView.Adapter<OverviewApdater.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private var lists: MutableList<Jar> = mutableListOf()
+    private var lists: List<Jar> = listOf()
 
-    var List: MutableList<Jar>
+    var List: List<Jar>
         get() = this.lists
         set(value) {
             this.lists = value
@@ -34,11 +34,11 @@ class OverviewApdater : RecyclerView.Adapter<OverviewApdater.ViewHolder>() {
             txtName.text = model.name
             txtPercent.text = "${model.percent}%"
             if (LocaleHelper.getLanguage(context) == "vi") {
-                txtDescription.text = model.descriptionVie
-                txtFullName.text = model.nameVie
+                txtDescription.text = model.description_vie
+                txtFullName.text = model.name_vie
             } else {
-                txtDescription.text = model.descriptionEng
-                txtFullName.text = model.nameEng
+                txtDescription.text = model.description_eng
+                txtFullName.text = model.name_eng
             }
         }
     }

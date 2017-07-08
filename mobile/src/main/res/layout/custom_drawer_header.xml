@@ -15,7 +15,7 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
-        <com.trangiabao.sixjars.ui.CircleImageView
+        <com.trangiabao.sixjars.base.ui.CircleImageView
             android:id="@+id/imgAvatar"
             android:layout_width="72dp"
             android:layout_height="72dp"

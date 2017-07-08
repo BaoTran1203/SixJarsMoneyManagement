@@ -30,7 +30,7 @@ class ConfigApdater : RecyclerView.Adapter<ConfigApdater.ViewHolder>() {
         holder!!.itemView.run {
             txtName.text = model.name
             numberPickerPercent.minValue = 0
-            numberPickerPercent.value = model.percent
+            numberPickerPercent.value = model.percent!!
             numberPickerPercent.maxValue = 100
             numberPickerPercent.setOnValueChangedListener { _, _, newVal ->
                 model.percent = newVal

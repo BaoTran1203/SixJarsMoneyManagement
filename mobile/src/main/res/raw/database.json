@@ -5,7 +5,7 @@
       "percent": 55,
       "name_eng": "Necessity Account",
       "description_eng": "This account is for managing your everyday expenses and bills. This would include things like your rent, mortgage, utilities, bills, taxes, food, clothes, etc. Basically it includes anything that you need to live, the necessities.",
-      "name_vie": "Tài khoản chi tiêu cần thiết ",
+      "name_vie": "Tài khoản chi tiêu cần thiết",
       "description_vie": "Tài khoản này dùng để quản lý các khoản chi phí và hoá đơn hàng ngày của bạn. Bao gồm những thứ như thuê nhà, thế chấp, tiện ích, hóa đơn, thuế, thực phẩm, quần áo, v..v. Về cơ bản nó bao gồm bất cứ thứ gì bạn cần để sống, nhu yếu phẩm."
     },
     {
@@ -51,172 +51,131 @@
   ],
   "revenue_types": [
     {
-      "id": "1",
+      "id": "e75c10d7-6b8a-48d0-aaba-e48e6563670b",
       "type": "Salary",
       "description": "My salary from work"
     },
     {
-      "id": "2",
+      "id": "30fa7d6f-b4fb-4508-83c6-c946ccfff9d9",
       "type": "Profit",
       "description": "Profit earned from something"
     },
     {
-      "id": "3",
+      "id": "5eb8d49b-8ba3-4ed2-9915-f5519b6c261e",
       "type": "Trade",
       "description": "Trading some products"
     },
     {
-      "id": "4",
+      "id": "31c4b9c6-f57f-4feb-a67f-32a4bed59bb7",
       "type": "Lottery",
       "description": "Winning lottery tickets"
     },
     {
-      "id": "5",
+      "id": "7f36baf0-2daa-455c-b6f0-3c725e453c0d",
       "type": "Reward",
       "description": "Be rewarded from work"
     },
     {
-      "id": "6",
+      "id": "c65d0fda-63cf-4ead-9156-82cf088d7f47",
       "type": "Gift",
       "description": "Receive gifts from someone"
     },
     {
-      "id": "7",
+      "id": "b47b5bb1-a36e-4327-b885-696c96718a07",
       "type": "Rent",
       "description": "For rent something"
     },
     {
-      "id": "8",
+      "id": "3e16c04f-0aa3-449b-8981-46c8287d1fe2",
       "type": "Stocks",
       "description": "Profit from playing stocks"
     },
     {
-      "id": "9",
+      "id": "e501777c-9618-4a55-8d0d-ea62f0eef9e5",
       "type": "Inherit",
       "description": "Inheritance from someone"
+    },
+    {
+      "id": "9c528365-6eab-494c-83d3-24ef5ee6df10",
+      "type": "Unknown",
+      "description": "Data is generated dynamically"
     }
   ],
   "expenditure_types": [
     {
-      "id": "1",
+      "id": "8fac9e0f-a579-4b30-a75a-a053b94b3710",
       "type": "Electric",
       "description": "Payment of electricity"
     },
     {
-      "id": "2",
+      "id": "d6822d45-3a2a-4378-b751-50d9fd0fb66b",
       "type": "Water",
       "description": "Payment of water"
     },
     {
-      "id": "3",
+      "id": "7eca01fe-1537-408b-bb2e-0ece93e18f59",
       "type": "Internet",
       "description": "Payment of internet"
     },
     {
-      "id": "4",
+      "id": "72829295-6d68-421f-b942-e06495415028",
       "type": "House",
       "description": "Pay rent house"
     },
     {
-      "id": "5",
+      "id": "de86e58d-9876-45f0-ad2c-6cf9773637f0",
       "type": "Food",
       "description": "Buy food, drink or go to restaurant"
     },
     {
-      "id": "6",
+      "id": "faab85a0-4876-4521-a5e7-8b10badf29f1",
       "type": "Shopping",
       "description": "Go shopping buy something"
     },
     {
-      "id": "7",
+      "id": "2c2c4b6d-f32f-48b2-892c-4eccf6db54eb",
       "type": "Health",
       "description": "Buy medicine or medical examination"
     },
     {
-      "id": "8",
+      "id": "9b5474a5-5f03-46f0-b7b4-3529fda50791",
       "type": "Tuition",
       "description": "Pay tuition"
     },
     {
-      "id": "9",
+      "id": "bbe20efb-2406-4be2-9b43-c80daf03cd6e",
       "type": "Book",
       "description": "Buy some book"
     },
     {
-      "id": "10",
+      "id": "f2a1ab3e-49de-40f0-934f-3b8f332bf4c1",
       "type": "Travle",
       "description": "Travle to somewhere"
     },
     {
-      "id": "11",
+      "id": "9d2b9926-75c7-4539-9e03-c0d571771d3f",
       "type": "Party",
       "description": "Join in some parties"
     },
     {
-      "id": "12",
+      "id": "22e00e93-2f75-44c8-8877-fb64f4c2969a",
       "type": "Feast",
       "description": "Join in some feasts"
     },
     {
-      "id": "13",
+      "id": "efd40fd3-701f-4ffc-b497-c9819267e2d6",
       "type": "Charity",
       "description": "Giveaways to someone"
     },
     {
-      "id": "14",
+      "id": "81f5ebe6-7495-4aa1-8bfa-d9f4ee81b46f",
       "type": "Insurance",
       "description": "Buy some insurance"
-    }
-  ],
-  "wallets": [
-    {
-      "id": "0",
-      "type": "Wallet",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
     },
     {
-      "id": "1",
-      "type": "NEC",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
-    },
-    {
-      "id": "2",
-      "type": "LTS",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
-    },
-    {
-      "id": "3",
-      "type": "EDU",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
-    },
-    {
-      "id": "4",
-      "type": "FFA",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
-    },
-    {
-      "id": "5",
-      "type": "PLY",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
-    },
-    {
-      "id": "6",
-      "type": "GIV",
-      "amount_all_time": 0.0,
-      "amount_available": 0.0,
-      "amount_expend": 0.0
+      "id": "a7500f91-1f6e-412b-8b75-30203801b62b",
+      "type": "Unknown",
+      "description": "Data is generated dynamically"
     }
   ],
   "revenues": [

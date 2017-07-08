@@ -6,10 +6,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.activity.HomeActivity
-import com.trangiabao.sixjars.system.LocaleHelper
+import com.trangiabao.sixjars.base.LocaleHelper
+import com.trangiabao.sixjars.base.activity.HomeActivity
 import kotlinx.android.synthetic.main.fragment_language.view.*
 
 class LanguageFragment : Fragment() {

@@ -14,10 +14,10 @@ class EstimateAdapter(private var salary: Double, private var year: Int = 1) : R
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private var lists: MutableList<Jar> = mutableListOf()
+    private var lists: List<Jar> = mutableListOf()
     private val df = DecimalFormat("###,###,###,###,###.##")
 
-    var List: MutableList<Jar>
+    var List: List<Jar>
         get() = this.lists
         set(value) {
             this.lists = value
@@ -45,7 +45,7 @@ class EstimateAdapter(private var salary: Double, private var year: Int = 1) : R
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val model: Jar = lists[position]
         holder!!.itemView.run {
-            val amount: Double = salary * model.percent / 100 * year * 12
+            val amount: Double = salary * model.percent!! / 100 * year * 12
             txtAmount.text = df.format(BigDecimal(amount))
             txtJar.text = model.name
         }

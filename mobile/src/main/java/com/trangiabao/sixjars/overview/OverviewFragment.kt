@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.model.Jar
-import com.trangiabao.sixjars.system.BaseFragment
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 
 class OverviewFragment : BaseFragment(), OverviewView {
@@ -34,7 +34,7 @@ class OverviewFragment : BaseFragment(), OverviewView {
         presenter!!.getAll()
     }
 
-    override fun onListLoaded(list: MutableList<Jar>) {
+    override fun onListLoaded(list: List<Jar>) {
         adapter!!.List = list
     }
 }

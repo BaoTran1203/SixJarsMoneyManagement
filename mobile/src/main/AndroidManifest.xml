@@ -5,16 +5,16 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".system.MainApplication"
+        android:name=".base.application.MainApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashScreenActivity">
+        <activity android:name="com.trangiabao.sixjars.base.activity.SplashScreenActivity">
 
         </activity>
-        <activity android:name=".activity.HomeActivity">
+        <activity android:name="com.trangiabao.sixjars.base.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
