@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.base.LocaleHelper
-import com.trangiabao.sixjars.model.Revenue
+import com.trangiabao.sixjars.base.model.Revenue
 import kotlinx.android.synthetic.main.item_revenue.view.*
 import java.math.BigDecimal
 import java.text.DecimalFormat
@@ -30,10 +29,12 @@ class RevenueAdapter(private var listener: ItemClickListener) : RecyclerView.Ada
         val model: Revenue = lists[position]
         holder!!.itemView.run {
             txtAmount.text = df.format(BigDecimal(model.amount!!))
-            txtType.text = model.revenueType!!.type
+            txtRevenueType.text = model.revenueType!!.type!!
             txtDetail.text = model.detail
-            val sdf = SimpleDateFormat(context.getString(R.string.datetime_format), Locale(LocaleHelper.getLanguage(context)))
-            txtDateTime.text = sdf.format(model.date)
+            val dateFormat = SimpleDateFormat(context.getString(R.string.date_format), Locale.US)
+            val timeFormat = SimpleDateFormat(context.getString(R.string.time_format), Locale.US)
+            txtDate.text = dateFormat.format(model.date)
+            txtTime.text = timeFormat.format(model.date)
             setOnClickListener { listener.onClickListener(model, position) }
             setOnLongClickListener { listener.onLongClickListener(model, position) }
         }

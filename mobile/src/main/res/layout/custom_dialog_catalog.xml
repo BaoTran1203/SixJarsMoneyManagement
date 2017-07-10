@@ -17,7 +17,7 @@
         app:hintEnabled="true">
 
         <EditText
-            android:id="@+id/txtType"
+            android:id="@+id/txtRevenueType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"

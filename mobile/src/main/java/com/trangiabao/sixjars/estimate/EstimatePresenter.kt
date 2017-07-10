@@ -1,7 +1,7 @@
 package com.trangiabao.sixjars.estimate
 
 import android.content.Context
-import com.trangiabao.sixjars.database.JarDB
+import com.trangiabao.sixjars.base.database.JarDB
 
 class EstimatePresenter(var context: Context, var view: EstimateView) : EstimatePresenterImpl {
 

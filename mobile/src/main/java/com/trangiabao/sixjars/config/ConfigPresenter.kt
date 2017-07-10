@@ -1,8 +1,8 @@
 package com.trangiabao.sixjars.config
 
 import android.content.Context
-import com.trangiabao.sixjars.database.JarDB
-import com.trangiabao.sixjars.model.Jar
+import com.trangiabao.sixjars.base.database.JarDB
+import com.trangiabao.sixjars.base.model.Jar
 
 class ConfigPresenter(var context: Context, var view: ConfigView) : ConfigPresenterImpl {
 

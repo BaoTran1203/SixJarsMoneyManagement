@@ -1,6 +1,6 @@
 package com.trangiabao.sixjars.config
 
-import com.trangiabao.sixjars.model.Jar
+import com.trangiabao.sixjars.base.model.Jar
 
 interface ConfigPresenterImpl {
     fun getAll()

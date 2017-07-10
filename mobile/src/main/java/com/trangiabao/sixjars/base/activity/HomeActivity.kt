@@ -7,10 +7,11 @@ import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.catalog.CatalogFragment
 import com.trangiabao.sixjars.config.ConfigFragment
 import com.trangiabao.sixjars.estimate.EstimateFragment
-import com.trangiabao.sixjars.fragment.LanguageFragment
-import com.trangiabao.sixjars.fragment.WalletFragment
+import com.trangiabao.sixjars.language.LanguageFragment
 import com.trangiabao.sixjars.management.MoneyManagementFragment
 import com.trangiabao.sixjars.overview.OverviewFragment
+import com.trangiabao.sixjars.statistical.StatisticalFragment
+import com.trangiabao.sixjars.wallet.WalletFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.custom_app_bar.*
 
@@ -28,7 +29,7 @@ class HomeActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         navigationView.menu.getItem(0).isChecked = true
-        startNewFragment(R.id.home_content, curFragment)
+        fragment(R.id.home_content, curFragment)
         title = navigationView.menu.getItem(0).title
     }
 
@@ -49,7 +50,7 @@ class HomeActivity : BaseActivity() {
                     curFragment = EstimateFragment::class.java
                 }
                 R.id.itemStatistical -> {
-
+                    curFragment = StatisticalFragment::class.java
                 }
                 R.id.itemJarConfig -> {
                     curFragment = ConfigFragment::class.java
@@ -61,7 +62,7 @@ class HomeActivity : BaseActivity() {
                     curFragment = LanguageFragment::class.java
                 }
             }
-            startNewFragment(R.id.home_content, curFragment)
+            fragment(R.id.home_content, curFragment)
             freeMemory()
             menuItem.isChecked = true
             title = menuItem.title

@@ -1,80 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:theme="@style/CardViewStyle">
+    android:layout_marginTop="15dp"
+    android:theme="@style/CardViewStyle"
+    tools:ignore="UselessParent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/txtAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/parentLayoutMargin"
-            android:layout_marginRight="@dimen/parentLayoutMargin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
             android:drawableLeft="@drawable/ic_money"
-            android:drawablePadding="5dip"
+            android:drawablePadding="5dp"
             android:drawableStart="@drawable/ic_money"
             android:text="2.000.000"
-            android:textAlignment="center"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/titleTextSize"
             android:textStyle="bold" />
 
-        <include layout="@layout/custom_line_horizontal" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_calender"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_calender"
+                    android:gravity="center_vertical"
+                    android:text="22-Jul-2017"
+                    android:textSize="@dimen/normalTextSize" />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_time"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_time"
+                    android:gravity="center_vertical"
+                    android:text="20:30"
+                    android:textSize="@dimen/normalTextSize" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/txtType"
-                android:layout_width="0dp"
+                android:id="@+id/txtRevenueType"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/parentLayoutMargin"
-                android:layout_marginRight="@dimen/parentLayoutMargin"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_estimate"
-                android:drawablePadding="5dip"
-                android:drawableStart="@drawable/ic_estimate"
+                android:drawableLeft="@drawable/ic_attach"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_attach"
+                android:gravity="center_vertical"
                 android:text="Salary"
-                android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/normalTextSize" />
 
             <TextView
-                android:id="@+id/txtDateTime"
-                android:layout_width="0dp"
+                android:id="@+id/txtDetail"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/parentLayoutMargin"
-                android:layout_marginRight="@dimen/parentLayoutMargin"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_time"
-                android:drawablePadding="5dip"
-                android:drawableStart="@drawable/ic_time"
-                android:text="Salary"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/normalTextSize" />
+                android:layout_marginBottom="5dp"
+                android:drawableLeft="@drawable/ic_description"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_description"
+                android:gravity="center_vertical"
+                android:text="Abc"
+                android:textSize="@dimen/normalTextSize"
+                android:textStyle="italic" />
         </LinearLayout>
-
-        <include layout="@layout/custom_line_horizontal" />
-
-        <TextView
-            android:id="@+id/txtDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/parentLayoutMargin"
-            android:layout_marginRight="@dimen/parentLayoutMargin"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/normalTextSize"
-            android:textStyle="italic" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.model.Jar
+import com.trangiabao.sixjars.base.model.Jar
 import kotlinx.android.synthetic.main.item_config.view.*
 
 class ConfigApdater : RecyclerView.Adapter<ConfigApdater.ViewHolder>() {

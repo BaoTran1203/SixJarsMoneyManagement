@@ -38,6 +38,9 @@ dependencies {
     implementation 'com.shawnlin:number-picker:2.4.4'
     implementation 'com.jaredrummler:material-spinner:1.1.0'
     implementation 'com.wdullaer:materialdatetimepicker:3.2.2'
+
+    implementation 'com.afollestad.material-dialogs:core:0.9.4.5'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.4.5'
 }
 
 apply plugin: 'realm-android'

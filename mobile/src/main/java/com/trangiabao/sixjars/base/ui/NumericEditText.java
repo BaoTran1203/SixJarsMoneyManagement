@@ -1,6 +1,7 @@
 package com.trangiabao.sixjars.base.ui;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,7 +14,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumericEditText extends android.support.v7.widget.AppCompatEditText {
+public class NumericEditText extends AppCompatEditText {
 
     private static final char GROUPING_SEPARATOR = DecimalFormatSymbols.getInstance().getGroupingSeparator();
     private static final char DECIMAL_SEPARATOR = DecimalFormatSymbols.getInstance().getDecimalSeparator();

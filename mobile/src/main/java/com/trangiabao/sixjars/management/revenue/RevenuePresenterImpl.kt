@@ -1,17 +1,11 @@
 package com.trangiabao.sixjars.management.revenue
 
-import com.trangiabao.sixjars.model.Revenue
-import com.trangiabao.sixjars.model.RevenueType
+import com.trangiabao.sixjars.base.model.Revenue
 import java.util.*
 
 interface RevenuePresenterImpl {
-
-    fun filter()
-    fun filter(type: RevenueType)
-    fun filter(dateStart: Date?, dateEnd: Date)
-    fun filter(dateStart: Date?, dateEnd: Date, type: RevenueType)
+    fun filter(from: Date, to: Date)
     fun add(revenue: Revenue)
     fun update(revenue: Revenue)
     fun delete(id: String)
-
 }

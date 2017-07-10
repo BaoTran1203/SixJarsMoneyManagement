@@ -3,53 +3,58 @@
     {
       "name": "NEC",
       "percent": 55,
-      "name_eng": "Necessity Account",
-      "description_eng": "This account is for managing your everyday expenses and bills. This would include things like your rent, mortgage, utilities, bills, taxes, food, clothes, etc. Basically it includes anything that you need to live, the necessities.",
-      "name_vie": "Tài khoản chi tiêu cần thiết",
-      "description_vie": "Tài khoản này dùng để quản lý các khoản chi phí và hoá đơn hàng ngày của bạn. Bao gồm những thứ như thuê nhà, thế chấp, tiện ích, hóa đơn, thuế, thực phẩm, quần áo, v..v. Về cơ bản nó bao gồm bất cứ thứ gì bạn cần để sống, nhu yếu phẩm."
+      "nameEng": "Necessity Account",
+      "descriptionEng": "This account is for managing your everyday expenses and bills. This would include things like your rent, mortgage, utilities, bills, taxes, food, clothes, etc. Basically it includes anything that you need to live, the necessities.",
+      "nameVie": "Tài khoản chi tiêu cần thiết",
+      "descriptionVie": "Tài khoản này dùng để quản lý các khoản chi phí và hoá đơn hàng ngày của bạn. Bao gồm những thứ như thuê nhà, thế chấp, tiện ích, hóa đơn, thuế, thực phẩm, quần áo, v..v. Về cơ bản nó bao gồm bất cứ thứ gì bạn cần để sống, nhu yếu phẩm."
     },
     {
       "name": "LTS",
       "percent": 10,
-      "name_eng": "Long-term saving for spending Account",
-      "description_eng": "Money in this jar is for bigger, nice-to-have purchases. Use the money for vacations, extravagances, a plasma TV, contingency fund, your children's education etc. A small monthly contribution can go a long way. You may have more than one LTS jar. If you have more than one LTS, divide the 10% between the jars according to your priorities.",
-      "name_vie": "Tài khoản tiết kiệm dài hạn",
-      "description_vie": "aa"
+      "nameEng": "Long-term saving for spending Account",
+      "descriptionEng": "Money in this jar is for bigger, nice-to-have purchases. Use the money for vacations, extravagances, a plasma TV, contingency fund, your children's education etc. A small monthly contribution can go a long way. You may have more than one LTS jar. If you have more than one LTS, divide the 10% between the jars according to your priorities.",
+      "nameVie": "Tài khoản tiết kiệm dài hạn",
+      "descriptionVie": "aa"
     },
     {
       "name": "EDU",
       "percent": 5,
-      "name_eng": "Education Account",
-      "description_eng": "Money in this jar is meant to further your education and personal growth. An investment in yourself is a great way to use your money. You are your most valuable asset. Never forget this. Education money can be used to purchase books, CD’s, courses or anything else that has educational value.",
-      "name_vie": "Tài khoản giáo dục",
-      "description_vie": "bb"
+      "nameEng": "Education Account",
+      "descriptionEng": "Money in this jar is meant to further your education and personal growth. An investment in yourself is a great way to use your money. You are your most valuable asset. Never forget this. Education money can be used to purchase books, CD’s, courses or anything else that has educational value.",
+      "nameVie": "Tài khoản giáo dục",
+      "descriptionVie": "bb"
     },
     {
       "name": "FFA",
       "percent": 10,
-      "name_eng": "Financial Freedom Account",
-      "description_eng": "This is your golden goose. This jar is your ticket to financial freedom. The money that you put into this jar is used for investments and building your passive income streams. You never spend this money. The only time you would spend this money is once you become financially free. Even then you would only spend the returns on your investment. Never spend the principal.",
-      "name_vie": "Tài khoản tự do tài chính",
-      "description_vie": "cc"
+      "nameEng": "Financial Freedom Account",
+      "descriptionEng": "This is your golden goose. This jar is your ticket to financial freedom. The money that you put into this jar is used for investments and building your passive income streams. You never spend this money. The only time you would spend this money is once you become financially free. Even then you would only spend the returns on your investment. Never spend the principal.",
+      "nameVie": "Tài khoản tự do tài chính",
+      "descriptionVie": "cc"
     },
     {
       "name": "PLY",
       "percent": 10,
-      "name_eng": "Play Account",
-      "description_eng": "PLAY money is spent every month on purchases you wouldn’t normally make. The purpose of this jar is to nurture yourself. You could purchase an expensive bottle of wine at dinner, get a massage or go on a weekend getaway. Play can be anything your heart desires. You and a spouse can each receive your own play money, and not even ask what the other person spends it on!",
-      "name_vie": "Tài khoản hưởng thụ",
-      "description_vie": "dd"
+      "nameEng": "Play Account",
+      "descriptionEng": "PLAY money is spent every month on purchases you wouldn’t normally make. The purpose of this jar is to nurture yourself. You could purchase an expensive bottle of wine at dinner, get a massage or go on a weekend getaway. Play can be anything your heart desires. You and a spouse can each receive your own play money, and not even ask what the other person spends it on!",
+      "nameVie": "Tài khoản hưởng thụ",
+      "descriptionVie": "dd"
     },
     {
       "name": "GIV",
       "percent": 10,
-      "name_eng": "Give Account",
-      "description_eng": "Money in this jar is for giving away. Use the money for family and friends on birthdays, special occasions and holidays. You can also give away your time as opposed to giving away money. You could house sit for a neighbor, take a friend’s dog for a walk or volunteer in your community or for your favorite charity.",
-      "name_vie": "Tài khoản từ thiện",
-      "description_vie": "ee"
+      "nameEng": "Give Account",
+      "descriptionEng": "Money in this jar is for giving away. Use the money for family and friends on birthdays, special occasions and holidays. You can also give away your time as opposed to giving away money. You could house sit for a neighbor, take a friend’s dog for a walk or volunteer in your community or for your favorite charity.",
+      "nameVie": "Tài khoản từ thiện",
+      "descriptionVie": "ee"
     }
   ],
-  "revenue_types": [
+  "revenueTypes": [
+    {
+      "id": "9c528365-6eab-494c-83d3-24ef5ee6df10",
+      "type": "Unknown",
+      "description": "Data is generated dynamically"
+    },
     {
       "id": "e75c10d7-6b8a-48d0-aaba-e48e6563670b",
       "type": "Salary",
@@ -94,14 +99,14 @@
       "id": "e501777c-9618-4a55-8d0d-ea62f0eef9e5",
       "type": "Inherit",
       "description": "Inheritance from someone"
-    },
-    {
-      "id": "9c528365-6eab-494c-83d3-24ef5ee6df10",
-      "type": "Unknown",
-      "description": "Data is generated dynamically"
     }
   ],
-  "expenditure_types": [
+  "expenditureTypes": [
+    {
+      "id": "a7500f91-1f6e-412b-8b75-30203801b62b",
+      "type": "Unknown",
+      "description": "Data is generated dynamically"
+    },
     {
       "id": "8fac9e0f-a579-4b30-a75a-a053b94b3710",
       "type": "Electric",
@@ -171,11 +176,6 @@
       "id": "81f5ebe6-7495-4aa1-8bfa-d9f4ee81b46f",
       "type": "Insurance",
       "description": "Buy some insurance"
-    },
-    {
-      "id": "a7500f91-1f6e-412b-8b75-30203801b62b",
-      "type": "Unknown",
-      "description": "Data is generated dynamically"
     }
   ],
   "revenues": [

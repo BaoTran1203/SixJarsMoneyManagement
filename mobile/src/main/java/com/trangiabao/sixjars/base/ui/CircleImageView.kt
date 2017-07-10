@@ -9,11 +9,12 @@ import android.net.Uri
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.trangiabao.sixjars.R
 
-class CircleImageView : ImageView {
+class CircleImageView : AppCompatImageView {
 
     private val SCALE_TYPE = ImageView.ScaleType.CENTER_CROP
     private val BITMAP_CONFIG = Bitmap.Config.ARGB_8888

@@ -35,5 +35,6 @@
     <string name="year">year(s)</string>
     <string name="my_money">My money for the next</string>
     <string name="detail">Detail</string>
-    <string name="datetime_format">dd-MMM-yyyy HH:mm</string>
+    <string name="date_format">dd-MMM-yyyy</string>
+    <string name="time_format" translatable="false">HH:mm</string>
 </resources>

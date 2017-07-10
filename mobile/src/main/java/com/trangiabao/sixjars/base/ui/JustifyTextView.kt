@@ -2,11 +2,11 @@ package com.trangiabao.sixjars.base.ui
 
 import android.content.Context
 import android.graphics.Canvas
+import android.support.v7.widget.AppCompatTextView
 import android.text.StaticLayout
 import android.util.AttributeSet
-import android.widget.TextView
 
-class JustifyTextView(context: Context, attrs: AttributeSet) : TextView(context, attrs) {
+class JustifyTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(context, attrs) {
 
     private var mLineY: Int = 0
     private var mViewWidth: Int = 0

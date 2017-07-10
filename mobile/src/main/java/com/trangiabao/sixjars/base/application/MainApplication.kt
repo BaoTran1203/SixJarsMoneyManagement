@@ -7,7 +7,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.LocaleHelper
-import com.trangiabao.sixjars.model.Database
+import com.trangiabao.sixjars.base.model.Database
 import io.realm.Realm
 import io.realm.exceptions.RealmException
 import java.io.BufferedReader
@@ -44,11 +44,11 @@ class MainApplication : Application() {
         try {
             val realm: Realm = Realm.getDefaultInstance()
             realm.beginTransaction()
-            realm.copyToRealm(db.jars)
-            realm.copyToRealm(db.revenue_types)
-            realm.copyToRealm(db.expenditure_types)
-            realm.copyToRealm(db.revenues)
-            realm.copyToRealm(db.expenditure1s)
+            realm.copyToRealmOrUpdate(db.jars)
+            realm.copyToRealmOrUpdate(db.revenueTypes)
+            realm.copyToRealmOrUpdate(db.expenditureTypes)
+            realm.copyToRealmOrUpdate(db.revenues)
+            realm.copyToRealmOrUpdate(db.expenditures)
             realm.commitTransaction()
             realm.close()
             editor = pre!!.edit()

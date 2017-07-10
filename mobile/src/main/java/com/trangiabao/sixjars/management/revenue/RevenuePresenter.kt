@@ -1,120 +1,44 @@
 package com.trangiabao.sixjars.management.revenue
 
-import android.content.Context
-import com.trangiabao.sixjars.model.Revenue
-import com.trangiabao.sixjars.model.RevenueType
-import io.realm.Case
-import io.realm.Realm
-import io.realm.RealmResults
-import io.realm.exceptions.RealmException
+import com.trangiabao.sixjars.base.database.RevenueDB
+import com.trangiabao.sixjars.base.model.Revenue
 import java.util.*
 
-class RevenuePresenter(context: Context, private var view: RevenueView) : RevenuePresenterImpl {
+class RevenuePresenter(private var view: RevenueView) : RevenuePresenterImpl {
 
-    private var realm: Realm? = null
-
-    init {
-        Realm.init(context)
-        realm = Realm.getDefaultInstance()
-    }
-
-    override fun filter() {
-        var list: MutableList<Revenue> = mutableListOf()
-        try {
-            list = realm!!.copyFromRealm(realm!!.where(Revenue::class.java).findAll()).toMutableList()
-        } catch (e: RealmException) {
-            e.printStackTrace()
-        }
-        view.onGetListResult(list)
-    }
-
-    override fun filter(type: RevenueType) {
-        var list: MutableList<Revenue> = mutableListOf()
-        try {
-            val query = realm!!.where(Revenue::class.java)
-            val results = query.contains("type", type.id, Case.INSENSITIVE).findAll()
-            list = realm!!.copyFromRealm(results).toMutableList()
-        } catch (e: RealmException) {
-            e.printStackTrace()
-        }
-        view.onGetListResult(list)
-    }
-
-    override fun filter(dateStart: Date?, dateEnd: Date) {
-        var list: MutableList<Revenue> = mutableListOf()
-        try {
-            val query = realm!!.where(Revenue::class.java)
-            val results: RealmResults<Revenue>
-            if (dateStart == null) {
-                results = query.lessThanOrEqualTo("datetime", dateEnd).findAll()
-            } else {
-                results = query.between("datetime", dateStart, dateEnd).findAll()
-            }
-            list = realm!!.copyFromRealm(results).toMutableList()
-        } catch (e: RealmException) {
-            e.printStackTrace()
-        }
-        view.onGetListResult(list)
-    }
-
-    override fun filter(dateStart: Date?, dateEnd: Date, type: RevenueType) {
-        var list: MutableList<Revenue> = mutableListOf()
-        try {
-            val query = realm!!.where(Revenue::class.java)
-            val results: RealmResults<Revenue>
-            if (dateStart == null) {
-                results = query.lessThanOrEqualTo("datetime", dateEnd)
-                        .contains("type", type.id, Case.INSENSITIVE).findAll()
-            } else {
-                results = query.between("datetime", dateStart, dateEnd)
-                        .contains("type", type.id, Case.INSENSITIVE).findAll()
-            }
-            list = realm!!.copyFromRealm(results).toMutableList()
-        } catch (e: RealmException) {
-            e.printStackTrace()
-        }
-        view.onGetListResult(list)
+    override fun filter(from: Date, to: Date) {
+        view.onGetListResult(RevenueDB.find(getStartDate(from), getEndDate(to)))
     }
 
     override fun add(revenue: Revenue) {
-        try {
-            realm!!.run {
-                beginTransaction()
-                val temp = copyFromRealm(copyToRealm(revenue))
-                commitTransaction()
-                view.onAddResult(temp)
-            }
-        } catch (e: RealmException) {
-            e.printStackTrace()
-            view.onAddResult(null)
-        }
+        view.onAddResult(RevenueDB.add(revenue))
     }
 
     override fun update(revenue: Revenue) {
-        try {
-            realm!!.run {
-                beginTransaction()
-                val temp = copyFromRealm(copyToRealmOrUpdate(revenue))
-                commitTransaction()
-                view.onUpdateResult(temp)
-            }
-        } catch (e: RealmException) {
-            e.printStackTrace()
-            view.onUpdateResult(null)
-        }
+        view.onUpdateResult(RevenueDB.update(revenue))
     }
 
     override fun delete(id: String) {
-        try {
-            realm!!.run {
-                beginTransaction()
-                where(Revenue::class.java).equalTo("id", id).findFirst().deleteFromRealm()
-                commitTransaction()
-                view.onDeleteResult(true)
-            }
-        } catch (e: RealmException) {
-            e.printStackTrace()
-            view.onDeleteResult(false)
-        }
+        view.onDeleteResult(RevenueDB.delete(id))
+    }
+
+    private fun getStartDate(date: Date): Date {
+        val cal = Calendar.getInstance()
+        cal.time = date
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+        return cal.time
+    }
+
+    private fun getEndDate(date: Date): Date {
+        val cal = Calendar.getInstance()
+        cal.time = date
+        cal.set(Calendar.HOUR_OF_DAY, 23)
+        cal.set(Calendar.MINUTE, 59)
+        cal.set(Calendar.SECOND, 59)
+        cal.set(Calendar.MILLISECOND, 999)
+        return cal.time
     }
 }

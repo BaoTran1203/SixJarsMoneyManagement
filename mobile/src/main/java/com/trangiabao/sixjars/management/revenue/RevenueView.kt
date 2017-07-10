@@ -1,10 +1,10 @@
 package com.trangiabao.sixjars.management.revenue
 
-import com.trangiabao.sixjars.model.Revenue
+import com.trangiabao.sixjars.base.model.Revenue
 
 interface RevenueView {
 
-    fun onGetListResult(list: MutableList<Revenue>)
+    fun onGetListResult(list: List<Revenue>)
 
     fun onAddResult(obj: Revenue?)
 

@@ -14,8 +14,8 @@ import android.widget.TextView
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.ui.ViewPagerAdapter
 import com.trangiabao.sixjars.base.ui.ViewPagerTransformer
-import com.trangiabao.sixjars.catalog.expenditure.ExpenditureTypeFragment
-import com.trangiabao.sixjars.catalog.revenue.RevenueTypeFragment
+import com.trangiabao.sixjars.catalog.expenditure_type.ExpenditureTypeFragment
+import com.trangiabao.sixjars.catalog.revenue_type.RevenueTypeFragment
 
 class CatalogFragment : Fragment() {
 
