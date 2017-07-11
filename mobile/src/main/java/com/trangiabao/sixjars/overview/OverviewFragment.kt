@@ -34,7 +34,7 @@ class OverviewFragment : BaseFragment(), OverviewView {
         presenter!!.getAll()
     }
 
-    override fun onListLoaded(list: List<Jar>) {
+    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
         adapter!!.List = list
     }
 }

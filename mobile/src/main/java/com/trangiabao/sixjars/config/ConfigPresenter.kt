@@ -7,16 +7,17 @@ import com.trangiabao.sixjars.base.model.Jar
 class ConfigPresenter(var context: Context, var view: ConfigView) : ConfigPresenterImpl {
 
     override fun getAll() {
-        view.onListLoaded(JarDB.getAll())
+        val list = JarDB.getAll()
+        view.onListLoaded(list.isNotEmpty(), "${list.size} item(s)", list)
     }
 
     override fun update(list: List<Jar>) {
         val sum = list.sumBy { x -> x.percent!! }
         if (sum != 100) {
-            view.onUpdateResult(false, "Khong du 100%")
+            view.onUpdateResult(false, "Khong du 100%", list)
         } else {
-            val result: Boolean = JarDB.update(list)
-            view.onUpdateResult(result, if (result) "Successed" else "Failed")
+            val newList = JarDB.update(list)
+            view.onUpdateResult(newList.isNotEmpty(), "${list.size} item(s)", newList)
         }
     }
 }

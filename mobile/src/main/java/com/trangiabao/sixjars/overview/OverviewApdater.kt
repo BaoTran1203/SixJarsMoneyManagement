@@ -16,15 +16,12 @@ class OverviewApdater : RecyclerView.Adapter<OverviewApdater.ViewHolder>() {
 
     private var lists: List<Jar> = listOf()
 
-    var List: List<Jar>
-        get() = this.lists
-        set(value) {
-            this.lists = value
-            notifyDataSetChanged()
-        }
-
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_overview, parent, false))
+    }
+
+    override fun getItemCount(): Int {
+        return lists.size
     }
 
     @SuppressLint("SetTextI18n")
@@ -43,7 +40,10 @@ class OverviewApdater : RecyclerView.Adapter<OverviewApdater.ViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return lists.size
-    }
+    var List: List<Jar>
+        get() = this.lists
+        set(value) {
+            this.lists = value
+            notifyDataSetChanged()
+        }
 }

@@ -71,7 +71,8 @@ class EstimateFragment : BaseFragment(), EstimateView {
         presenter!!.getAll()
     }
 
-    override fun onListLoaded(list: List<Jar>) {
-        adapter!!.List = list
+    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
+        adapter!!.List = list.toMutableList()
+        toast(msg)
     }
 }

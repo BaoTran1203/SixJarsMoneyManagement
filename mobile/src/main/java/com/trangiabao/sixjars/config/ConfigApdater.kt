@@ -14,31 +14,29 @@ class ConfigApdater : RecyclerView.Adapter<ConfigApdater.ViewHolder>() {
 
     private var lists: MutableList<Jar> = mutableListOf()
 
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_config, parent, false))
+    }
+
+    override fun getItemCount(): Int {
+        return lists.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+        val model: Jar = lists[position]
+        holder!!.itemView.run {
+            txtName.text = model.name!!
+            numberPickerPercent.minValue = 0
+            numberPickerPercent.value = model.percent!!
+            numberPickerPercent.maxValue = 100
+            numberPickerPercent.setOnValueChangedListener { _, _, newVal -> model.percent = newVal }
+        }
+    }
+
     var List: MutableList<Jar>
         get() = this.lists
         set(value) {
             this.lists = value
             notifyDataSetChanged()
         }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_config, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        val model: Jar = lists[position]
-        holder!!.itemView.run {
-            txtName.text = model.name
-            numberPickerPercent.minValue = 0
-            numberPickerPercent.value = model.percent!!
-            numberPickerPercent.maxValue = 100
-            numberPickerPercent.setOnValueChangedListener { _, _, newVal ->
-                model.percent = newVal
-            }
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return lists.size
-    }
 }

@@ -17,6 +17,23 @@ class EstimateAdapter(private var salary: Double, private var year: Int = 1) : R
     private var lists: List<Jar> = mutableListOf()
     private val df = DecimalFormat("###,###,###,###,###.##")
 
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_estimate, parent, false))
+    }
+
+    override fun getItemCount(): Int {
+        return lists.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+        val model: Jar = lists[position]
+        holder!!.itemView.run {
+            val amount: Double = salary * model.percent!! / 100 * year * 12
+            txtAmount.text = df.format(BigDecimal(amount))
+            txtJar.text = model.name
+        }
+    }
+
     var List: List<Jar>
         get() = this.lists
         set(value) {
@@ -36,22 +53,5 @@ class EstimateAdapter(private var salary: Double, private var year: Int = 1) : R
 
     fun getTotal(): String {
         return df.format(salary * year * 12)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_estimate, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        val model: Jar = lists[position]
-        holder!!.itemView.run {
-            val amount: Double = salary * model.percent!! / 100 * year * 12
-            txtAmount.text = df.format(BigDecimal(amount))
-            txtJar.text = model.name
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return lists.size
     }
 }

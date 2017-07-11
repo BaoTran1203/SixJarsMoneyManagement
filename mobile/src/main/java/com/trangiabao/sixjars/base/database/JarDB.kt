@@ -22,30 +22,31 @@ object JarDB {
     }*/
 
     fun getAll(): List<Jar> {
-        var list: List<Jar> = listOf()
+        val realm: Realm = Realm.getDefaultInstance()
         try {
-            val realm: Realm = Realm.getDefaultInstance()
             val query = realm.where(Jar::class.java)
             val result = query.findAll()
-            list = realm.copyFromRealm(result)
-            realm.close()
+            return realm.copyFromRealm(result)
         } catch (e: RealmException) {
             e.printStackTrace()
+        } finally {
+            realm.close()
         }
-        return list
+        return listOf()
     }
 
-    fun update(list: List<Jar>): Boolean {
+    fun update(list: List<Jar>): List<Jar> {
+        val realm: Realm = Realm.getDefaultInstance()
         try {
-            val realm: Realm = Realm.getDefaultInstance()
             realm.beginTransaction()
-            realm.copyToRealmOrUpdate(list)
+            val result = realm.copyToRealmOrUpdate(list)
             realm.commitTransaction()
-            realm.close()
-            return true
+            return realm.copyFromRealm(result)
         } catch (e: RealmException) {
             e.printStackTrace()
+        } finally {
+            realm.close()
         }
-        return false
+        return listOf()
     }
 }

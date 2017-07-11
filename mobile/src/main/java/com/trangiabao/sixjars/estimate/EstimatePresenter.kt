@@ -6,6 +6,7 @@ import com.trangiabao.sixjars.base.database.JarDB
 class EstimatePresenter(var context: Context, var view: EstimateView) : EstimatePresenterImpl {
 
     override fun getAll() {
-        view.onListLoaded(JarDB.getAll())
+        val list = JarDB.getAll()
+        view.onListLoaded(list.isNotEmpty(), "${list.size} item(s)", list)
     }
 }
