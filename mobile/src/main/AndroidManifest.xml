@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".base.activity.SplashScreenActivity" />
         <activity android:name=".base.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.activity.FilterActivity" />
-        <activity android:name="com.trangiabao.sixjars.management.add_revenue.AddRevenueActivity" />
-        <activity android:name="com.trangiabao.sixjars.management.edit_revenue.EditRevenueActivity"></activity>
+        <activity
+            android:name=".management.revenue_update.UpdateRevenueActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
     </application>
 
 </manifest>
