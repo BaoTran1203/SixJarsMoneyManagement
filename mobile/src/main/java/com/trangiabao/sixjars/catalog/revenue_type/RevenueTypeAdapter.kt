@@ -2,7 +2,6 @@ package com.trangiabao.sixjars.catalog.revenue_type
 
 import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,10 @@ class RevenueTypeAdapter(private var listener: ItemClickListener) : RecyclerView
         return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_catalog, parent, false))
     }
 
+    override fun getItemCount(): Int {
+        return lists.size
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val model: RevenueType = lists[position]
@@ -29,13 +32,6 @@ class RevenueTypeAdapter(private var listener: ItemClickListener) : RecyclerView
             setOnClickListener { listener.onClickListener(model, position) }
             setOnLongClickListener { listener.onLongClickListener(model, position) }
         }
-        if (model.revenues != null) {
-            Log.d("TAGTAG", "${model.revenues.size}")
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return lists.size
     }
 
     fun updateList(lists: MutableList<RevenueType>) {

@@ -6,18 +6,24 @@ import com.trangiabao.sixjars.base.model.RevenueType
 class RevenueTypePresenter(private var view: RevenueTypeView) : RevenueTypePresenterImpl {
 
     override fun getAll() {
-        view.onGetListResult(RevenueTypeDB.getAll())
+        val list = RevenueTypeDB.getAll()
+        view.onGetListResult(list.isNotEmpty(), "", list)
     }
 
     override fun add(type: RevenueType) {
-        view.onAddResult(RevenueTypeDB.add(type))
+        val newType = RevenueTypeDB.add(type)
+        view.onAddResult(newType != null, "", newType)
     }
 
     override fun update(type: RevenueType) {
-        view.onUpdateResult(RevenueTypeDB.update(type))
+        val newType = RevenueTypeDB.update(type)
+        view.onUpdateResult(newType != null, "", newType)
     }
 
     override fun delete(id: String) {
-        view.onDeleteResult(RevenueTypeDB.delete(id))
+        if (RevenueTypeDB.isUsed(id))
+            view.onDeleteResult(false, "isUsed")
+        else
+            view.onDeleteResult(RevenueTypeDB.delete(id), "")
     }
 }

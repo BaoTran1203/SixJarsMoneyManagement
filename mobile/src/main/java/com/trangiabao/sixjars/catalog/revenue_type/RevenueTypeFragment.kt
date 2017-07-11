@@ -122,13 +122,13 @@ class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
         alertDialog.show()
     }
 
-    override fun onGetListResult(list: List<RevenueType>) {
+    override fun onGetListResult(result: Boolean, msg: String, list: List<RevenueType>) {
         val temp = list.toMutableList()
         temp.removeAt(0)
         adapter!!.updateList(temp)
     }
 
-    override fun onAddResult(obj: RevenueType?) {
+    override fun onAddResult(result: Boolean, msg: String, obj: RevenueType?) {
         if (obj != null) {
             adapter!!.addItem(obj)
             toast(R.string.item_added)
@@ -137,7 +137,7 @@ class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
         }
     }
 
-    override fun onUpdateResult(obj: RevenueType?) {
+    override fun onUpdateResult(result: Boolean, msg: String, obj: RevenueType?) {
         if (obj != null) {
             adapter!!.updateItem(obj)
             toast(R.string.update_successful)
@@ -146,11 +146,7 @@ class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
         }
     }
 
-    override fun onDeleteResult(result: Boolean) {
-        if (result) {
-            toast(R.string.item_deleted)
-        } else {
-            toast("Xoa that bai")
-        }
+    override fun onDeleteResult(result: Boolean, msg: String) {
+        toast(msg)
     }
 }
