@@ -6,11 +6,24 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.preference.PreferenceManager
+import com.trangiabao.sixjars.R
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 import java.util.*
 
 object LocaleHelper {
 
     private val SELECTED_LANGUAGE = "LocaleHelper.Helper.Selected.Language"
+
+    fun getDateFormat(context: Context): DateTimeFormatter {
+        return DateTimeFormat.forPattern(context.getString(R.string.date_format))
+                .withLocale(Locale(getLanguage(context)))
+    }
+
+    fun getTimeFormat(context: Context): DateTimeFormatter {
+        return DateTimeFormat.forPattern(context.getString(R.string.time_format))
+                .withLocale(Locale(getLanguage(context)))
+    }
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language)

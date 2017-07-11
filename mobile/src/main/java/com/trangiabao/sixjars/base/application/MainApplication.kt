@@ -10,6 +10,7 @@ import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.base.model.Database
 import io.realm.Realm
 import io.realm.exceptions.RealmException
+import net.danlew.android.joda.JodaTimeAndroid
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -26,6 +27,7 @@ class MainApplication : Application() {
         context = this
         pre = getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE)
         Realm.init(context)
+        JodaTimeAndroid.init(context)
         val isFirst: Boolean = pre!!.getBoolean("isFirst", true)
         if (isFirst) {
             createDatabase()

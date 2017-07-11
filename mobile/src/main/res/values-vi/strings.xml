@@ -6,8 +6,6 @@
     <string name="money_management">Quản lý chi tiêu</string>
     <string name="estimate">Ước tính</string>
     <string name="settings">Cài đặt</string>
-    <string name="navigation_drawer_open">Mở thanh điều hướng</string>
-    <string name="navigation_drawer_close">Đóng thanh điều hướng</string>
     <string name="revenue">DOANH THU</string>
     <string name="expenditure">CHI TIÊU</string>
     <string name="jar_config">Thiết lập</string>
@@ -32,6 +30,6 @@
     <string name="total">Tổng</string>
     <string name="year">năm tới</string>
     <string name="my_money">Số tiền của tôi trong</string>
-    <string name="date_format">dd-MM-yyyy</string>
+    <string name="date_format">EEE, dd-MM-yyyy</string>
     <string name="detail">Chi tiết</string>
 </resources>
