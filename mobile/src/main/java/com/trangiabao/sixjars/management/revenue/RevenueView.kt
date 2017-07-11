@@ -6,9 +6,5 @@ interface RevenueView {
 
     fun onGetListResult(list: List<Revenue>)
 
-    fun onAddResult(obj: Revenue?)
-
-    fun onUpdateResult(obj: Revenue?)
-
-    fun onDeleteResult(result: Boolean)
+    fun onDeleteResult(result: Boolean, msg: String, position: Int)
 }

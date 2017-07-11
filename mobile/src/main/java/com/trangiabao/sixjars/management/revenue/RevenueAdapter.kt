@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.base.model.Revenue
 import kotlinx.android.synthetic.main.item_revenue.view.*
+import org.joda.time.DateTime
 import java.math.BigDecimal
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RevenueAdapter(private var listener: ItemClickListener) : RecyclerView.Adapter<RevenueAdapter.ViewHolder>() {
 
@@ -31,10 +31,10 @@ class RevenueAdapter(private var listener: ItemClickListener) : RecyclerView.Ada
             txtAmount.text = df.format(BigDecimal(model.amount!!))
             txtRevenueType.text = model.revenueType!!.type!!
             txtDetail.text = model.detail
-            val dateFormat = SimpleDateFormat(context.getString(R.string.date_format), Locale.US)
-            val timeFormat = SimpleDateFormat(context.getString(R.string.time_format), Locale.US)
-            txtDate.text = dateFormat.format(model.date)
-            txtTime.text = timeFormat.format(model.date)
+            val dateFormat = LocaleHelper.getDateFormat(context)
+            val timeFormat = LocaleHelper.getTimeFormat(context)
+            txtDate.text = dateFormat.print(DateTime(model.date))
+            txtTime.text = timeFormat.print(DateTime(model.date))
             setOnClickListener { listener.onClickListener(model, position) }
             setOnLongClickListener { listener.onLongClickListener(model, position) }
         }
@@ -46,23 +46,6 @@ class RevenueAdapter(private var listener: ItemClickListener) : RecyclerView.Ada
 
     fun updateList(lists: MutableList<Revenue>) {
         this.lists = lists
-        notifyDataSetChanged()
-    }
-
-    fun addItem(model: Revenue) {
-        lists.add(model)
-        notifyDataSetChanged()
-    }
-
-    fun updateItem(model: Revenue) {
-        val newList: MutableList<Revenue> = mutableListOf()
-        for (item in lists) {
-            if (item.id == model.id)
-                newList.add(model)
-            else
-                newList.add(item)
-        }
-        lists = newList
         notifyDataSetChanged()
     }
 
