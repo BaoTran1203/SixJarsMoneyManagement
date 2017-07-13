@@ -25,6 +25,11 @@ object LocaleHelper {
                 .withLocale(Locale(getLanguage(context)))
     }
 
+    fun getMonthFormat(context: Context): DateTimeFormatter {
+        return DateTimeFormat.forPattern(context.getString(R.string.month_format))
+                .withLocale(Locale(getLanguage(context)))
+    }
+
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language)
         return setLocale(context, lang)
