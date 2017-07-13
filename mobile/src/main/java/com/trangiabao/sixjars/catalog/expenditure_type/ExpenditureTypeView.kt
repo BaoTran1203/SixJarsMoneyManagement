@@ -6,8 +6,6 @@ interface ExpenditureTypeView {
 
     fun onGetListResult(list: List<ExpenditureType>)
 
-    fun onAddResult(obj: ExpenditureType?)
-
     fun onUpdateResult(obj: ExpenditureType?)
 
     fun onDeleteResult(result: Boolean)

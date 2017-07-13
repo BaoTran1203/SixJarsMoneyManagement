@@ -10,11 +10,6 @@ class RevenueTypePresenter(private var view: RevenueTypeView) : RevenueTypePrese
         view.onGetListResult(list.isNotEmpty(), "", list)
     }
 
-    override fun add(type: RevenueType) {
-        val newType = RevenueTypeDB.add(type)
-        view.onAddResult(newType != null, "", newType)
-    }
-
     override fun update(type: RevenueType) {
         val newType = RevenueTypeDB.update(type)
         view.onUpdateResult(newType != null, "", newType)

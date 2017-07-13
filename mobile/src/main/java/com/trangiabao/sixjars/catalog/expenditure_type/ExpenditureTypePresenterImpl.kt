@@ -6,8 +6,6 @@ interface ExpenditureTypePresenterImpl {
 
     fun getAll()
 
-    fun add(type: ExpenditureType)
-
     fun update(type: ExpenditureType)
 
     fun delete(id: String)

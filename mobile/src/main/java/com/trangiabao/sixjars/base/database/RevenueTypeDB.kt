@@ -23,21 +23,6 @@ object RevenueTypeDB {
         return mutableListOf()
     }
 
-    fun add(obj: RevenueType): RevenueType? {
-        val realm = Realm.getDefaultInstance()
-        try {
-            realm.beginTransaction()
-            val realmModel = realm.copyToRealm(obj)
-            realm.commitTransaction()
-            return realm.copyFromRealm(realmModel)
-        } catch (e: RealmException) {
-            e.printStackTrace()
-        } finally {
-            realm.close()
-        }
-        return null
-    }
-
     fun update(obj: RevenueType): RevenueType? {
         val realm = Realm.getDefaultInstance()
         try {

@@ -24,6 +24,7 @@
     <string name="delete">Delete</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
     <string name="required_field">Required field</string>
     <string name="item_deleted">Item has been removed</string>
     <string name="item_added">Item has been added</string>
@@ -37,4 +38,7 @@
     <string name="detail">Detail</string>
     <string name="date_format">EEE, dd-MMM-yyyy</string>
     <string name="time_format" translatable="false">HH:mm</string>
+    <string name="month_format" translatable="false">MMMM, yyyy</string>
+    <string name="jar">Jar</string>
+    <string name="my_expenditure">My Expenditure</string>
 </resources>

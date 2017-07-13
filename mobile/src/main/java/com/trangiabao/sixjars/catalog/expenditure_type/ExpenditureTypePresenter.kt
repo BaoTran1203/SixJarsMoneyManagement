@@ -9,10 +9,6 @@ class ExpenditureTypePresenter(private var view: ExpenditureTypeView) : Expendit
         view.onGetListResult(ExpenditureTypeDB.getAll())
     }
 
-    override fun add(type: ExpenditureType) {
-        view.onAddResult(ExpenditureTypeDB.add(type))
-    }
-
     override fun update(type: ExpenditureType) {
         view.onUpdateResult(ExpenditureTypeDB.update(type))
     }

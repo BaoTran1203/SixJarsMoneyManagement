@@ -7,12 +7,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.base.model.ExpenditureType
+import com.trangiabao.sixjars.base.ui.dialog.catalog.CatalogDialog
+import com.trangiabao.sixjars.base.ui.dialog.catalog.CatalogEnum
 import com.trangiabao.sixjars.catalog.expenditure_type.ExpenditureTypeAdapter.ItemClickListener
-import kotlinx.android.synthetic.main.custom_dialog_catalog.view.*
 import kotlinx.android.synthetic.main.fragment_type.view.*
 import java.util.*
 
@@ -65,61 +65,32 @@ class ExpenditureTypeFragment : BaseFragment(), ExpenditureTypeView {
 
     @SuppressLint("InflateParams")
     private fun createAddDialog() {
-        val dialogView: View = layoutInflater.inflate(R.layout.custom_dialog_catalog, null)
-        val alertDialog = AlertDialog.Builder(context)
-                .setView(dialogView)
-                .setTitle(R.string.add)
-                .setIcon(R.drawable.ic_add)
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.confirm, null)
-                .create()
-        alertDialog.setOnShowListener { dialog ->
-            val btn = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
-            btn.setOnClickListener {
-                if (dialogView.txtRevenueType.text.toString().trim() == "")
-                    dialogView.txtRevenueType.error = getString(R.string.required_field)
-                else {
-                    val expenditureType = ExpenditureType()
-                    expenditureType.id = UUID.randomUUID().toString()
-                    expenditureType.type = dialogView.txtRevenueType.text.toString().trim()
-                    expenditureType.description = dialogView.txtDescription.text.toString().trim()
-                    presenter!!.add(expenditureType)
-                    dialog.dismiss()
-                }
+        val dialog = CatalogDialog(context, "", "", CatalogEnum.ADD)
+        dialog.setDialogResult(object : CatalogDialog.OnDialogResult {
+            override fun onResult(type: String, description: String) {
+                val expenditureType = ExpenditureType()
+                expenditureType.id = UUID.randomUUID().toString()
+                expenditureType.type = type
+                expenditureType.description = description
+                presenter!!.update(expenditureType)
             }
-        }
-        alertDialog.show()
+        })
+        dialog.show()
     }
 
     @SuppressLint("InflateParams")
     private fun createEditDialog(obj: ExpenditureType) {
-        val dialogView: View = layoutInflater.inflate(R.layout.custom_dialog_catalog, null)
-        dialogView.txtRevenueType.setText(obj.type, TextView.BufferType.EDITABLE)
-        dialogView.txtDescription.setText(obj.description, TextView.BufferType.EDITABLE)
-        val alertDialog = AlertDialog.Builder(context)
-                .setView(dialogView)
-                .setTitle(R.string.edit)
-                .setIcon(R.drawable.ic_estimate)
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.confirm, null)
-                .create()
-        alertDialog.setOnShowListener { dialog ->
-            dialogView.txtRevenueType.setSelection(dialogView.txtRevenueType.text.length)
-            val btn = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
-            btn.setOnClickListener {
-                if (dialogView.txtRevenueType.text.toString().trim() == "")
-                    dialogView.txtRevenueType.error = getString(R.string.required_field)
-                else {
-                    val expenditureType = ExpenditureType()
-                    expenditureType.id = obj.id
-                    expenditureType.type = dialogView.txtRevenueType.text.toString().trim()
-                    expenditureType.description = dialogView.txtDescription.text.toString().trim()
-                    presenter!!.update(expenditureType)
-                    dialog.dismiss()
-                }
+        val dialog = CatalogDialog(context, obj.type!!, obj.description!!, CatalogEnum.EDIT)
+        dialog.setDialogResult(object : CatalogDialog.OnDialogResult {
+            override fun onResult(type: String, description: String) {
+                val expenditureType = ExpenditureType()
+                expenditureType.id = obj.id
+                expenditureType.type = type
+                expenditureType.description = description
+                presenter!!.update(expenditureType)
             }
-        }
-        alertDialog.show()
+        })
+        dialog.show()
     }
 
     override fun onGetListResult(list: List<ExpenditureType>) {
@@ -128,19 +99,9 @@ class ExpenditureTypeFragment : BaseFragment(), ExpenditureTypeView {
         adapter!!.updateList(temp)
     }
 
-    override fun onAddResult(obj: ExpenditureType?) {
-        if (obj != null) {
-            adapter!!.addItem(obj)
-            toast(R.string.item_added)
-        } else {
-            toast("Add that bai")
-        }
-    }
-
     override fun onUpdateResult(obj: ExpenditureType?) {
         if (obj != null) {
             adapter!!.updateItem(obj)
-            toast(R.string.update_successful)
         } else {
             toast("Update that bai")
         }

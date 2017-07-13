@@ -23,21 +23,6 @@ object ExpenditureTypeDB {
         return mutableListOf()
     }
 
-    fun add(obj: ExpenditureType): ExpenditureType? {
-        val realm: Realm = Realm.getDefaultInstance()
-        try {
-            realm.beginTransaction()
-            val realmModel = realm.copyToRealm(obj)
-            realm.commitTransaction()
-            return realm.copyFromRealm(realmModel)
-        } catch (e: RealmException) {
-            e.printStackTrace()
-        } finally {
-            realm.close()
-        }
-        return null
-    }
-
     fun update(obj: ExpenditureType): ExpenditureType? {
         val realm: Realm = Realm.getDefaultInstance()
         try {
@@ -54,7 +39,7 @@ object ExpenditureTypeDB {
     }
 
     fun delete(id: String): Boolean {
-        if (RevenueTypeDB.isUsed(id))
+        if (isUsed(id))
             return false
         val realm: Realm = Realm.getDefaultInstance()
         try {
