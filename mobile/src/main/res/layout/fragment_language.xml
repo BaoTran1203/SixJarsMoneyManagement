@@ -20,32 +20,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/bg_english" />
+
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/bg_english" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/english"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="20sp" />
-            </FrameLayout>
-
-
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/english"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="20sp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -61,30 +49,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/tieng_viet"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/tieng_viet"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="20sp" />
-            </FrameLayout>
-
-            <FrameLayout
+            <android.support.v7.widget.AppCompatImageView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/bg_vietnamese" />
-            </FrameLayout>
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/bg_vietnamese" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

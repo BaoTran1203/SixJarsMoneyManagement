@@ -19,7 +19,8 @@ class ConfigFragment : BaseFragment(), ConfigView {
         val view: View = inflater!!.inflate(R.layout.fragment_config, container, false)
         initControls(view)
         initEvents(view)
-        initDatabase()
+        presenter = ConfigPresenter(context, this)
+        presenter!!.getAll()
         return view
     }
 
@@ -36,14 +37,8 @@ class ConfigFragment : BaseFragment(), ConfigView {
         }
     }
 
-    private fun initDatabase() {
-        presenter = ConfigPresenter(context, this)
-        presenter!!.getAll()
-    }
-
     override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
         adapter!!.List = list.toMutableList()
-        toast(msg)
     }
 
     override fun onUpdateResult(result: Boolean, msg: String, list: List<Jar>) {

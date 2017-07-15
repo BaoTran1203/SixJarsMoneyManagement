@@ -13,6 +13,20 @@ object RevenueDB {
     private val DATE: String = "date"
     private val TYPE_ID: String = "type.id"
 
+    fun getAll(): List<Revenue> {
+        try {
+            val realm: Realm = Realm.getDefaultInstance()
+            val query = realm.where(Revenue::class.java)
+            val result = query.findAll()
+            val list = realm.copyFromRealm(result).toMutableList()
+            realm.close()
+            return list
+        } catch (e: RealmException) {
+            Log.d("TAGTAG", e.printStackTrace().toString())
+        }
+        return mutableListOf()
+    }
+
     fun find(from: Date, to: Date): List<Revenue> {
         try {
             val realm: Realm = Realm.getDefaultInstance()

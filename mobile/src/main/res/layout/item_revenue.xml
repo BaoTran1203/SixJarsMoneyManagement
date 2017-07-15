@@ -1,48 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="15dp"
-    android:theme="@style/CardViewStyle"
-    tools:ignore="UselessParent">
+    android:layout_marginTop="10dp"
+    android:theme="@style/CardViewStyle">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:padding="10dp">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/ic_money"
+            android:layout_marginBottom="8dp"
+            android:drawableLeft="@drawable/ic_amount"
             android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_money"
-            android:text="2.000.000"
+            android:drawableStart="@drawable/ic_amount"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/titleTextSize"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/line"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorDivider" />
+        <include layout="@layout/layout_line_horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -50,19 +36,18 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/txtDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_calender"
+                    android:drawableLeft="@drawable/ic_date"
                     android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/ic_calender"
+                    android:drawableStart="@drawable/ic_date"
                     android:gravity="center_vertical"
-                    android:text="22-Jul-2017"
                     android:textSize="@dimen/normalTextSize" />
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/txtTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -71,31 +56,29 @@
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/ic_time"
                     android:gravity="center_vertical"
-                    android:text="20:30"
                     android:textSize="@dimen/normalTextSize" />
             </LinearLayout>
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtRevenueType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_attach"
+                android:drawableLeft="@drawable/ic_type"
                 android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_attach"
+                android:drawableStart="@drawable/ic_type"
                 android:gravity="center_vertical"
-                android:text="Salary"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 android:textSize="@dimen/normalTextSize" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:drawableLeft="@drawable/ic_description"
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/ic_description"
                 android:gravity="center_vertical"
-                android:text="Abc"
                 android:textSize="@dimen/normalTextSize"
                 android:textStyle="italic" />
         </LinearLayout>

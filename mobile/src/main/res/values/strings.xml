@@ -41,4 +41,6 @@
     <string name="month_format" translatable="false">MMMM, yyyy</string>
     <string name="jar">Jar</string>
     <string name="my_expenditure">My Expenditure</string>
+    <string name="my_income">My income</string>
+    <string name="to">to</string>
 </resources>

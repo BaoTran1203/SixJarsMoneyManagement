@@ -3,18 +3,17 @@
     android:layout_width="48dp"
     android:layout_height="48dp">
 
-    <com.trangiabao.sixjars.base.ui.CircleImageView
+    <com.trangiabao.sixjars.ui.CircleImageView
         android:id="@+id/imgMonth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@color/colorPrimary" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/txtMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Jan"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/titleTextSize" />
 </RelativeLayout>

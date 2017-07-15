@@ -40,7 +40,7 @@ class MainApplication : Application() {
 
     @SuppressLint("CommitPrefEdits")
     fun createDatabase() {
-        val raw: InputStream = resources.openRawResource(R.raw.default_database)
+        val raw: InputStream = resources.openRawResource(R.raw.database)
         val rd: BufferedReader = BufferedReader(InputStreamReader(raw))
         val db: Database = Gson().fromJson(rd, Database::class.java)
         try {

@@ -21,13 +21,15 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnSave"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/colorPrimaryLight"
-                android:text="@string/save" />
+                android:text="@string/save"
+                android:textColor="@color/colorPrimaryText" />
         </FrameLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

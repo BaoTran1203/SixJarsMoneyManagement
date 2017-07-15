@@ -7,7 +7,8 @@ import java.util.*
 class RevenuePresenter(private var view: RevenueView) : RevenuePresenterImpl {
 
     override fun filter(from: DateTime, to: DateTime) {
-        view.onGetListResult(RevenueDB.find(getStartDate(from), getEndDate(to)))
+        val list = RevenueDB.find(getStartDate(from), getEndDate(to))
+        view.onGetListResult(list.isNotEmpty(), "", list)
     }
 
     override fun delete(id: String, position: Int) {

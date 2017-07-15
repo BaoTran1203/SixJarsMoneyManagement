@@ -14,7 +14,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_money"
@@ -32,7 +32,7 @@
             app:ms_dropdown_max_height="300dp"
             app:ms_text_color="@color/colorPrimaryText" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/year"
@@ -43,20 +43,21 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Salary"
+        android:hint="@string/my_income"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true">
 
-        <com.trangiabao.sixjars.base.ui.NumericEditText
+        <com.trangiabao.sixjars.ui.NumericEditText
             android:id="@+id/txtSalary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_money"
+            android:drawableEnd="@drawable/ic_clear"
+            android:drawableLeft="@drawable/ic_amount"
             android:drawableRight="@drawable/ic_clear"
+            android:drawableStart="@drawable/ic_amount"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:maxLength="15"
-            tools:ignore="RtlHardcoded" />
+            android:maxLength="15" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -66,45 +67,30 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimaryText" />
+    <include layout="@layout/layout_line_horizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:baselineAligned="false"
         android:orientation="horizontal"
         android:padding="@dimen/parentLayoutMargin">
 
-        <FrameLayout
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:text="@string/total"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/titleTextSize"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/titleTextSize"
-                android:textStyle="bold" />
-        </FrameLayout>
-
-        <FrameLayout
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5">
-
-            <TextView
-                android:id="@+id/txtTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/titleTextSize"
-                android:textStyle="bold" />
-        </FrameLayout>
+            android:layout_weight="2.5"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/titleTextSize"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

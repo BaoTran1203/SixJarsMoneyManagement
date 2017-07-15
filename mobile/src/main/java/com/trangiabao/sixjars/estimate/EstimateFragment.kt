@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.base.model.Jar
-import com.trangiabao.sixjars.base.ui.NumericEditText
+import com.trangiabao.sixjars.ui.NumericEditText
 import kotlinx.android.synthetic.main.fragment_estimate.view.*
 
 class EstimateFragment : BaseFragment(), EstimateView {

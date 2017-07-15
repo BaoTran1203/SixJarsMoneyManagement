@@ -12,10 +12,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.base.ui.viewpager.ViewPagerAdapter
-import com.trangiabao.sixjars.base.ui.viewpager.ViewPagerTransformer
 import com.trangiabao.sixjars.catalog.expenditure_type.ExpenditureTypeFragment
 import com.trangiabao.sixjars.catalog.revenue_type.RevenueTypeFragment
+import com.trangiabao.sixjars.ui.viewpager.ViewPagerAdapter
+import com.trangiabao.sixjars.ui.viewpager.ViewPagerTransformer
 
 class CatalogFragment : Fragment() {
 

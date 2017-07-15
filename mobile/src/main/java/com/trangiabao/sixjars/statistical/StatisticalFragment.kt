@@ -16,27 +16,28 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.base.LocaleHelper
-import com.trangiabao.sixjars.base.database.RevenueDB
-import com.trangiabao.sixjars.base.ui.dialog.monthpicker.MonthPickerDialog
+import com.trangiabao.sixjars.ui.dialog.monthpicker.MonthPickerDialog
 import kotlinx.android.synthetic.main.fragment_statistical.view.*
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormatter
-import java.util.*
 
-class StatisticalFragment : BaseFragment() {
+class StatisticalFragment : BaseFragment(), StatisticalView {
 
     private var month = DateTime.now()
     private var monthFormat: DateTimeFormatter? = null
+    private var _view: View? = null
+    private var presenter: StatisticalPresenter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_statistical, container, false)
-        initControls(view)
-        initEvents(view)
-        return view
+        _view = inflater!!.inflate(R.layout.fragment_statistical, container, false)
+        initControls()
+        initEvents()
+        initDatabase()
+        return _view
     }
 
-    private fun initControls(view: View) {
-        view.run {
+    private fun initControls() {
+        _view!!.run {
             pieChart.setUsePercentValues(true)
             pieChart.description.isEnabled = false
             pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
@@ -60,55 +61,47 @@ class StatisticalFragment : BaseFragment() {
                 yOffset = 0f
                 isWordWrapEnabled = true
             }
+            monthFormat = LocaleHelper.getMonthFormat(context)
+            txtMonth.text = monthFormat!!.print(month)
         }
-        getData(view)
-        monthFormat = LocaleHelper.getMonthFormat(context)
-        view.txtMonth.text = monthFormat!!.print(month)
+        presenter = StatisticalPresenter(this)
     }
 
-    private fun initEvents(view: View) {
-        view.txtMonth.setOnClickListener {
-            val dialog = MonthPickerDialog(context, month)
-            dialog.setDialogResult(object : MonthPickerDialog.OnDialogResult {
-                override fun onGetTime(date: DateTime) {
-                    this@StatisticalFragment.month = date
-                    view.txtMonth.text = monthFormat!!.print(this@StatisticalFragment.month)
-                    //presenter!!.filter(dateFrom, dateTo)
-                }
-            })
-            dialog.show()
+    private fun initEvents() {
+        _view!!.run {
+            txtMonth.setOnClickListener {
+                val dialog = MonthPickerDialog(context, month)
+                dialog.setDialogResult(object : MonthPickerDialog.OnDialogResult {
+                    override fun onGetTime(date: DateTime) {
+                        this@StatisticalFragment.month = date
+                        txtMonth.text = monthFormat!!.print(this@StatisticalFragment.month)
+                        initDatabase()
+                    }
+                })
+                dialog.show()
+            }
+            radiogroup.setOnCheckedChangeListener { _, _ -> initDatabase() }
+            shuffer.setOnClickListener { initDatabase() }
         }
     }
 
-    private fun getData(view: View) {
-        val entries: MutableList<PieEntry> = getPieEntry()
+    private fun initDatabase() {
+        presenter!!.run {
+            if (_view!!.radRevenue.isChecked)
+                getListRevenue(month)
+            else
+                getListExpenditure(month)
+        }
+    }
+
+    override fun onGetListPieEntryResult(result: Boolean, msg: String, entries: MutableList<PieEntry>) {
         val dataSet = getPieDataSet(entries, "")
-        view.pieChart.data = getPieData(dataSet)
-        view.pieChart.highlightValues(null)
-        view.pieChart.invalidate()
-        view.pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad)
-    }
-
-    private fun getPieEntry(): MutableList<PieEntry> {
-        val list = RevenueDB.getAll()
-        val map = list.map { it.revenueType!!.type to it.amount }.toMap()
-        val entries: MutableList<PieEntry> = mutableListOf()
-        for ((key, value) in map) {
-            entries.add(PieEntry(value!!.toFloat(), key))
+        _view!!.run {
+            pieChart.data = getPieData(dataSet)
+            pieChart.highlightValues(null)
+            pieChart.invalidate()
+            pieChart.animateY(500, Easing.EasingOption.EaseInOutQuad)
         }
-        entries.sortBy { x -> x.value }
-        return shuffle(entries)
-    }
-
-    private fun shuffle(items: MutableList<PieEntry>): MutableList<PieEntry> {
-        val rg: Random = Random()
-        for (i in 0..items.size - 1) {
-            val randomPosition = rg.nextInt(items.size)
-            val tmp: PieEntry = items[i]
-            items[i] = items[randomPosition]
-            items[randomPosition] = tmp
-        }
-        return items
     }
 
     private fun getPieDataSet(entries: MutableList<PieEntry>, label: String): PieDataSet {

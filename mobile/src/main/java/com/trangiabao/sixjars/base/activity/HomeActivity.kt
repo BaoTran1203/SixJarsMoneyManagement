@@ -13,7 +13,7 @@ import com.trangiabao.sixjars.overview.OverviewFragment
 import com.trangiabao.sixjars.statistical.StatisticalFragment
 import com.trangiabao.sixjars.wallet.WalletFragment
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.custom_app_bar.*
+import kotlinx.android.synthetic.main.layout_app_bar.*
 
 class HomeActivity : BaseActivity() {
 

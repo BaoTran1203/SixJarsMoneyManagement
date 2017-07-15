@@ -2,19 +2,21 @@ package com.trangiabao.sixjars.management.revenue
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.afollestad.materialdialogs.MaterialDialog
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.base.model.Revenue
 import com.trangiabao.sixjars.management.revenue_update.UpdateRevenueActivity
+import com.trangiabao.sixjars.ui.ScrollAwareFABBehavior
+import com.trangiabao.sixjars.ui.dialog.CustomDialogConfirm
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import kotlinx.android.synthetic.main.custom_layout_date_filter.view.*
 import kotlinx.android.synthetic.main.fragment_revenue.view.*
+import kotlinx.android.synthetic.main.layout_date_filter.view.*
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
 import org.joda.time.LocalDate
@@ -39,6 +41,10 @@ class RevenueFragment : BaseFragment(), RevenueView {
 
     private fun initControls(view: View) {
         view.run {
+            val p = fab.layoutParams as CoordinatorLayout.LayoutParams
+            p.behavior = ScrollAwareFABBehavior()
+            fab.layoutParams = p
+
             recyclerView!!.run {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)
@@ -50,15 +56,16 @@ class RevenueFragment : BaseFragment(), RevenueView {
                     }
 
                     override fun onLongClickListener(type: Revenue, position: Int): Boolean {
-                        MaterialDialog.Builder(context)
-                                .title(R.string.confirm)
-                                .content(R.string.deletion)
-                                .iconRes(R.drawable.ic_delete)
-                                .negativeText(R.string.cancel).onNegative { dialog, _ -> dialog.dismiss() }
-                                .positiveText(R.string.confirm).onPositive { dialog, _ ->
-                            presenter!!.delete(type.id!!, position)
-                            dialog.dismiss()
-                        }.show()
+                        CustomDialogConfirm.Builder(context)
+                                .withTitle(R.string.confirm)
+                                .withContent(R.string.deletion)
+                                .withIcon(R.drawable.ic_delete)
+                                .setOnConfirmClick(object : CustomDialogConfirm.OnConfirmListener {
+                                    override fun onResult(dialog: CustomDialogConfirm, result: Boolean) {
+                                        presenter!!.delete(type.id!!, position)
+                                        dialog.dismiss()
+                                    }
+                                }).show()
                         return true
                     }
                 })
@@ -113,7 +120,7 @@ class RevenueFragment : BaseFragment(), RevenueView {
         presenter!!.filter(dateFrom, dateTo)
     }
 
-    override fun onGetListResult(list: List<Revenue>) {
+    override fun onGetListResult(result: Boolean, msg: String, list: List<Revenue>) {
         _adapter!!.updateList(list.toMutableList())
     }
 

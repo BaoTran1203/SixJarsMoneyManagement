@@ -7,11 +7,13 @@ import com.trangiabao.sixjars.base.model.Revenue
 class UpdateRevenuePresenter(private var view: UpdateRevenueView) : UpdateRevenuePresenterImpl {
 
     override fun getAllRevenueType() {
-        view.onListRevenueTypeLoaded(RevenueTypeDB.getAll())
+        val list = RevenueTypeDB.getAll()
+        view.onListRevenueTypeLoaded(list.isNotEmpty(), "", list)
     }
 
     override fun updateRevenue(revenue: Revenue) {
-        view.onUpdateRevenueResult(RevenueDB.update(revenue))
+        val newRevenue = RevenueDB.update(revenue)
+        view.onUpdateRevenueResult(newRevenue != null, "", newRevenue)
     }
 
     override fun getRevenue(id: String) {

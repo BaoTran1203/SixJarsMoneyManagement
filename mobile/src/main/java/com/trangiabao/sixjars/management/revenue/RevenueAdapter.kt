@@ -1,6 +1,5 @@
 package com.trangiabao.sixjars.management.revenue
 
-import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +23,6 @@ class RevenueAdapter(private var listener: ItemClickListener) : RecyclerView.Ada
         return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_revenue, parent, false))
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val model: Revenue = lists[position]
         holder!!.itemView.run {

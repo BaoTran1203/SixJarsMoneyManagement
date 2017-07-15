@@ -12,10 +12,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.base.ui.ViewPagerAdapter
-import com.trangiabao.sixjars.base.ui.ViewPagerTransformer
 import com.trangiabao.sixjars.management.expenditure.ExpenditureFragment
 import com.trangiabao.sixjars.management.revenue.RevenueFragment
+import com.trangiabao.sixjars.ui.viewpager.ViewPagerAdapter
+import com.trangiabao.sixjars.ui.viewpager.ViewPagerTransformer
 
 class MoneyManagementFragment : Fragment() {
 
@@ -57,6 +57,4 @@ class MoneyManagementFragment : Fragment() {
         textView.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
         return textView
     }
-
-
 }

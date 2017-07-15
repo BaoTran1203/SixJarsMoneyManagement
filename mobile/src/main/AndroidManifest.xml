@@ -18,9 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".management.revenue_update.UpdateRevenueActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity android:name=".management.revenue_update.UpdateRevenueActivity" />
+        <activity android:name=".management.expenditure_update.UpdateExpenditureActivity" />
     </application>
 
 </manifest>

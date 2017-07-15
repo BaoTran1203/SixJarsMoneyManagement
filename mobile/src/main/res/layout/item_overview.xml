@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/parentLayoutMargin">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_centerInParent="true"
@@ -24,7 +24,7 @@
             android:layout_centerInParent="true"
             android:orientation="vertical">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 android:textSize="@dimen/bigTextSize"
                 android:textStyle="italic" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtPercent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             android:textSize="@dimen/titleTextSize"
             android:textStyle="bold" />
 
-        <com.trangiabao.sixjars.base.ui.JustifyTextView
+        <com.trangiabao.sixjars.ui.JustifyTextView
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

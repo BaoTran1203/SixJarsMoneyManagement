@@ -1,61 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
-    android:baselineAligned="false"
+    android:layout_margin="@dimen/parentLayoutMargin"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <FrameLayout
-        android:layout_width="0dp"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtName"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/textRatioSize" />
 
-        <TextView
-            android:id="@+id/txtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NEC"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/textRatioSize" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="0dp"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtPercent"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="end"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="@dimen/textRatioSize" />
 
-        <com.shawnlin.numberpicker.NumberPicker
-            android:id="@+id/numberPickerPercent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:np_dividerColor="@color/colorPrimary"
-            app:np_height="48dp"
-            app:np_orientation="horizontal"
-            app:np_selectedTextColor="@color/colorPrimary"
-            app:np_selectedTextSize="@dimen/textRatioSelectedSize"
-            app:np_textColor="@color/colorPrimary"
-            app:np_textSize="@dimen/textRatioSize"
-            app:np_typeface="@string/font_family_light"
-            app:np_width="150dp"
-            app:np_wrapSelectorWheel="false" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="%"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/textRatioSize" />
-    </FrameLayout>
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -12,180 +12,181 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/custom_app_bar" />
+        <include layout="@layout/layout_app_bar" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Date and Time" />
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
-                    <FrameLayout
+                    <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                        android:layout_marginLeft="20dp"
+                        android:text="Date and Time" />
 
-                        <EditText
-                            android:id="@+id/txtDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_calender"
-                            android:drawablePadding="10dp"
-                            android:editable="false"
-                            android:focusable="false"
-                            android:inputType="none" />
-                    </FrameLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/line"
-                        android:background="@color/colorDivider" />
-
-                    <FrameLayout
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                        android:layout_marginTop="10dp">
 
-                        <EditText
-                            android:id="@+id/txtTime"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_clock"
-                            android:drawablePadding="10dp"
-                            android:editable="false"
-                            android:focusable="false"
-                            android:inputType="none" />
-                    </FrameLayout>
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
 
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp">
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:id="@+id/txtDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@android:color/transparent"
+                                    android:drawableLeft="@drawable/ic_date"
+                                    android:drawablePadding="10dp"
+                                    android:editable="false"
+                                    android:focusable="false"
+                                    android:inputType="none" />
+                            </FrameLayout>
+
+                            <include layout="@layout/layout_line_horizontal" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp">
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:id="@+id/txtTime"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@android:color/transparent"
+                                    android:drawableLeft="@drawable/ic_time"
+                                    android:drawablePadding="10dp"
+                                    android:editable="false"
+                                    android:focusable="false"
+                                    android:inputType="none" />
+                            </FrameLayout>
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Info" />
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
-                    <FrameLayout
+                    <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                        android:layout_marginLeft="20dp"
+                        android:text="Info" />
 
-                        <com.trangiabao.sixjars.base.ui.NumericEditText
-                            android:id="@+id/txtRevenueAmount"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_money"
-                            android:drawablePadding="10dp"
-                            android:drawableRight="@drawable/ic_clear"
-                            android:hint="My Revenue"
-                            android:imeOptions="actionDone"
-                            android:inputType="number"
-                            android:maxLength="16" />
-                    </FrameLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/line"
-                        android:background="@color/colorDivider" />
-
-                    <FrameLayout
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                        android:layout_marginTop="10dp">
 
-                        <EditText
-                            android:id="@+id/txtRevenueType"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@android:color/transparent"
-                            android:drawableLeft="@drawable/ic_attach"
-                            android:drawablePadding="10dp"
-                            android:editable="false"
-                            android:focusable="false"
-                            android:gravity="center_vertical"
-                            android:hint="Type"
-                            android:inputType="none" />
-                    </FrameLayout>
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/line"
-                        android:background="@color/colorDivider" />
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp">
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                                <com.trangiabao.sixjars.ui.NumericEditText
+                                    android:id="@+id/txtRevenueAmount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@android:color/transparent"
+                                    android:drawableLeft="@drawable/ic_amount"
+                                    android:drawablePadding="10dp"
+                                    android:drawableRight="@drawable/ic_clear"
+                                    android:hint="My Revenue"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="number"
+                                    android:maxLength="16" />
+                            </FrameLayout>
 
-                        <EditText
-                            android:id="@+id/txtDetail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@android:color/transparent"
-                            android:drawableEnd="@drawable/ic_clear"
-                            android:drawableLeft="@drawable/ic_description"
-                            android:drawablePadding="10dp"
-                            android:drawableRight="@drawable/ic_clear"
-                            android:drawableStart="@drawable/ic_description"
-                            android:hint="Detail"
-                            android:imeOptions="actionDone"
-                            android:inputType="text"
-                            android:maxLines="1" />
-                    </FrameLayout>
+                            <include layout="@layout/layout_line_horizontal" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp">
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:id="@+id/txtRevenueType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@android:color/transparent"
+                                    android:drawableLeft="@drawable/ic_type"
+                                    android:drawablePadding="10dp"
+                                    android:editable="false"
+                                    android:focusable="false"
+                                    android:gravity="center_vertical"
+                                    android:hint="Type"
+                                    android:inputType="none" />
+                            </FrameLayout>
+
+                            <include layout="@layout/layout_line_horizontal" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp">
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:id="@+id/txtDetail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@android:color/transparent"
+                                    android:drawableEnd="@drawable/ic_clear"
+                                    android:drawableLeft="@drawable/ic_description"
+                                    android:drawablePadding="10dp"
+                                    android:drawableRight="@drawable/ic_clear"
+                                    android:drawableStart="@drawable/ic_description"
+                                    android:hint="Detail"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="text"
+                                    android:maxLines="1" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-
 </android.support.design.widget.CoordinatorLayout>

@@ -9,4 +9,11 @@
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#FFFFFF</color>
     <color name="colorDivider">#B6B6B6</color>
+
+    <color name="colorErrorDark">#CC3300</color>
+    <color name="colorErrorLight">#FF9494</color>
+    <color name="colorWaringDark">#FFCC00</color>
+    <color name="colorWaringLight">#FFC446</color>
+    <color name="colorSuccessDark">#339900</color>
+    <color name="colorSuccessLight">#99CC33</color>
 </resources>

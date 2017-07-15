@@ -6,16 +6,16 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import com.afollestad.materialdialogs.MaterialDialog
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.base.activity.BaseActivity
 import com.trangiabao.sixjars.base.model.Revenue
 import com.trangiabao.sixjars.base.model.RevenueType
+import com.trangiabao.sixjars.ui.dialog.CustomDialogList
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import kotlinx.android.synthetic.main.activity_update_revenue.*
-import kotlinx.android.synthetic.main.custom_app_bar.*
+import kotlinx.android.synthetic.main.layout_app_bar.*
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormatter
 import java.util.*
@@ -42,7 +42,6 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         dateFormat = LocaleHelper.getDateFormat(applicationContext)
         timeFormat = LocaleHelper.getTimeFormat(applicationContext)
-
         val typeId = intent.getStringExtra("typeId")
         presenter = UpdateRevenuePresenter(this)
         presenter!!.getRevenue(typeId)
@@ -51,7 +50,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
     override fun onGetRevenue(result: Boolean, msg: String, revenue: Revenue?) {
         curRevenue = revenue
         if (curRevenue != null) {
-            title = "Edit"
+            title = getString(R.string.edit)
             curRevenue!!.run {
                 txtRevenueType.tag = revenueType
                 txtRevenueType.setText(revenueType!!.type)
@@ -62,7 +61,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
                 txtDetail.setText(detail)
             }
         } else {
-            title = "Add"
+            title = getString(R.string.add)
             txtRevenueType.tag = null
             txtRevenueType.text.clear()
             txtRevenueAmount.setText("0")
@@ -81,7 +80,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
                     curDate.dayOfMonth
             )
             dateDialog.setVersion(DatePickerDialog.Version.VERSION_1)
-            dateDialog.show(fragmentManager, "Datepickerdialog")
+            dateDialog.show(fragmentManager, "")
         }
 
         txtTime.setOnClickListener {
@@ -93,7 +92,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
                     true
             )
             timeDialog.version = TimePickerDialog.Version.VERSION_1
-            timeDialog.show(fragmentManager, "Timepickerdialog")
+            timeDialog.show(fragmentManager, "")
         }
 
         txtRevenueType.setOnClickListener { presenter!!.getAllRevenueType() }
@@ -131,16 +130,18 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         txtTime.setText(timeFormat!!.print(curDate))
     }
 
-    override fun onListRevenueTypeLoaded(list: List<RevenueType>) {
-        val lstTypes: MutableList<String> = mutableListOf()
-        list.mapTo(lstTypes) { it.type!! }
-        MaterialDialog.Builder(this)
-                .title("Title")
-                .items(lstTypes)
-                .itemsCallback({ dialog, _, which, text ->
-                    txtRevenueType.tag = list[which]
-                    txtRevenueType.setText(text)
-                    dialog.dismiss()
+    override fun onListRevenueTypeLoaded(result: Boolean, msg: String, list: List<RevenueType>) {
+        val map: Map<String, RevenueType> = list.map { it.type!! to it }.toMap()
+        CustomDialogList.Builder(this)
+                .withTitle(R.string.add)
+                .withIcon(R.drawable.ic_add)
+                .withMap(map)
+                .setOnItemClick(object : CustomDialogList.OnItemClickListener {
+                    override fun onClickResult(dialog: CustomDialogList, obj: Any?, text: String?, position: Int) {
+                        txtRevenueType.tag = obj as RevenueType
+                        txtRevenueType.setText(text!!)
+                        dialog.dismiss()
+                    }
                 })
                 .show()
     }
@@ -179,7 +180,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onUpdateRevenueResult(revenue: Revenue?) {
+    override fun onUpdateRevenueResult(result: Boolean, msg: String, revenue: Revenue?) {
         if (revenue != null)
             finish()
         else {
