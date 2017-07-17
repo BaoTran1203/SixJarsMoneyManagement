@@ -24,6 +24,7 @@ class LanguageFragment : BaseFragment() {
             if (LocaleHelper.getLanguage(context) != "en") {
                 LocaleHelper.setLocale(context, "en")
                 refresh()
+                toastSuccess("Change language")
             }
         }
 
@@ -31,6 +32,7 @@ class LanguageFragment : BaseFragment() {
             if (LocaleHelper.getLanguage(context) != "vi") {
                 LocaleHelper.setLocale(context, "vi")
                 refresh()
+                toastSuccess("Thay đổi ngôn ngữ Tiếng Việt")
             }
         }
     }

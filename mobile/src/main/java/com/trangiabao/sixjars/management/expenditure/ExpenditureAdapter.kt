@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.base.model.Expenditure
-import kotlinx.android.synthetic.main.item_expenditure.view.*
+import kotlinx.android.synthetic.main.item_management.view.*
 import org.joda.time.DateTime
 import java.math.BigDecimal
 import java.text.DecimalFormat
@@ -20,7 +20,7 @@ class ExpenditureAdapter(private var listener: ItemClickListener) : RecyclerView
     private val df = DecimalFormat("###,###,###,###,###.##")
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_expenditure, parent, false))
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_management, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {

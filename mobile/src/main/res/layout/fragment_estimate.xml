@@ -1,96 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/parentLayoutMargin"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:padding="@dimen/estimateLayoutPadding"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".estimate.EstimateFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_money"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/titleTextSize" />
-
-        <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:ms_arrow_tint="@color/colorAccent"
-            app:ms_background_color="@color/colorSecondaryText"
-            app:ms_dropdown_max_height="300dp"
-            app:ms_text_color="@color/colorPrimaryText" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/year"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/titleTextSize" />
-    </LinearLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/my_income"
-        app:hintAnimationEnabled="true"
-        app:hintEnabled="true">
-
-        <com.trangiabao.sixjars.ui.NumericEditText
-            android:id="@+id/txtSalary"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_clear"
-            android:drawableLeft="@drawable/ic_amount"
-            android:drawableRight="@drawable/ic_clear"
-            android:drawableStart="@drawable/ic_amount"
-            android:imeOptions="actionDone"
-            android:inputType="number"
-            android:maxLength="15" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_money"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/estimateTextSize" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never" />
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner"
+                android:layout_width="@dimen/spinnerWidth"
+                android:layout_height="wrap_content"
+                android:dividerHeight="0dp"
+                android:dropDownHeight="200dp"
+                android:dropDownSelector="@color/colorAccent"
+                android:dropDownWidth="60dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true" />
 
-    <include layout="@layout/layout_line_horizontal" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/year"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/estimateTextSize" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/parentLayoutMargin">
+        </LinearLayout>
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="0dp"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/total"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/titleTextSize"
-            android:textStyle="bold" />
+            android:hint="@string/my_income"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txtTotal"
-            android:layout_width="0dp"
+            <com.trangiabao.sixjars.ui.NumericEditText
+                android:id="@+id/txtSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_clear"
+                android:drawableLeft="@drawable/ic_amount"
+                android:drawableRight="@drawable/ic_clear"
+                android:drawableStart="@drawable/ic_amount"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="15" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/titleTextSize"
-            android:textStyle="bold" />
+            android:overScrollMode="never" />
+
+        <include layout="@layout/layout_line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/estimateLayoutPadding">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/total"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/estimateTextSize"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txtTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/estimateTextSize"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

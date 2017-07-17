@@ -38,11 +38,19 @@ class ConfigFragment : BaseFragment(), ConfigView {
     }
 
     override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
-        adapter!!.List = list.toMutableList()
+        if (!result) {
+            toastError(msg)
+        } else {
+            adapter!!.List = list.toMutableList()
+        }
     }
 
     override fun onUpdateResult(result: Boolean, msg: String, list: List<Jar>) {
-        adapter!!.List = list.toMutableList()
-        toast(msg)
+        if (result) {
+            adapter!!.List = list.toMutableList()
+            toastSuccess(msg)
+        } else {
+            toastWarning(msg)
+        }
     }
 }

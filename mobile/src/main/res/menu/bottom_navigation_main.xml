@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemPie"
+        android:enabled="true"
+        android:icon="@drawable/ic_pie_chart"
+        android:title="Pie"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/itemLine"
+        android:enabled="true"
+        android:icon="@drawable/ic_line_chart"
+        android:title="Line"
+        app:showAsAction="ifRoom" />
+</menu>

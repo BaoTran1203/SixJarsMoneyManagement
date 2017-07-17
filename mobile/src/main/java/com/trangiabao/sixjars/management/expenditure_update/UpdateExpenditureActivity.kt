@@ -182,11 +182,11 @@ class UpdateExpenditureActivity : BaseActivity(), UpdateExpenditureView,
 
             R.id.itemSave -> {
                 if (txtExpenditureAmount.numericValue < 1.0) {
-                    toast("Amout > 0")
+                    //toast("Amout > 0")
                 } else if (txtExpenditureType.tag == null) {
-                    toast("Choose Expenditure type")
+                    //toast("Choose Expenditure type")
                 } else if (txtJarName.tag == null) {
-                    toast("Choose Jar type")
+                    // toast("Choose Jar type")
                 } else {
                     val newExpenditure = Expenditure()
                     newExpenditure.date = curDate.toDate()
@@ -207,10 +207,10 @@ class UpdateExpenditureActivity : BaseActivity(), UpdateExpenditureView,
     }
 
     override fun onUpdateExpenditureResult(result: Boolean, msg: String, expenditure: Expenditure?) {
-        if (expenditure != null)
+        if (result && expenditure != null) {
+            toastSuccess("Update Success")
             finish()
-        else {
-            toast("Fail")
-        }
+        } else
+            toastError("Update Error")
     }
 }

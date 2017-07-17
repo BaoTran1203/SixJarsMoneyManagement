@@ -4,15 +4,14 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".language.LanguageFragment"
     tools:ignore="ContentDescription,DisableBaselineAlignment">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardViewEng"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/langItemWidth"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/langItemMargin"
         android:theme="@style/CardViewStyle">
 
         <LinearLayout
@@ -22,7 +21,7 @@
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/langImageHeight"
                 android:layout_weight="1"
                 android:src="@drawable/bg_english" />
 
@@ -33,15 +32,15 @@
                 android:gravity="center"
                 android:text="@string/english"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="20sp" />
+                android:textSize="@dimen/langTextSize" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardViewVie"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/langItemWidth"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/langItemMargin"
         android:theme="@style/CardViewStyle">
 
         <LinearLayout
@@ -56,11 +55,11 @@
                 android:gravity="center"
                 android:text="@string/tieng_viet"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="20sp" />
+                android:textSize="@dimen/langTextSize" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/langImageHeight"
                 android:layout_weight="1"
                 android:src="@drawable/bg_vietnamese" />
         </LinearLayout>

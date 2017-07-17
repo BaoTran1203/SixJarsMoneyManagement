@@ -12,4 +12,58 @@
     <dimen name="titleTextSize">16sp</dimen>
     <dimen name="bigTextSize">22sp</dimen>
     <dimen name="line">1dp</dimen>
+
+    <!-- Overview -->
+    <dimen name="overviewLayoutMargin">10dp</dimen>
+    <dimen name="overviewJarImageWidth">100dp</dimen>
+    <dimen name="overviewJarImageHeight">150dp</dimen>
+    <dimen name="overviewJarTextSize">22sp</dimen>
+    <dimen name="overviewTitleSize">16sp</dimen>
+    <dimen name="overviewDescTextSize">14sp</dimen>
+
+    <!-- Management -->
+
+    <dimen name="dateFilterTextSize">16sp</dimen>
+
+    <!-- Statistical -->
+    <dimen name="staTextSize">16sp</dimen>
+    <dimen name="btnShufferSize">48dp</dimen>
+    <dimen name="btnShufferMargin">10dp</dimen>
+    <dimen name="radMargin">15dp</dimen>
+    <dimen name="radTextSize">14sp</dimen>
+
+    <!-- Estimate -->
+    <dimen name="estimateLayoutPadding">10dp</dimen>
+    <dimen name="estimateTextSize">16sp</dimen>
+    <dimen name="spinnerWidth">60dp</dimen>
+
+    <!-- Config -->
+    <dimen name="configButtonSavePadding">10dp</dimen>
+    <dimen name="configItemTextSize">18sp</dimen>
+    <dimen name="configItemTextWidth">50dp</dimen>
+
+    <!-- Catalog -->
+    <dimen name="fabMargin">16dp</dimen>
+    <dimen name="catalogItemMargin">10dp</dimen>
+    <dimen name="catalogItemPadding">10dp</dimen>
+    <dimen name="catalogTitleTextSize">16sp</dimen>
+    <dimen name="catalogDesTextSize">14sp</dimen>
+
+    <!-- Language -->
+    <dimen name="langItemWidth">250dp</dimen>
+    <dimen name="langItemMargin">20dp</dimen>
+    <dimen name="langImageHeight">100dp</dimen>
+    <dimen name="langTextSize">20sp</dimen>
+
+    <!-- Dialog -->
+
+
+    <!-- Toast -->
+    <dimen name="toastBorder">2dp</dimen>
+    <dimen name="toastRadius">5dp</dimen>
+    <dimen name="toastPadding">7dp</dimen>
+    <dimen name="toastTextSize">14sp</dimen>
+    <dimen name="toastImageSize">24dp</dimen>
+    <dimen name="toastLayoutMargin">10dp</dimen>
+    <dimen name="toastItemMargin">2dp</dimen>
 </resources>

@@ -8,16 +8,26 @@ class ConfigPresenter(var context: Context, var view: ConfigView) : ConfigPresen
 
     override fun getAll() {
         val list = JarDB.getAll()
-        view.onListLoaded(list.isNotEmpty(), "${list.size} item(s)", list)
+        val result = list.isNotEmpty()
+        var msg: String = ""
+        if (!result) {
+            msg = "Load that bai"
+        }
+        view.onListLoaded(result, msg, list)
     }
 
     override fun update(list: List<Jar>) {
-        val sum = list.sumBy { x -> x.percent!! }
+        var newList = list
+        val sum = newList.sumBy { x -> x.percent!! }
+        var result: Boolean = false
+        val msg: String
         if (sum != 100) {
-            view.onUpdateResult(false, "Khong du 100%", list)
+            msg = "Khong du 100%"
         } else {
-            val newList = JarDB.update(list)
-            view.onUpdateResult(newList.isNotEmpty(), "${list.size} item(s)", newList)
+            result = true
+            msg = "Update Successed"
+            newList = JarDB.update(list)
         }
+        view.onUpdateResult(result, msg, newList)
     }
 }

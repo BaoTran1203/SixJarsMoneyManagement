@@ -159,9 +159,9 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
 
             R.id.itemSave -> {
                 if (txtRevenueAmount.numericValue < 1.0) {
-                    toast("Amout > 0")
+                    //toast("Amout > 0")
                 } else if (txtRevenueType.tag == null) {
-                    toast("Choose revenue type")
+                    //toast("Choose revenue type")
                 } else {
                     val newRevenue = Revenue()
                     newRevenue.date = curDate.toDate()
@@ -181,10 +181,10 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
     }
 
     override fun onUpdateRevenueResult(result: Boolean, msg: String, revenue: Revenue?) {
-        if (revenue != null)
+        if (result && revenue != null) {
+            toastSuccess("Update Success")
             finish()
-        else {
-            toast("Fail")
-        }
+        } else
+            toastError("Update Error")
     }
 }

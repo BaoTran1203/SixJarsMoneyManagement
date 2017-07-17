@@ -7,10 +7,13 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.BaseFragment
 import com.trangiabao.sixjars.base.model.Jar
 import com.trangiabao.sixjars.ui.NumericEditText
+import kotlinx.android.synthetic.main.fragment_estimate.*
 import kotlinx.android.synthetic.main.fragment_estimate.view.*
 
 class EstimateFragment : BaseFragment(), EstimateView {
@@ -22,7 +25,8 @@ class EstimateFragment : BaseFragment(), EstimateView {
         val view: View = inflater!!.inflate(R.layout.fragment_estimate, container, false)
         initControls(view)
         initEvents(view)
-        initDatabase()
+        presenter = EstimatePresenter(context, this)
+        presenter!!.getAll()
         return view
     }
 
@@ -32,7 +36,12 @@ class EstimateFragment : BaseFragment(), EstimateView {
             recyclerView.layoutManager = LinearLayoutManager(context)
             adapter = EstimateAdapter(0.0)
             recyclerView.adapter = adapter
-            spinner.setItems((1..20).toMutableList())
+            val list: MutableList<String> = mutableListOf()
+            (1..20).mapTo(list) { it.toString() }
+            val dataAdapter = ArrayAdapter<String>(context, R.layout.item_spinner, list)
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = dataAdapter
+            spinner.setSelection(0)
         }
     }
 
@@ -59,20 +68,24 @@ class EstimateFragment : BaseFragment(), EstimateView {
                 false
             })
 
-            spinner.setOnItemSelectedListener { _, position, _, _ ->
-                adapter!!.updateYear(position + 1)
-                txtTotal.text = adapter!!.getTotal()
-            }
+            spinner.onItemSelectedListener = MyProcessEvent()
         }
     }
 
-    private fun initDatabase() {
-        presenter = EstimatePresenter(context, this)
-        presenter!!.getAll()
+    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
+        if (!result)
+            toastError(msg)
+        else
+            adapter!!.List = list.toMutableList()
     }
 
-    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
-        adapter!!.List = list.toMutableList()
-        toast(msg)
+    private inner class MyProcessEvent : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, arg3: Long) {
+            adapter!!.updateYear(position + 1)
+            txtTotal.text = adapter!!.getTotal()
+        }
+
+        override fun onNothingSelected(arg0: AdapterView<*>) {
+        }
     }
 }

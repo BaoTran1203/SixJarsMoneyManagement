@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutToast"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="@dimen/toastLayoutMargin"
+    android:layout_marginRight="@dimen/toastLayoutMargin"
+    android:background="@drawable/bg_toast_warning"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/imgToastIcon"
+        android:layout_width="@dimen/toastImageSize"
+        android:layout_height="@dimen/toastImageSize"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/toastItemMargin"
+        android:src="@drawable/ic_edit" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtToastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/toastItemMargin"
+        android:gravity="center"
+        android:text="Error Error Error Error"
+        android:textColor="@color/colorToastText"
+        android:textSize="@dimen/toastTextSize"
+        tools:ignore="HardcodedText" />
+</LinearLayout>

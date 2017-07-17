@@ -126,8 +126,10 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
     }
 
     override fun onDeleteResult(result: Boolean, msg: String, position: Int) {
-        if (result)
+        if (result) {
             _adapter!!.removeItem(position)
-        toast(msg)
+            toastSuccess("Item has been remove")
+        } else
+            toastError("Delete Error")
     }
 }

@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/parentLayoutMargin"
+    android:layout_margin="@dimen/overviewLayoutMargin"
     android:orientation="horizontal"
-    tools:ignore="RtlHardcoded,ContentDescription,HardcodedText">
+    tools:ignore="RtlHardcoded,ContentDescription">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/parentLayoutMargin">
+        android:layout_marginRight="@dimen/overviewLayoutMargin">
 
         <android.support.v7.widget.AppCompatImageView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/overviewJarImageWidth"
+            android:layout_height="@dimen/overviewJarImageHeight"
             android:layout_centerInParent="true"
             android:src="@drawable/jar" />
 
@@ -28,20 +28,16 @@
                 android:id="@+id/txtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NEC"
-                android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/bigTextSize"
+                android:textSize="@dimen/overviewJarTextSize"
                 android:textStyle="italic" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txtPercent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="55%"
-                android:textAlignment="center"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/bigTextSize"
+                android:textSize="@dimen/overviewJarTextSize"
                 android:textStyle="italic" />
         </LinearLayout>
     </RelativeLayout>
@@ -56,9 +52,8 @@
             android:id="@+id/txtFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Necessity Account"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/titleTextSize"
+            android:textSize="@dimen/overviewTitleSize"
             android:textStyle="bold" />
 
         <com.trangiabao.sixjars.ui.JustifyTextView
@@ -66,8 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@string/font_family_medium"
-            android:text="This account is for managing your everyday expenses and bills. This would include things like your rent, mortgage, utilities, bills, taxes, food, clothes, etc. Basically it includes anything that you need to live, the necessities."
-            android:textSize="@dimen/normalTextSize"
+            android:textSize="@dimen/overviewDescTextSize"
             android:textStyle="italic" />
     </LinearLayout>
 </LinearLayout>

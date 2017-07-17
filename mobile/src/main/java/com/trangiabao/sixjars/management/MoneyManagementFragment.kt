@@ -21,12 +21,12 @@ class MoneyManagementFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater!!.inflate(R.layout.fragment_money_management, container, false)
-        setupUI(view)
+        initControls(view)
         return view
     }
 
     @Suppress("DEPRECATION")
-    private fun setupUI(view: View) {
+    private fun initControls(view: View) {
         val viewPager: ViewPager = view.findViewById(R.id.viewPager)
         val tabLayout: TabLayout = view.findViewById(R.id.tabLayout)
         val adapter = ViewPagerAdapter(childFragmentManager)

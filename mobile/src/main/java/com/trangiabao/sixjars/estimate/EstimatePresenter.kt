@@ -7,6 +7,10 @@ class EstimatePresenter(var context: Context, var view: EstimateView) : Estimate
 
     override fun getAll() {
         val list = JarDB.getAll()
-        view.onListLoaded(list.isNotEmpty(), "${list.size} item(s)", list)
+        val result = list.isNotEmpty()
+        var msg: String = ""
+        if (!result)
+            msg = "Load that bai"
+        view.onListLoaded(result, msg, list)
     }
 }

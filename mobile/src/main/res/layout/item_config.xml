@@ -8,21 +8,21 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/txtName"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/configItemTextWidth"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/textRatioSize" />
+        android:textSize="@dimen/configItemTextSize" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/txtPercent"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/configItemTextWidth"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:gravity="end"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/textRatioSize" />
+        android:textSize="@dimen/configItemTextSize" />
 
     <android.support.v7.widget.AppCompatSeekBar
         android:id="@+id/seekBar"

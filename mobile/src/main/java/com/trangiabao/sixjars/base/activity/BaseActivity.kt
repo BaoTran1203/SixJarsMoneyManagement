@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.LocaleHelper
+import com.trangiabao.sixjars.ui.toast.CustomToast
+import com.trangiabao.sixjars.ui.toast.ToastEnum
 
 @Suppress("unused")
 abstract class BaseActivity : AppCompatActivity() {
@@ -30,8 +33,58 @@ abstract class BaseActivity : AppCompatActivity() {
         trans.commit()
     }
 
-    protected fun toast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+    protected fun toastSuccess(msg: Int) {
+        CustomToast.Builder(applicationContext, this)
+                .withType(ToastEnum.SUCCESS)
+                .withMessage(msg)
+                .withIcon(R.drawable.ic_done)
+                .withDuration(Toast.LENGTH_SHORT)
+                .show()
+    }
+
+    protected fun toastSuccess(msg: String) {
+        CustomToast.Builder(applicationContext, this)
+                .withType(ToastEnum.SUCCESS)
+                .withMessage(msg)
+                .withIcon(R.drawable.ic_done)
+                .withDuration(Toast.LENGTH_SHORT)
+                .show()
+    }
+
+    protected fun toastError(msg: Int) {
+        CustomToast.Builder(applicationContext, this)
+                .withType(ToastEnum.ERROR)
+                .withMessage(msg)
+                .withIcon(R.drawable.ic_error)
+                .withDuration(Toast.LENGTH_SHORT)
+                .show()
+    }
+
+    protected fun toastError(msg: String) {
+        CustomToast.Builder(applicationContext, this)
+                .withType(ToastEnum.ERROR)
+                .withMessage(msg)
+                .withIcon(R.drawable.ic_error)
+                .withDuration(Toast.LENGTH_SHORT)
+                .show()
+    }
+
+    protected fun toastWarning(msg: Int) {
+        CustomToast.Builder(applicationContext, this)
+                .withType(ToastEnum.WARNING)
+                .withMessage(msg)
+                .withIcon(R.drawable.ic_warning)
+                .withDuration(Toast.LENGTH_SHORT)
+                .show()
+    }
+
+    protected fun toastWarning(msg: String) {
+        CustomToast.Builder(applicationContext, this)
+                .withType(ToastEnum.WARNING)
+                .withMessage(msg)
+                .withIcon(R.drawable.ic_warning)
+                .withDuration(Toast.LENGTH_SHORT)
+                .show()
     }
 
     protected fun log(message: String) {

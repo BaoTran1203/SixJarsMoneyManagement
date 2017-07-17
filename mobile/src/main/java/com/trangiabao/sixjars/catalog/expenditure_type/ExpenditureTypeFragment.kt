@@ -108,14 +108,18 @@ class ExpenditureTypeFragment : BaseFragment(), ExpenditureTypeView {
     }
 
     override fun onUpdateResult(result: Boolean, msg: String, obj: ExpenditureType?) {
-        if (obj != null) {
+        if (result && obj != null) {
             adapter.updateItem(obj)
-        }
+            toastSuccess("Update Success")
+        } else
+            toastError("Update Error")
     }
 
     override fun onDeleteResult(result: Boolean, msg: String, position: Int) {
         if (result) {
             adapter.removeItem(position)
-        }
+            toastSuccess("Item has been remove")
+        } else
+            toastError("Delete Error")
     }
 }

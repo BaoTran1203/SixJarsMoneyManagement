@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.base.LocaleHelper
 import com.trangiabao.sixjars.base.model.Revenue
-import kotlinx.android.synthetic.main.item_revenue.view.*
+import kotlinx.android.synthetic.main.item_management.view.*
 import org.joda.time.DateTime
 import java.math.BigDecimal
 import java.text.DecimalFormat
@@ -20,12 +20,13 @@ class RevenueAdapter(private var listener: ItemClickListener) : RecyclerView.Ada
     private val df = DecimalFormat("###,###,###,###,###.##")
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_revenue, parent, false))
+        return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_management, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val model: Revenue = lists[position]
         holder!!.itemView.run {
+            txtJarName.visibility = View.GONE
             txtAmount.text = df.format(BigDecimal(model.amount!!))
             txtRevenueType.text = model.revenueType!!.type!!
             txtDetail.text = model.detail
