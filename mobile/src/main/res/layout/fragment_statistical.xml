@@ -1,78 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.trangiabao.sixjars.statistical.StatisticalFragment">
+    tools:context=".statistical.StatisticalFragment">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/layout"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/CardViewStyle">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txtMonth"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/titleTextSize" />
-
-    </android.support.v7.widget.CardView>
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layout" />
-
-    <FrameLayout
-        android:id="@+id/shuffer"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_below="@id/layout"
-        android:layout_margin="10dp">
-
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/imgShuffer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_shuffer"
-            tools:ignore="ContentDescription" />
-
-    </FrameLayout>
-
-    <RadioGroup
-        android:id="@+id/radiogroup"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:checkedButton="@+id/radRevenue"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/radRevenue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:text="Revenue"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/normalTextSize" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/TabLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/radExpenditure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:text="Expenditure"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/normalTextSize" />
-    </RadioGroup>
-</RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</android.support.design.widget.CoordinatorLayout>

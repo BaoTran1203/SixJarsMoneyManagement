@@ -1,8 +1,8 @@
-package com.trangiabao.sixjars.statistical
+package com.trangiabao.sixjars.statistical.pie_chart
 
 import org.joda.time.DateTime
 
-interface StatisticalPresenterImpl {
+interface PieChartPresenterImpl {
     fun getListRevenue(date: DateTime)
     fun getListExpenditure(date: DateTime)
 }
