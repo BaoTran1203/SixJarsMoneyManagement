@@ -30,7 +30,7 @@ class RevenueTypePresenter(private var view: RevenueTypeView) : RevenueTypePrese
 
     override fun delete(id: String, position: Int) {
         if (RevenueTypeDB.isUsed(id)) {
-            view.onUpdateFailed(R.string.app_name)
+            view.onDeleteWrong(R.string.app_name)
         } else {
             val result = RevenueTypeDB.delete(id)
             if (!result) {

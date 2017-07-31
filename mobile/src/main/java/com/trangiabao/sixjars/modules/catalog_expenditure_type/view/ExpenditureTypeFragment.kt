@@ -131,4 +131,8 @@ class ExpenditureTypeFragment : BaseFragment(), ExpenditureTypeView {
     override fun onDeleteFailed(msg: Int) {
         ToastHelper.toastError(context, R.string.app_name)
     }
+
+    override fun onDeleteWrong(msg: Int) {
+        ToastHelper.toastWarning(context, msg)
+    }
 }

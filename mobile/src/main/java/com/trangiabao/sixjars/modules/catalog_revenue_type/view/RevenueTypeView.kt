@@ -12,4 +12,5 @@ interface RevenueTypeView : BaseView {
 
     fun onDeleteSuccessed(msg: Int, position: Int)
     fun onDeleteFailed(msg: Int)
+    fun onDeleteWrong(msg: Int)
 }

@@ -131,4 +131,8 @@ class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
     override fun onDeleteFailed(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
+
+    override fun onDeleteWrong(msg: Int) {
+        ToastHelper.toastWarning(context, msg)
+    }
 }

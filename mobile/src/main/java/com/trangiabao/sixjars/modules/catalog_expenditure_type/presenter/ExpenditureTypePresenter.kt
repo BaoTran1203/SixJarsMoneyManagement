@@ -30,7 +30,7 @@ class ExpenditureTypePresenter(private var view: ExpenditureTypeView) : Expendit
 
     override fun delete(id: String, position: Int) {
         if (ExpenditureTypeDB.isUsed(id)) {
-            view.onUpdateFailed(R.string.app_name)
+            view.onDeleteWrong(R.string.app_name)
         } else {
             val result = ExpenditureTypeDB.delete(id)
             if (!result) {
