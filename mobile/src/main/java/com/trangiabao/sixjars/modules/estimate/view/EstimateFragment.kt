@@ -15,7 +15,7 @@ import com.trangiabao.sixjars.modules.estimate.adapter.EstimateAdapter
 import com.trangiabao.sixjars.modules.estimate.presenter.EstimatePresenter
 import com.trangiabao.sixjars.utils.base.BaseFragment
 import com.trangiabao.sixjars.utils.component.NumericEditText
-import com.trangiabao.sixjars.utils.component.toast.ToastHelper
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_estimate.*
 import kotlinx.android.synthetic.main.fragment_estimate.view.*
 
@@ -75,11 +75,12 @@ class EstimateFragment : BaseFragment(), EstimateView {
         }
     }
 
-    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
-        if (!result)
-            ToastHelper(context).toastError(msg)
-        else
-            adapter!!.List = list.toMutableList()
+    override fun onGetListSuccessed(list: List<Jar>) {
+        adapter!!.List = list.toMutableList()
+    }
+
+    override fun onGetListFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
     }
 
     private inner class MyProcessEvent : AdapterView.OnItemSelectedListener {
