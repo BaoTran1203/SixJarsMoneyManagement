@@ -14,7 +14,7 @@ class WalletPresenter(private var view: WalletView) : WalletPresenterImpl {
     override fun getListWallets() {
         val list = WalletDB.getAll()
         if (list.isEmpty())
-            view.onGetListFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onGetListSuccessed(list)
     }

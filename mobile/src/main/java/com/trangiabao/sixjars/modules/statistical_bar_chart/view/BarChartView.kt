@@ -5,6 +5,6 @@ import com.trangiabao.sixjars.utils.base.BaseView
 
 interface BarChartView : BaseView {
     fun onGetDataSuccessed(labels: List<String>, barData: BarData)
-    fun onGetDataFailed(msg: Int)
-    fun onGetEmptyDate(msg: Int)
+    fun onError(msg: Int)
+    fun onWarning(msg: Int)
 }

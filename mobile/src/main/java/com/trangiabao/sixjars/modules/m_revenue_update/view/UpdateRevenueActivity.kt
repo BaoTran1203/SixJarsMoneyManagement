@@ -10,10 +10,11 @@ import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.model.Revenue
 import com.trangiabao.sixjars.data.model.RevenueType
 import com.trangiabao.sixjars.modules.m_revenue_update.presenter.UpdateRevenuePresenter
+import com.trangiabao.sixjars.utils.AppConstants
 import com.trangiabao.sixjars.utils.base.BaseActivity
-import com.trangiabao.sixjars.utils.component.dialog.CustomDialogList
-import com.trangiabao.sixjars.utils.component.toast.ToastHelper
+import com.trangiabao.sixjars.utils.dialog.CustomDialogList
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import kotlinx.android.synthetic.main.activity_update_management.*
@@ -29,7 +30,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
     private var dateFormat: DateTimeFormatter? = null
     private var timeFormat: DateTimeFormatter? = null
     private var curDate = DateTime.now()
-    private var curRevenue: Revenue? = null
+    private var typeId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +45,21 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         dateFormat = DateTimeHelper.getDateFormat(applicationContext)
         timeFormat = DateTimeHelper.getTimeFormat(applicationContext)
-        val typeId = intent.getStringExtra("typeId")
         layoutJar.visibility = View.GONE
-        presenter!!.getRevenue(typeId)
+
+        typeId = intent.getStringExtra(AppConstants.SEND_VALUE_NAME_TYPE_ID)
+        if (typeId == "") {
+            title = getString(R.string.add)
+            txtType.tag = null
+            txtType.text.clear()
+            txtJarName.text.clear()
+            txtCurrentAmount.setText("0")
+            txtDate.setText(dateFormat!!.print(curDate))
+            txtTime.setText(timeFormat!!.print(curDate))
+            txtDetail.text.clear()
+        } else
+            presenter!!.getRevenue(typeId)
+
     }
 
     override fun onInitEvents() {
@@ -58,7 +71,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
                     curDate.dayOfMonth
             )
             dateDialog.setVersion(DatePickerDialog.Version.VERSION_1)
-            dateDialog.show(fragmentManager, "")
+            dateDialog.show(fragmentManager, AppConstants.LOG_TAG)
         }
 
         txtTime.setOnClickListener {
@@ -70,15 +83,15 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
                     true
             )
             timeDialog.version = TimePickerDialog.Version.VERSION_1
-            timeDialog.show(fragmentManager, "")
+            timeDialog.show(fragmentManager, AppConstants.LOG_TAG)
         }
 
         txtType.setOnClickListener { presenter!!.getAllRevenueType() }
 
-        txtAmount.setOnTouchListener(OnTouchListener { _, event ->
+        txtCurrentAmount.setOnTouchListener(OnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= txtAmount.right - txtAmount.compoundDrawables[2].bounds.width()) {
-                    txtAmount.setText("0")
+                if (event.rawX >= txtCurrentAmount.right - txtCurrentAmount.compoundDrawables[2].bounds.width()) {
+                    txtCurrentAmount.setText("0")
                     return@OnTouchListener true
                 }
             }
@@ -96,30 +109,6 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         })
     }
 
-    override fun onGetRevenue(result: Boolean, msg: String, revenue: Revenue?) {
-        curRevenue = revenue
-        if (curRevenue != null) {
-            title = getString(R.string.edit)
-            curRevenue!!.run {
-                txtType.tag = revenueType
-                txtType.setText(revenueType!!.type)
-                txtAmount.setText("${amount!!.toInt()}")
-                curDate = DateTime(date)
-                txtDate.setText(dateFormat!!.print(curDate))
-                txtTime.setText(timeFormat!!.print(curDate))
-                txtDetail.setText(detail)
-            }
-        } else {
-            title = getString(R.string.add)
-            txtType.tag = null
-            txtType.text.clear()
-            txtAmount.setText("0")
-            txtDate.setText(dateFormat!!.print(curDate))
-            txtTime.setText(timeFormat!!.print(curDate))
-            txtDetail.text.clear()
-        }
-    }
-
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
         curDate = DateTime().withDate(year, monthOfYear + 1, dayOfMonth)
                 .withTime(curDate.hourOfDay, curDate.minuteOfHour, curDate.secondOfMinute, 0)
@@ -132,7 +121,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         txtTime.setText(timeFormat!!.print(curDate))
     }
 
-    override fun onListRevenueTypeLoaded(result: Boolean, msg: String, list: List<RevenueType>) {
+    override fun onGetListRevenueTypeSuccessed(list: List<RevenueType>) {
         val map: Map<String, RevenueType> = list.map { it.type!! to it }.toMap()
         CustomDialogList.Builder(this)
                 .withTitle(R.string.add)
@@ -148,6 +137,24 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
                 .show()
     }
 
+    override fun onUpdateRevenueSuccessed(msg: Int, revenue: Revenue) {
+        ToastHelper.toastSuccess(this, msg)
+        finish()
+    }
+
+    override fun onGetRevenueSuccessed(revenue: Revenue) {
+        title = getString(R.string.edit)
+        revenue.run {
+            txtType.tag = revenueType
+            txtType.setText(revenueType!!.type)
+            txtCurrentAmount.setText("${amount!!.toInt()}")
+            curDate = DateTime(date)
+            txtDate.setText(dateFormat!!.print(curDate))
+            txtTime.setText(timeFormat!!.print(curDate))
+            txtDetail.setText(detail)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -160,33 +167,27 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
             }
 
             R.id.itemSave -> {
-                if (txtAmount.numericValue < 1.0) {
-                    ToastHelper(applicationContext).toastWarning("Amout > 0")
-                } else if (txtType.tag == null) {
-                    ToastHelper(applicationContext).toastWarning("Choose Revenue type")
+                val newRevenue = Revenue()
+                newRevenue.date = curDate.toDate()
+                newRevenue.amount = txtCurrentAmount.numericValue
+                newRevenue.revenueType = txtType.tag as RevenueType?
+                newRevenue.detail = txtDetail.text.toString().trim()
+                if (typeId != "") {
+                    newRevenue.id = typeId
                 } else {
-                    val newRevenue = Revenue()
-                    newRevenue.date = curDate.toDate()
-                    newRevenue.amount = txtAmount.numericValue
-                    newRevenue.revenueType = txtType.tag as RevenueType?
-                    newRevenue.detail = txtDetail.text.toString().trim()
-                    if (curRevenue != null) {
-                        newRevenue.id = curRevenue!!.id
-                    } else {
-                        newRevenue.id = UUID.randomUUID().toString()
-                    }
-                    presenter!!.updateRevenue(newRevenue)
+                    newRevenue.id = UUID.randomUUID().toString()
                 }
+                presenter!!.updateRevenue(newRevenue)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onUpdateRevenueResult(result: Boolean, msg: String, revenue: Revenue?) {
-        if (result && revenue != null) {
-            ToastHelper(applicationContext).toastSuccess("Update Success")
-            finish()
-        } else
-            ToastHelper(applicationContext).toastError("Update Error")
+    override fun onError(msg: Int) {
+        ToastHelper.toastError(this, msg)
+    }
+
+    override fun onWarning(msg: Int) {
+        ToastHelper.toastWarning(this, msg)
     }
 }

@@ -79,7 +79,7 @@ class EstimateFragment : BaseFragment(), EstimateView {
         adapter!!.List = list.toMutableList()
     }
 
-    override fun onGetListFailed(msg: Int) {
+    override fun onError(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 

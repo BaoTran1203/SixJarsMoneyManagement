@@ -43,7 +43,7 @@ class OverviewFragment : BaseFragment(), OverviewView {
         adapter!!.List = list
     }
 
-    override fun onGetListFailed(msg: Int) {
+    override fun onError(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 }

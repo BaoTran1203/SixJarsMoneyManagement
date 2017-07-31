@@ -32,9 +32,9 @@ class PieChartPresenter(private var view: PieChartView) : PieChartPresenterImpl 
         val list = RevenueDB.find(firstDate, lastDate)
 
         if (list == null)
-            view.onGetDataFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else if (list.isEmpty())
-            view.onGetEmptyData(R.string.app_name)
+            view.onWarning(R.string.app_name)
         else {
             val map = list.map { it.revenueType!!.type to it.amount }.toMap()
             val entries: MutableList<PieEntry> = mutableListOf()
@@ -54,9 +54,9 @@ class PieChartPresenter(private var view: PieChartView) : PieChartPresenterImpl 
         val list = ExpenditureDB.find(firstDate, lastDate)
 
         if (list == null)
-            view.onGetDataFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else if (list.isEmpty())
-            view.onGetEmptyData(R.string.app_name)
+            view.onWarning(R.string.app_name)
         else {
             val map = list.map { it.expenditureType!!.type to it.amount }.toMap()
             val entries: MutableList<PieEntry> = mutableListOf()

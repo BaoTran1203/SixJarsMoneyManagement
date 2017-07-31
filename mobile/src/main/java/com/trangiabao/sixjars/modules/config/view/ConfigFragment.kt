@@ -46,20 +46,16 @@ class ConfigFragment : BaseFragment(), ConfigView {
         adapter!!.List = list.toMutableList()
     }
 
-    override fun onGetListFailed(msg: Int) {
-        ToastHelper.toastError(context, msg)
-    }
-
     override fun onUpdateSuccessed(msg: Int, list: List<Jar>) {
         adapter!!.List = list.toMutableList()
         ToastHelper.toastSuccess(context, msg)
     }
 
-    override fun onUpdateFailed(msg: Int) {
+    override fun onError(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 
-    override fun onUpdateWrong(msg: Int) {
+    override fun onWarning(msg: Int) {
         ToastHelper.toastWarning(context, msg)
     }
 }

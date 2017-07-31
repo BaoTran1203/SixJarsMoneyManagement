@@ -5,7 +5,10 @@ import com.trangiabao.sixjars.data.model.RevenueType
 import com.trangiabao.sixjars.utils.base.BaseView
 
 interface UpdateRevenueView : BaseView {
-    fun onListRevenueTypeLoaded(result: Boolean, msg: String, list: List<RevenueType>)
-    fun onUpdateRevenueResult(result: Boolean, msg: String, revenue: Revenue?)
-    fun onGetRevenue(result: Boolean, msg: String, revenue: Revenue?)
+    fun onGetListRevenueTypeSuccessed(list: List<RevenueType>)
+    fun onUpdateRevenueSuccessed(msg: Int, revenue: Revenue)
+    fun onGetRevenueSuccessed(revenue: Revenue)
+
+    fun onError(msg: Int)
+    fun onWarning(msg: Int)
 }

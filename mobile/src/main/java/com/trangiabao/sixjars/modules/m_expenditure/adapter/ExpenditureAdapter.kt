@@ -7,17 +7,16 @@ import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.model.Expenditure
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
+import com.trangiabao.sixjars.utils.helper.NumberHelper
 import kotlinx.android.synthetic.main.item_management.view.*
 import org.joda.time.DateTime
-import java.math.BigDecimal
-import java.text.DecimalFormat
 
-class ExpenditureAdapter(private var listener: ItemClickListener) : RecyclerView.Adapter<ExpenditureAdapter.ViewHolder>() {
+class ExpenditureAdapter : RecyclerView.Adapter<ExpenditureAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    private var listener: ItemClickListener? = null
     private var lists: MutableList<Expenditure> = mutableListOf()
-    private val df = DecimalFormat("###,###,###,###,###.##")
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.item_management, parent, false))
@@ -26,7 +25,7 @@ class ExpenditureAdapter(private var listener: ItemClickListener) : RecyclerView
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val model: Expenditure = lists[position]
         holder!!.itemView.run {
-            txtAmount.text = df.format(BigDecimal(model.amount!!))
+            txtCurrentAmount.text = NumberHelper.printBigDouble(model.amount!!)
             txtRevenueType.text = model.expenditureType!!.type!!
             txtDetail.text = model.detail!!
             txtJarName.text = model.jar!!.name!!
@@ -34,13 +33,17 @@ class ExpenditureAdapter(private var listener: ItemClickListener) : RecyclerView
             val timeFormat = DateTimeHelper.getTimeFormat(context)
             txtDate.text = dateFormat.print(DateTime(model.date))
             txtTime.text = timeFormat.print(DateTime(model.date))
-            setOnClickListener { listener.onClickListener(model, position) }
-            setOnLongClickListener { listener.onLongClickListener(model, position) }
+            setOnClickListener { listener!!.onClickListener(model, position) }
+            setOnLongClickListener { listener!!.onLongClickListener(model, position) }
         }
     }
 
     override fun getItemCount(): Int {
         return lists.size
+    }
+
+    fun setOnItemClickListener(listener: ItemClickListener) {
+        this.listener = listener
     }
 
     fun updateList(lists: MutableList<Expenditure>) {

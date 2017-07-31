@@ -14,7 +14,7 @@ class EstimatePresenter(var view: EstimateView) : EstimatePresenterImpl {
     override fun getAll() {
         val list = JarDB.getAll()
         if (list.isEmpty())
-            view.onGetListFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onGetListSuccessed(list)
     }

@@ -15,7 +15,7 @@ class ExpenditureTypePresenter(private var view: ExpenditureTypeView) : Expendit
     override fun getAll() {
         val list = ExpenditureTypeDB.getAll()
         if (list.isEmpty())
-            view.onGetListFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onGetListSuccessed(list)
     }
@@ -23,18 +23,18 @@ class ExpenditureTypePresenter(private var view: ExpenditureTypeView) : Expendit
     override fun update(type: ExpenditureType) {
         val newType = ExpenditureTypeDB.update(type)
         if (newType == null)
-            view.onUpdateFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onUpdateSuccessed(R.string.app_name, newType)
     }
 
     override fun delete(id: String, position: Int) {
         if (ExpenditureTypeDB.isUsed(id)) {
-            view.onDeleteWrong(R.string.app_name)
+            view.onWarning(R.string.app_name)
         } else {
             val result = ExpenditureTypeDB.delete(id)
             if (!result) {
-                view.onDeleteFailed(R.string.app_name)
+                view.onError(R.string.app_name)
             } else {
                 view.onDeleteSuccessed(R.string.app_name, position)
             }

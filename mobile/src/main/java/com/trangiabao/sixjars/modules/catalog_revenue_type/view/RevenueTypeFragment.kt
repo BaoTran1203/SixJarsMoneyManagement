@@ -110,17 +110,9 @@ class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
         adapter.updateList(temp)
     }
 
-    override fun onGetListFailed(msg: Int) {
-        ToastHelper.toastError(context, msg)
-    }
-
     override fun onUpdateSuccessed(msg: Int, revenueType: RevenueType) {
         adapter.updateItem(revenueType)
         ToastHelper.toastSuccess(context, msg)
-    }
-
-    override fun onUpdateFailed(msg: Int) {
-        ToastHelper.toastError(context, msg)
     }
 
     override fun onDeleteSuccessed(msg: Int, position: Int) {
@@ -128,11 +120,11 @@ class RevenueTypeFragment : BaseFragment(), RevenueTypeView {
         ToastHelper.toastSuccess(context, msg)
     }
 
-    override fun onDeleteFailed(msg: Int) {
+    override fun onError(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 
-    override fun onDeleteWrong(msg: Int) {
+    override fun onWarning(msg: Int) {
         ToastHelper.toastWarning(context, msg)
     }
 }

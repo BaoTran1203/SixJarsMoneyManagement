@@ -14,9 +14,9 @@ import com.trangiabao.sixjars.modules.m_expenditure.presenter.ExpenditurePresent
 import com.trangiabao.sixjars.modules.m_expenditure_update.view.UpdateExpenditureActivity
 import com.trangiabao.sixjars.utils.base.BaseFragment
 import com.trangiabao.sixjars.utils.component.ScrollAwareFABBehavior
-import com.trangiabao.sixjars.utils.component.dialog.CustomDialogConfirm
-import com.trangiabao.sixjars.utils.component.toast.ToastHelper
+import com.trangiabao.sixjars.utils.dialog.CustomDialogConfirm
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_expenditure.view.*
 import kotlinx.android.synthetic.main.layout_date_filter.view.*
@@ -47,29 +47,9 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
             fab.layoutParams = p
 
             recyclerView!!.run {
+                _adapter = ExpenditureAdapter()
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)
-                _adapter = ExpenditureAdapter(object : ExpenditureAdapter.ItemClickListener {
-                    override fun onClickListener(type: Expenditure, position: Int) {
-                        val intent = Intent(context, UpdateExpenditureActivity::class.java)
-                        intent.putExtra("typeId", type.id)
-                        startActivity(intent)
-                    }
-
-                    override fun onLongClickListener(type: Expenditure, position: Int): Boolean {
-                        CustomDialogConfirm.Builder(context)
-                                .withTitle(R.string.confirm)
-                                .withContent(R.string.deletion)
-                                .withIcon(R.drawable.ic_delete)
-                                .setOnConfirmClick(object : CustomDialogConfirm.OnConfirmListener {
-                                    override fun onResult(dialog: CustomDialogConfirm, result: Boolean) {
-                                        presenter!!.delete(type.id!!, position)
-                                        dialog.dismiss()
-                                    }
-                                }).show()
-                        return true
-                    }
-                })
                 adapter = _adapter
             }
             dateFormat = DateTimeHelper.getDateFormat(context)
@@ -81,6 +61,28 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
     }
 
     override fun onInitEvents() {
+        _adapter!!.setOnItemClickListener(object : ExpenditureAdapter.ItemClickListener {
+            override fun onClickListener(type: Expenditure, position: Int) {
+                val intent = Intent(context, UpdateExpenditureActivity::class.java)
+                intent.putExtra("typeId", type.id)
+                startActivity(intent)
+            }
+
+            override fun onLongClickListener(type: Expenditure, position: Int): Boolean {
+                CustomDialogConfirm.Builder(context)
+                        .withTitle(R.string.confirm)
+                        .withContent(R.string.deletion)
+                        .withIcon(R.drawable.ic_delete)
+                        .setOnConfirmClick(object : CustomDialogConfirm.OnConfirmListener {
+                            override fun onResult(dialog: CustomDialogConfirm, result: Boolean) {
+                                presenter!!.delete(type.id!!, position)
+                                dialog.dismiss()
+                            }
+                        }).show()
+                return true
+            }
+        })
+
         mView!!.run {
             txtDateFrom.setOnClickListener {
                 val dpd = DatePickerDialog.newInstance({ _, year, monthOfYear, dayOfMonth ->
@@ -116,15 +118,20 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
         }
     }
 
-    override fun onGetListResult(result: Boolean, msg: String, list: List<Expenditure>) {
+    override fun onGetListSuccessed(list: List<Expenditure>) {
         _adapter!!.updateList(list.toMutableList())
     }
 
-    override fun onDeleteResult(result: Boolean, msg: String, position: Int) {
-        if (result) {
-            _adapter!!.removeItem(position)
-            ToastHelper(context).toastSuccess("Item has been remove")
-        } else
-            ToastHelper(context).toastError("Delete Error")
+    override fun onDeleteSuccessed(msg: Int, position: Int) {
+        _adapter!!.removeItem(position)
+        ToastHelper.toastSuccess(context, msg)
+    }
+
+    override fun onError(msg: Int) {
+        ToastHelper.toastError(context, msg)
+    }
+
+    override fun onWarning(msg: Int) {
+        ToastHelper.toastWarning(context, msg)
     }
 }

@@ -5,9 +5,8 @@ import com.trangiabao.sixjars.utils.base.BaseView
 
 interface ConfigView : BaseView {
     fun onGetListSuccessed(list: List<Jar>)
-    fun onGetListFailed(msg: Int)
-
     fun onUpdateSuccessed(msg: Int, list: List<Jar>)
-    fun onUpdateFailed(msg: Int)
-    fun onUpdateWrong(msg: Int)
+
+    fun onError(msg: Int)
+    fun onWarning(msg: Int)
 }

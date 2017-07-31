@@ -5,12 +5,9 @@ import com.trangiabao.sixjars.utils.base.BaseView
 
 interface RevenueTypeView : BaseView {
     fun onGetListSuccessed(list: List<RevenueType>)
-    fun onGetListFailed(msg: Int)
-
     fun onUpdateSuccessed(msg: Int, revenueType: RevenueType)
-    fun onUpdateFailed(msg: Int)
-
     fun onDeleteSuccessed(msg: Int, position: Int)
-    fun onDeleteFailed(msg: Int)
-    fun onDeleteWrong(msg: Int)
+
+    fun onError(msg: Int)
+    fun onWarning(msg: Int)
 }

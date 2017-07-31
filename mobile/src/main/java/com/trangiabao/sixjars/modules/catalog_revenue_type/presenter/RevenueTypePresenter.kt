@@ -15,7 +15,7 @@ class RevenueTypePresenter(private var view: RevenueTypeView) : RevenueTypePrese
     override fun getAll() {
         val list = RevenueTypeDB.getAll()
         if (list.isEmpty())
-            view.onGetListFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onGetListSuccessed(list)
     }
@@ -23,18 +23,18 @@ class RevenueTypePresenter(private var view: RevenueTypeView) : RevenueTypePrese
     override fun update(type: RevenueType) {
         val newType = RevenueTypeDB.update(type)
         if (newType == null)
-            view.onUpdateFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onUpdateSuccessed(R.string.app_name, newType)
     }
 
     override fun delete(id: String, position: Int) {
         if (RevenueTypeDB.isUsed(id)) {
-            view.onDeleteWrong(R.string.app_name)
+            view.onWarning(R.string.app_name)
         } else {
             val result = RevenueTypeDB.delete(id)
             if (!result) {
-                view.onDeleteFailed(R.string.app_name)
+                view.onError(R.string.app_name)
             } else {
                 view.onDeleteSuccessed(R.string.app_name, position)
             }

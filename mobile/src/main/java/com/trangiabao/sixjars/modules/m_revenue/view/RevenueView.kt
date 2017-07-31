@@ -4,6 +4,9 @@ import com.trangiabao.sixjars.data.model.Revenue
 import com.trangiabao.sixjars.utils.base.BaseView
 
 interface RevenueView : BaseView {
-    fun onGetListResult(result: Boolean, msg: String, list: List<Revenue>)
-    fun onDeleteResult(result: Boolean, msg: String, position: Int)
+    fun onGetListSuccessed(list: List<Revenue>)
+    fun onDeleteSuccessed(msg: Int, position: Int)
+
+    fun onError(msg: Int)
+    fun onWarning(msg: Int)
 }

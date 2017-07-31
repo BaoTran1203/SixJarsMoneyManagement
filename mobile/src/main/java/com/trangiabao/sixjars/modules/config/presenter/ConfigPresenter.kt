@@ -16,7 +16,7 @@ class ConfigPresenter(var context: Context, var view: ConfigView) : ConfigPresen
     override fun getAll() {
         val list = JarDB.getAll()
         if (list.isEmpty())
-            view.onGetListFailed(R.string.app_name)
+            view.onError(R.string.app_name)
         else
             view.onGetListSuccessed(list)
     }
@@ -24,11 +24,11 @@ class ConfigPresenter(var context: Context, var view: ConfigView) : ConfigPresen
     override fun update(list: List<Jar>) {
         val sum = list.sumBy { x -> x.percent!! }
         if (sum != 100) {
-            view.onUpdateWrong(R.string.app_name)
+            view.onWarning(R.string.app_name)
         } else {
             val newList = JarDB.update(list)
             if (newList.isEmpty())
-                view.onUpdateFailed(R.string.app_name)
+                view.onError(R.string.app_name)
             else
                 view.onUpdateSuccessed(R.string.app_name, newList)
         }

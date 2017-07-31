@@ -1,5 +1,6 @@
 package com.trangiabao.sixjars.modules.m_expenditure.presenter
 
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.ExpenditureDB
 import com.trangiabao.sixjars.modules.m_expenditure.view.ExpenditureView
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
@@ -13,13 +14,21 @@ class ExpenditurePresenter(private var view: ExpenditureView) : ExpenditurePrese
     }
 
     override fun filter(from: DateTime, to: DateTime) {
-        val list = ExpenditureDB.find(DateTimeHelper.getStartDate(from), DateTimeHelper.getEndDate(to))
-        view.onGetListResult(list.isNotEmpty(), "", list)
+        val startDate = DateTimeHelper.getStartDate(from)
+        val endDate = DateTimeHelper.getEndDate(to)
+        val list = ExpenditureDB.find(startDate, endDate)
+        if (list == null)
+            view.onError(R.string.app_name)
+        else if (list.isEmpty())
+            view.onWarning(R.string.app_name)
+        else
+            view.onGetListSuccessed(list)
     }
 
     override fun delete(id: String, position: Int) {
-        val result = ExpenditureDB.delete(id)
-        val msg = if (result) "Item has been removed" else "Failed"
-        view.onDeleteResult(result, msg, position)
+        if (!ExpenditureDB.delete(id))
+            view.onError(R.string.app_name)
+        else
+            view.onDeleteSuccessed(R.string.app_name, position)
     }
 }

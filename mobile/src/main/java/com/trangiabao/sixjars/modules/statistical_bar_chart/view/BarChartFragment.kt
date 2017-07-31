@@ -116,11 +116,11 @@ class BarChartFragment : BaseFragment(), BarChartView {
         }
     }
 
-    override fun onGetDataFailed(msg: Int) {
+    override fun onError(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 
-    override fun onGetEmptyDate(msg: Int) {
+    override fun onWarning(msg: Int) {
         ToastHelper.toastWarning(context, msg)
     }
 }

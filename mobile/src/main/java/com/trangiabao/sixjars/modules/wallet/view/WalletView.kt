@@ -5,5 +5,5 @@ import com.trangiabao.sixjars.utils.base.BaseView
 
 interface WalletView : BaseView {
     fun onGetListSuccessed(list: List<Wallet>)
-    fun onGetListFailed(msg: Int)
+    fun onError(msg: Int)
 }

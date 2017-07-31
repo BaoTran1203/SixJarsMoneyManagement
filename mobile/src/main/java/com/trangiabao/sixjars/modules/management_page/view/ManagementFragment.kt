@@ -15,8 +15,8 @@ import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.modules.m_expenditure.view.ExpenditureFragment
 import com.trangiabao.sixjars.modules.m_revenue.view.RevenueFragment
 import com.trangiabao.sixjars.modules.management_page.presenter.ManagementPresenter
-import com.trangiabao.sixjars.utils.component.viewpager.ViewPagerAdapter
-import com.trangiabao.sixjars.utils.component.viewpager.ViewPagerTransformer
+import com.trangiabao.sixjars.utils.component.ViewPagerAdapter
+import com.trangiabao.sixjars.utils.component.ViewPagerTransformer
 
 class ManagementFragment : Fragment(), ManagementView {
 
@@ -28,9 +28,11 @@ class ManagementFragment : Fragment(), ManagementView {
         return mView
     }
 
+    @Suppress("DEPRECATION")
     override fun onInitControls() {
         val viewPager: ViewPager = mView!!.findViewById(R.id.viewPager)
         val tabLayout: TabLayout = mView!!.findViewById(R.id.tabLayout)
+
         val adapter = ViewPagerAdapter(childFragmentManager)
         adapter.addFragment(RevenueFragment(), getString(R.string.revenue))
         adapter.addFragment(ExpenditureFragment(), getString(R.string.expenditure))

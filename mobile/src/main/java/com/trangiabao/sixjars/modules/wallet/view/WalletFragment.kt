@@ -46,7 +46,7 @@ class WalletFragment : Fragment(), WalletView {
         mView!!.txtBalance.text = NumberHelper.printBigDouble(balance)
     }
 
-    override fun onGetListFailed(msg: Int) {
+    override fun onError(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 

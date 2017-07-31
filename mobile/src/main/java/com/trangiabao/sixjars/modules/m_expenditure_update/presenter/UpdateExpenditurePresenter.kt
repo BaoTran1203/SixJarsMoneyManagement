@@ -1,5 +1,6 @@
 package com.trangiabao.sixjars.modules.m_expenditure_update.presenter
 
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.ExpenditureDB
 import com.trangiabao.sixjars.data.database.ExpenditureTypeDB
 import com.trangiabao.sixjars.data.database.JarDB
@@ -15,25 +16,41 @@ class UpdateExpenditurePresenter(private var view: UpdateExpenditureView) : Upda
 
     override fun getAllJar() {
         val list = JarDB.getAll()
-        view.onListJarLoaded(list.isNotEmpty(), "", list)
+        if (list.isEmpty())
+            view.onError(R.string.app_name)
+        else
+            view.onGetListJarSuccessed(list)
     }
 
     override fun getAllExpenditureType() {
         val list = ExpenditureTypeDB.getAll()
-        view.onListExpenditureTypeLoaded(list.isNotEmpty(), "", list)
+        if (list.isEmpty())
+            view.onError(R.string.app_name)
+        else
+            view.onGetListExpenditureTypeSuccessed(list)
     }
 
     override fun updateExpenditure(expenditure: Expenditure) {
-        val newExpenditure = ExpenditureDB.update(expenditure)
-        view.onUpdateExpenditureResult(newExpenditure != null, "", newExpenditure)
+        if (expenditure.amount!! < 1.0)
+            view.onWarning(R.string.app_name)
+        else if (expenditure.expenditureType == null)
+            view.onWarning(R.string.app_name)
+        else if (expenditure.jar == null)
+            view.onWarning(R.string.app_name)
+        else {
+            val newExpenditure = ExpenditureDB.update(expenditure)
+            if (newExpenditure == null)
+                view.onError(R.string.app_name)
+            else
+                view.onUpdateExpenditureSuccessed(R.string.app_name, newExpenditure)
+        }
     }
 
     override fun getExpenditure(id: String) {
-        if (id == "")
-            view.onGetExpenditure(true, "Add", null)
-        else {
-            val obj: Expenditure? = ExpenditureDB.find(id)
-            view.onGetExpenditure(obj == null, "Edit", obj)
-        }
+        val expenditure: Expenditure? = ExpenditureDB.find(id)
+        if (expenditure == null)
+            view.onError(R.string.app_name)
+        else
+            view.onGetExpenditureSuccessed(expenditure)
     }
 }

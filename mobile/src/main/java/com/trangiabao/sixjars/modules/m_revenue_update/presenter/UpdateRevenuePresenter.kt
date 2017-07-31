@@ -1,5 +1,6 @@
 package com.trangiabao.sixjars.modules.m_revenue_update.presenter
 
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.RevenueDB
 import com.trangiabao.sixjars.data.database.RevenueTypeDB
 import com.trangiabao.sixjars.data.model.Revenue
@@ -14,20 +15,31 @@ class UpdateRevenuePresenter(private var view: UpdateRevenueView) : UpdateRevenu
 
     override fun getAllRevenueType() {
         val list = RevenueTypeDB.getAll()
-        view.onListRevenueTypeLoaded(list.isNotEmpty(), "", list)
+        if (list.isEmpty())
+            view.onError(R.string.app_name)
+        else
+            view.onGetListRevenueTypeSuccessed(list)
     }
 
     override fun updateRevenue(revenue: Revenue) {
-        val newRevenue = RevenueDB.update(revenue)
-        view.onUpdateRevenueResult(newRevenue != null, "", newRevenue)
+        if (revenue.amount!! < 1.0)
+            view.onWarning(R.string.app_name)
+        else if (revenue.revenueType == null)
+            view.onWarning(R.string.app_name)
+        else {
+            val newRevenue = RevenueDB.update(revenue)
+            if (newRevenue == null)
+                view.onError(R.string.app_name)
+            else
+                view.onUpdateRevenueSuccessed(R.string.app_name, newRevenue)
+        }
     }
 
     override fun getRevenue(id: String) {
-        if (id == "")
-            view.onGetRevenue(true, "Add", null)
-        else {
-            val obj: Revenue? = RevenueDB.find(id)
-            view.onGetRevenue(obj == null, "Edit", obj)
-        }
+        val revenue: Revenue? = RevenueDB.find(id)
+        if (revenue == null)
+            view.onError(R.string.app_name)
+        else
+            view.onGetRevenueSuccessed(revenue)
     }
 }

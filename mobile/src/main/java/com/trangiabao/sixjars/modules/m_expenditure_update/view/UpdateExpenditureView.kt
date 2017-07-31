@@ -6,8 +6,11 @@ import com.trangiabao.sixjars.data.model.Jar
 import com.trangiabao.sixjars.utils.base.BaseView
 
 interface UpdateExpenditureView : BaseView {
-    fun onListJarLoaded(result: Boolean, msg: String, list: List<Jar>)
-    fun onListExpenditureTypeLoaded(result: Boolean, msg: String, list: List<ExpenditureType>)
-    fun onUpdateExpenditureResult(result: Boolean, msg: String, expenditure: Expenditure?)
-    fun onGetExpenditure(result: Boolean, msg: String, expenditure: Expenditure?)
+    fun onGetListJarSuccessed(list: List<Jar>)
+    fun onGetListExpenditureTypeSuccessed(list: List<ExpenditureType>)
+    fun onUpdateExpenditureSuccessed(msg: Int, expenditure: Expenditure)
+    fun onGetExpenditureSuccessed(expenditure: Expenditure)
+
+    fun onError(msg: Int)
+    fun onWarning(msg: Int)
 }

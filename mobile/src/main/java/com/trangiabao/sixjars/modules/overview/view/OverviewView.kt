@@ -5,5 +5,5 @@ import com.trangiabao.sixjars.utils.base.BaseView
 
 interface OverviewView : BaseView {
     fun onGetListSuccessed(list: List<Jar>)
-    fun onGetListFailed(msg: Int)
+    fun onError(msg: Int)
 }
