@@ -4,5 +4,8 @@ import com.github.mikephil.charting.data.PieData
 import com.trangiabao.sixjars.utils.base.BaseView
 
 interface PieChartView : BaseView {
-    fun onGetListPieEntryResult(result: Boolean, msg: String, pieData: PieData)
+    fun onGetDataFunction()
+    fun onGetDataSuccessed(pieData: PieData)
+    fun onGetDataFailed(msg: Int)
+    fun onGetEmptyData(msg: Int)
 }

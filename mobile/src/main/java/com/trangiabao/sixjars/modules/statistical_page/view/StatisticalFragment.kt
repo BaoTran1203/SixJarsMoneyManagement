@@ -15,8 +15,8 @@ import com.trangiabao.sixjars.modules.statistical_bar_chart.view.BarChartFragmen
 import com.trangiabao.sixjars.modules.statistical_page.presenter.StatisticalPresenter
 import com.trangiabao.sixjars.modules.statistical_pie_chart.view.PieChartFragment
 import com.trangiabao.sixjars.utils.base.BaseFragment
-import com.trangiabao.sixjars.utils.component.viewpager.ViewPagerAdapter
-import com.trangiabao.sixjars.utils.component.viewpager.ViewPagerTransformer
+import com.trangiabao.sixjars.utils.component.ViewPagerAdapter
+import com.trangiabao.sixjars.utils.component.ViewPagerTransformer
 
 class StatisticalFragment : BaseFragment(), StatisticalView {
 
@@ -37,10 +37,12 @@ class StatisticalFragment : BaseFragment(), StatisticalView {
         adapter.addFragment(BarChartFragment(), "Bar chart")
         viewPager.adapter = adapter
         viewPager.setPageTransformer(true, ViewPagerTransformer())
+
         // setup Title and Icon
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.getTabAt(0)!!.customView = getTextView(R.string.revenue, R.drawable.ic_pie_chart)
         tabLayout.getTabAt(1)!!.customView = getTextView(R.string.expenditure, R.drawable.ic_line_chart)
+
         // setup Divider for TabLayout
         val root = tabLayout.getChildAt(0)
         if (root is LinearLayout) {

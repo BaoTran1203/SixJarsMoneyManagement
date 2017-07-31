@@ -5,6 +5,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.LargeValueFormatter
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.ExpenditureDB
 import com.trangiabao.sixjars.data.database.JarDB
 import com.trangiabao.sixjars.data.database.RevenueDB
@@ -12,8 +13,8 @@ import com.trangiabao.sixjars.data.model.Expenditure
 import com.trangiabao.sixjars.data.model.Jar
 import com.trangiabao.sixjars.data.model.Revenue
 import com.trangiabao.sixjars.modules.statistical_bar_chart.view.BarChartView
+import com.trangiabao.sixjars.utils.helper.DateTimeHelper
 import org.joda.time.DateTime
-import java.util.*
 
 class BarChartPresenter(private var view: BarChartView) : BarChartPresenterImpl {
 
@@ -23,21 +24,27 @@ class BarChartPresenter(private var view: BarChartView) : BarChartPresenterImpl 
     }
 
     override fun getData(date: DateTime) {
-        val firstDate = getFirstDateOfMonth(date)
-        val lastDate = getLastDateOfMonth(date)
+        val firstDate = DateTimeHelper.getFirstDateOfMonth(date)
+        val lastDate = DateTimeHelper.getLastDateOfMonth(date)
 
         val jars = JarDB.getAll()
         val revenues = RevenueDB.find(firstDate, lastDate)
         val expenditures = ExpenditureDB.find(firstDate, lastDate)
 
-        val labels = getXValues(jars)
-        val yValues1 = getYValues1(jars, revenues)
-        val yValues2 = getYValues2(jars, expenditures)
+        if (revenues == null || expenditures == null)
+            view.onGetDataFailed(R.string.app_name)
+        else if (revenues.isEmpty() && expenditures.isEmpty()) {
+            view.onGetEmptyDate(R.string.app_name)
+        } else {
+            val labels = getXValues(jars)
+            val yValues1 = getYValues1(jars, revenues)
+            val yValues2 = getYValues2(jars, expenditures)
 
-        val barData = BarData(yValues1, yValues2)
-        barData.setValueFormatter(LargeValueFormatter())
+            val barData = BarData(yValues1, yValues2)
+            barData.setValueFormatter(LargeValueFormatter())
 
-        view.onGetData(true, "", labels, barData)
+            view.onGetDataSuccessed(labels, barData)
+        }
     }
 
     private fun getXValues(jars: List<Jar>): List<String> {
@@ -75,29 +82,5 @@ class BarChartPresenter(private var view: BarChartView) : BarChartPresenterImpl 
         val barDataSet: BarDataSet = BarDataSet(yValues, "")
         barDataSet.color = Color.rgb(52, 152, 219)
         return barDataSet
-    }
-
-    private fun getFirstDateOfMonth(date: DateTime): Date {
-        return DateTime()
-                .withYear(date.year)
-                .withMonthOfYear(date.monthOfYear)
-                .withDayOfMonth(1)
-                .withHourOfDay(0)
-                .withMinuteOfHour(0)
-                .withSecondOfMinute(0)
-                .withMillisOfSecond(0)
-                .toDate()
-    }
-
-    private fun getLastDateOfMonth(date: DateTime): Date {
-        return DateTime()
-                .withYear(date.year)
-                .withMonthOfYear(date.monthOfYear)
-                .withDayOfMonth(date.dayOfMonth().maximumValue)
-                .withHourOfDay(23)
-                .withMinuteOfHour(59)
-                .withSecondOfMinute(59)
-                .withMillisOfSecond(999)
-                .toDate()
     }
 }

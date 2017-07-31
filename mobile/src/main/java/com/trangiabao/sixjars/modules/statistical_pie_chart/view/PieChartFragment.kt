@@ -11,8 +11,9 @@ import com.github.mikephil.charting.data.PieData
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.modules.statistical_pie_chart.presenter.PieChartPresenter
 import com.trangiabao.sixjars.utils.base.BaseFragment
-import com.trangiabao.sixjars.utils.component.dialog.monthpicker.MonthPickerDialog
+import com.trangiabao.sixjars.utils.dialog.monthpicker.MonthPickerDialog
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_pie_chart.view.*
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormatter
@@ -28,7 +29,7 @@ class PieChartFragment : BaseFragment(), PieChartView {
         mView = inflater!!.inflate(R.layout.fragment_pie_chart, container, false)
         presenter = PieChartPresenter(this)
         presenter!!.createView()
-        getData()
+        presenter!!.getData()
         return mView
     }
 
@@ -73,17 +74,17 @@ class PieChartFragment : BaseFragment(), PieChartView {
                     override fun onGetTime(date: DateTime) {
                         month = date
                         txtMonth.text = monthFormat!!.print(month)
-                        getData()
+                        presenter!!.getData()
                     }
                 })
                 dialog.show()
             }
-            radiogroup.setOnCheckedChangeListener { _, _ -> getData() }
-            shuffer.setOnClickListener { getData() }
+            radiogroup.setOnCheckedChangeListener { _, _ -> presenter!!.getData() }
+            shuffer.setOnClickListener { presenter!!.getData() }
         }
     }
 
-    private fun getData() {
+    override fun onGetDataFunction() {
         presenter!!.run {
             if (mView!!.radRevenue.isChecked)
                 getListRevenue(month)
@@ -92,12 +93,20 @@ class PieChartFragment : BaseFragment(), PieChartView {
         }
     }
 
-    override fun onGetListPieEntryResult(result: Boolean, msg: String, pieData: PieData) {
+    override fun onGetDataSuccessed(pieData: PieData) {
         mView!!.pieChart.run {
             data = pieData
             highlightValues(null)
             invalidate()
             animateY(500, Easing.EasingOption.EaseInOutQuad)
         }
+    }
+
+    override fun onGetDataFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
+    }
+
+    override fun onGetEmptyData(msg: Int) {
+        ToastHelper.toastWarning(context, msg)
     }
 }

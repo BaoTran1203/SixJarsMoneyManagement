@@ -14,8 +14,9 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.modules.statistical_bar_chart.presenter.BarChartPresenter
 import com.trangiabao.sixjars.utils.base.BaseFragment
-import com.trangiabao.sixjars.utils.component.dialog.monthpicker.MonthPickerDialog
+import com.trangiabao.sixjars.utils.dialog.monthpicker.MonthPickerDialog
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_bar_chart.view.*
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormatter
@@ -100,7 +101,7 @@ class BarChartFragment : BaseFragment(), BarChartView {
         }
     }
 
-    override fun onGetData(result: Boolean, msg: String, labels: List<String>, barData: BarData) {
+    override fun onGetDataSuccessed(labels: List<String>, barData: BarData) {
         mView!!.barChart.run {
             xAxis.valueFormatter = IndexAxisValueFormatter(labels)
             data = barData
@@ -113,5 +114,13 @@ class BarChartFragment : BaseFragment(), BarChartView {
             invalidate()
             animateY(800, Easing.EasingOption.EaseInOutQuad)
         }
+    }
+
+    override fun onGetDataFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
+    }
+
+    override fun onGetEmptyDate(msg: Int) {
+        ToastHelper.toastWarning(context, msg)
     }
 }

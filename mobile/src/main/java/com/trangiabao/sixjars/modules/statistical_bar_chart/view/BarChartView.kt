@@ -4,5 +4,7 @@ import com.github.mikephil.charting.data.BarData
 import com.trangiabao.sixjars.utils.base.BaseView
 
 interface BarChartView : BaseView {
-    fun onGetData(result: Boolean, msg: String, labels: List<String>, barData: BarData)
+    fun onGetDataSuccessed(labels: List<String>, barData: BarData)
+    fun onGetDataFailed(msg: Int)
+    fun onGetEmptyDate(msg: Int)
 }
