@@ -1,6 +1,7 @@
 package com.trangiabao.sixjars.modules.config.presenter
 
 import android.content.Context
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.JarDB
 import com.trangiabao.sixjars.data.model.Jar
 import com.trangiabao.sixjars.modules.config.view.ConfigView
@@ -14,26 +15,22 @@ class ConfigPresenter(var context: Context, var view: ConfigView) : ConfigPresen
 
     override fun getAll() {
         val list = JarDB.getAll()
-        val result = list.isNotEmpty()
-        var msg: String = ""
-        if (!result) {
-            msg = "Load that bai"
-        }
-        view.onListLoaded(result, msg, list)
+        if (list.isEmpty())
+            view.onGetListFailed(R.string.app_name)
+        else
+            view.onGetListSuccessed(list)
     }
 
     override fun update(list: List<Jar>) {
-        var newList = list
-        val sum = newList.sumBy { x -> x.percent!! }
-        var result: Boolean = false
-        val msg: String
+        val sum = list.sumBy { x -> x.percent!! }
         if (sum != 100) {
-            msg = "Khong du 100%"
+            view.onUpdateWrong(R.string.app_name)
         } else {
-            result = true
-            msg = "Update Successed"
-            newList = JarDB.update(list)
+            val newList = JarDB.update(list)
+            if (newList.isEmpty())
+                view.onUpdateFailed(R.string.app_name)
+            else
+                view.onUpdateSuccessed(R.string.app_name, newList)
         }
-        view.onUpdateResult(result, msg, newList)
     }
 }

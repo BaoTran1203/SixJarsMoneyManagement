@@ -10,7 +10,7 @@ import com.trangiabao.sixjars.data.model.Jar
 import com.trangiabao.sixjars.modules.config.adapter.ConfigApdater
 import com.trangiabao.sixjars.modules.config.presenter.ConfigPresenter
 import com.trangiabao.sixjars.utils.base.BaseFragment
-import com.trangiabao.sixjars.utils.component.toast.ToastHelper
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_config.view.*
 
 class ConfigFragment : BaseFragment(), ConfigView {
@@ -42,20 +42,24 @@ class ConfigFragment : BaseFragment(), ConfigView {
         }
     }
 
-    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
-        if (!result) {
-            ToastHelper(context).toastError(msg)
-        } else {
-            adapter!!.List = list.toMutableList()
-        }
+    override fun onGetListSuccessed(list: List<Jar>) {
+        adapter!!.List = list.toMutableList()
     }
 
-    override fun onUpdateResult(result: Boolean, msg: String, list: List<Jar>) {
-        if (result) {
-            adapter!!.List = list.toMutableList()
-            ToastHelper(context).toastSuccess(msg)
-        } else {
-            ToastHelper(context).toastWarning(msg)
-        }
+    override fun onGetListFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
+    }
+
+    override fun onUpdateSuccessed(msg: Int, list: List<Jar>) {
+        adapter!!.List = list.toMutableList()
+        ToastHelper.toastSuccess(context, msg)
+    }
+
+    override fun onUpdateFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
+    }
+
+    override fun onUpdateWrong(msg: Int) {
+        ToastHelper.toastWarning(context, msg)
     }
 }
