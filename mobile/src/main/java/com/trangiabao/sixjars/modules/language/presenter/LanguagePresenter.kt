@@ -1,5 +1,6 @@
 package com.trangiabao.sixjars.modules.language.presenter
 
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.modules.language.view.LanguageView
 
 class LanguagePresenter(private var view: LanguageView) : LanguagePresenterImpl {
@@ -10,15 +11,10 @@ class LanguagePresenter(private var view: LanguageView) : LanguagePresenterImpl 
     }
 
     override fun changeLanguage(curLang: String, newlang: String) {
-        val result: Boolean
-        val msg: String
         if (curLang == newlang) {
-            result = false
-            msg = "Da chon ngon ngu hien tai"
+            view.onLanguageHadChangged(R.string.app_name)
         } else {
-            result = true
-            msg = "Changed"
+            view.onLanguageIsChanged(R.string.app_name, newlang)
         }
-        view.onLanguageChanged(result, msg, newlang)
     }
 }
