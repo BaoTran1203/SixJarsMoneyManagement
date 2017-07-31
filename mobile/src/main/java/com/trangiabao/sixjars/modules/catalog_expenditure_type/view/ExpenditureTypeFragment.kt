@@ -12,10 +12,10 @@ import com.trangiabao.sixjars.modules.catalog_expenditure_type.adapter.Expenditu
 import com.trangiabao.sixjars.modules.catalog_expenditure_type.presenter.ExpenditureTypePresenter
 import com.trangiabao.sixjars.utils.base.BaseFragment
 import com.trangiabao.sixjars.utils.component.ScrollAwareFABBehavior
-import com.trangiabao.sixjars.utils.component.dialog.CustomDialogConfirm
-import com.trangiabao.sixjars.utils.component.dialog.catalog.CatalogDialog
-import com.trangiabao.sixjars.utils.component.dialog.catalog.CatalogEnum
-import com.trangiabao.sixjars.utils.component.toast.ToastHelper
+import com.trangiabao.sixjars.utils.dialog.CustomDialogConfirm
+import com.trangiabao.sixjars.utils.dialog.catalog.CatalogDialog
+import com.trangiabao.sixjars.utils.dialog.catalog.CatalogEnum
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_type.view.*
 import java.util.*
 
@@ -104,25 +104,31 @@ class ExpenditureTypeFragment : BaseFragment(), ExpenditureTypeView {
         }
     }
 
-    override fun onGetListResult(result: Boolean, msg: String, list: List<ExpenditureType>) {
+    override fun onGetListSuccessed(list: List<ExpenditureType>) {
         val temp = list.toMutableList()
         temp.removeAt(0)
         adapter.updateList(temp)
     }
 
-    override fun onUpdateResult(result: Boolean, msg: String, obj: ExpenditureType?) {
-        if (result && obj != null) {
-            adapter.updateItem(obj)
-            ToastHelper(context).toastSuccess("Update Success")
-        } else
-            ToastHelper(context).toastError("Update Error")
+    override fun onGetListFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
     }
 
-    override fun onDeleteResult(result: Boolean, msg: String, position: Int) {
-        if (result) {
-            adapter.removeItem(position)
-            ToastHelper(context).toastSuccess("Item has been remove")
-        } else
-            ToastHelper(context).toastError("Delete Error")
+    override fun onUpdateSuccessed(msg: Int, expenditureType: ExpenditureType) {
+        adapter.updateItem(expenditureType)
+        ToastHelper.toastSuccess(context, msg)
+    }
+
+    override fun onUpdateFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
+    }
+
+    override fun onDeleteSuccessed(msg: Int, position: Int) {
+        adapter.removeItem(position)
+        ToastHelper.toastSuccess(context, msg)
+    }
+
+    override fun onDeleteFailed(msg: Int) {
+        ToastHelper.toastError(context, R.string.app_name)
     }
 }

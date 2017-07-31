@@ -1,5 +1,6 @@
 package com.trangiabao.sixjars.modules.catalog_expenditure_type.presenter
 
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.ExpenditureTypeDB
 import com.trangiabao.sixjars.data.model.ExpenditureType
 import com.trangiabao.sixjars.modules.catalog_expenditure_type.view.ExpenditureTypeView
@@ -13,28 +14,30 @@ class ExpenditureTypePresenter(private var view: ExpenditureTypeView) : Expendit
 
     override fun getAll() {
         val list = ExpenditureTypeDB.getAll()
-        view.onGetListResult(list.isNotEmpty(), "", list)
+        if (list.isEmpty())
+            view.onGetListFailed(R.string.app_name)
+        else
+            view.onGetListSuccessed(list)
     }
 
     override fun update(type: ExpenditureType) {
         val newType = ExpenditureTypeDB.update(type)
-        view.onUpdateResult(newType != null, "", newType)
+        if (newType == null)
+            view.onUpdateFailed(R.string.app_name)
+        else
+            view.onUpdateSuccessed(R.string.app_name, newType)
     }
 
     override fun delete(id: String, position: Int) {
-        var result: Boolean = false
-        var msg: String
-        var pos: Int = -1
         if (ExpenditureTypeDB.isUsed(id)) {
-            msg = "is used"
+            view.onUpdateFailed(R.string.app_name)
         } else {
-            result = ExpenditureTypeDB.delete(id)
-            msg = "failed"
-            if (result) {
-                msg = "success"
-                pos = position
+            val result = ExpenditureTypeDB.delete(id)
+            if (!result) {
+                view.onDeleteFailed(R.string.app_name)
+            } else {
+                view.onDeleteSuccessed(R.string.app_name, position)
             }
         }
-        view.onDeleteResult(result, msg, pos)
     }
 }

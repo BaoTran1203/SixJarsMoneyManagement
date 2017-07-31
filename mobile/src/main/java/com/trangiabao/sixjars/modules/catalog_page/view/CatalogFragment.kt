@@ -15,8 +15,8 @@ import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.modules.catalog_expenditure_type.view.ExpenditureTypeFragment
 import com.trangiabao.sixjars.modules.catalog_page.presenter.CatalogPresenter
 import com.trangiabao.sixjars.modules.catalog_revenue_type.view.RevenueTypeFragment
-import com.trangiabao.sixjars.utils.component.viewpager.ViewPagerAdapter
-import com.trangiabao.sixjars.utils.component.viewpager.ViewPagerTransformer
+import com.trangiabao.sixjars.utils.component.ViewPagerAdapter
+import com.trangiabao.sixjars.utils.component.ViewPagerTransformer
 
 class CatalogFragment : Fragment(), CatalogView {
 

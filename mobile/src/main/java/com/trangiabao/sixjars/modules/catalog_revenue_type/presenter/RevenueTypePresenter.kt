@@ -1,5 +1,6 @@
 package com.trangiabao.sixjars.modules.catalog_revenue_type.presenter
 
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.RevenueTypeDB
 import com.trangiabao.sixjars.data.model.RevenueType
 import com.trangiabao.sixjars.modules.catalog_revenue_type.view.RevenueTypeView
@@ -13,28 +14,30 @@ class RevenueTypePresenter(private var view: RevenueTypeView) : RevenueTypePrese
 
     override fun getAll() {
         val list = RevenueTypeDB.getAll()
-        view.onGetListResult(list.isNotEmpty(), "", list)
+        if (list.isEmpty())
+            view.onGetListFailed(R.string.app_name)
+        else
+            view.onGetListSuccessed(list)
     }
 
     override fun update(type: RevenueType) {
         val newType = RevenueTypeDB.update(type)
-        view.onUpdateResult(newType != null, "", newType)
+        if (newType == null)
+            view.onUpdateFailed(R.string.app_name)
+        else
+            view.onUpdateSuccessed(R.string.app_name, newType)
     }
 
     override fun delete(id: String, position: Int) {
-        var result: Boolean = false
-        var msg: String
-        var pos: Int = -1
         if (RevenueTypeDB.isUsed(id)) {
-            msg = "is used"
+            view.onUpdateFailed(R.string.app_name)
         } else {
-            result = RevenueTypeDB.delete(id)
-            msg = "failed"
-            if (result) {
-                msg = "success"
-                pos = position
+            val result = RevenueTypeDB.delete(id)
+            if (!result) {
+                view.onDeleteFailed(R.string.app_name)
+            } else {
+                view.onDeleteSuccessed(R.string.app_name, position)
             }
         }
-        view.onDeleteResult(result, msg, pos)
     }
 }
