@@ -3,7 +3,7 @@
     android:layout_width="48dp"
     android:layout_height="48dp">
 
-    <com.trangiabao.sixjars.ui.CircleImageView
+    <com.trangiabao.sixjars.utils.component.CircleImageView
         android:id="@+id/imgMonth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

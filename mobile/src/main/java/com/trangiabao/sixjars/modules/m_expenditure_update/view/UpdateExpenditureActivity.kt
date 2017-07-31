@@ -1,0 +1,216 @@
+package com.trangiabao.sixjars.modules.m_expenditure_update.view
+
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
+import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.data.model.Expenditure
+import com.trangiabao.sixjars.data.model.ExpenditureType
+import com.trangiabao.sixjars.data.model.Jar
+import com.trangiabao.sixjars.modules.m_expenditure_update.presenter.UpdateExpenditurePresenter
+import com.trangiabao.sixjars.utils.base.BaseActivity
+import com.trangiabao.sixjars.utils.component.dialog.CustomDialogList
+import com.trangiabao.sixjars.utils.component.toast.ToastHelper
+import com.trangiabao.sixjars.utils.helper.DateTimeHelper
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
+import kotlinx.android.synthetic.main.activity_update_management.*
+import kotlinx.android.synthetic.main.layout_app_bar.*
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormatter
+import java.util.*
+
+class UpdateExpenditureActivity : BaseActivity(), UpdateExpenditureView,
+        TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+
+    private var presenter: UpdateExpenditurePresenter? = null
+    private var dateFormat: DateTimeFormatter? = null
+    private var timeFormat: DateTimeFormatter? = null
+    private var curDate = DateTime.now()
+    private var curExpenditure: Expenditure? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_update_management)
+        presenter = UpdateExpenditurePresenter(this)
+        presenter!!.createView()
+    }
+
+    override fun onInitControls() {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        dateFormat = DateTimeHelper.getDateFormat(applicationContext)
+        timeFormat = DateTimeHelper.getTimeFormat(applicationContext)
+        val typeId = intent.getStringExtra("typeId")
+        presenter!!.getExpenditure(typeId)
+    }
+
+    override fun onInitEvents() {
+        txtDate.setOnClickListener {
+            val dateDialog = DatePickerDialog.newInstance(
+                    this@UpdateExpenditureActivity,
+                    curDate.year,
+                    curDate.monthOfYear - 1,
+                    curDate.dayOfMonth
+            )
+            dateDialog.setVersion(DatePickerDialog.Version.VERSION_1)
+            dateDialog.show(fragmentManager, "Datepickerdialog")
+        }
+
+        txtTime.setOnClickListener {
+            val timeDialog = TimePickerDialog.newInstance(
+                    this@UpdateExpenditureActivity,
+                    curDate.hourOfDay,
+                    curDate.minuteOfHour,
+                    curDate.secondOfMinute,
+                    true
+            )
+            timeDialog.version = TimePickerDialog.Version.VERSION_1
+            timeDialog.show(fragmentManager, "Timepickerdialog")
+        }
+
+        txtType.setOnClickListener { presenter!!.getAllExpenditureType() }
+
+        txtJarName.setOnClickListener { presenter!!.getAllJar() }
+
+        txtAmount.setOnTouchListener(View.OnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= txtAmount.right - txtAmount.compoundDrawables[2].bounds.width()) {
+                    txtAmount.setText("0")
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+
+        txtDetail.setOnTouchListener(View.OnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= txtDetail.right - txtDetail.compoundDrawables[2].bounds.width()) {
+                    txtDetail.text.clear()
+                    return@OnTouchListener true
+                }
+            }
+            false
+        })
+    }
+
+    override fun onGetExpenditure(result: Boolean, msg: String, expenditure: Expenditure?) {
+        curExpenditure = expenditure
+        if (curExpenditure != null) {
+            title = getString(R.string.edit)
+            curExpenditure!!.run {
+                txtType.tag = expenditureType
+                txtJarName.tag = jar
+                txtType.setText(expenditureType!!.type)
+                txtJarName.setText(jar!!.name)
+                txtAmount.setText("${amount!!.toInt()}")
+                curDate = DateTime(date)
+                txtDate.setText(dateFormat!!.print(curDate))
+                txtTime.setText(timeFormat!!.print(curDate))
+                txtDetail.setText(detail)
+            }
+        } else {
+            title = getString(R.string.add)
+            txtType.tag = null
+            txtJarName.tag = null
+            txtType.text.clear()
+            txtJarName.text.clear()
+            txtAmount.setText("0")
+            txtDate.setText(dateFormat!!.print(curDate))
+            txtTime.setText(timeFormat!!.print(curDate))
+            txtDetail.text.clear()
+        }
+    }
+
+    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        curDate = DateTime().withDate(year, monthOfYear + 1, dayOfMonth)
+                .withTime(curDate.hourOfDay, curDate.minuteOfHour, curDate.secondOfMinute, 0)
+        txtDate.setText(dateFormat!!.print(curDate))
+    }
+
+    override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
+        curDate = DateTime().withTime(hourOfDay, minute, second, 0)
+                .withDate(curDate.year, curDate.monthOfYear, curDate.dayOfMonth)
+        txtTime.setText(timeFormat!!.print(curDate))
+    }
+
+    override fun onListExpenditureTypeLoaded(result: Boolean, msg: String, list: List<ExpenditureType>) {
+        val map: Map<String, ExpenditureType> = list.map { it.type!! to it }.toMap()
+        CustomDialogList.Builder(this)
+                .withTitle(R.string.add)
+                .withIcon(R.drawable.ic_add)
+                .withMap(map)
+                .setOnItemClick(object : CustomDialogList.OnItemClickListener {
+                    override fun onClickResult(dialog: CustomDialogList, obj: Any?, text: String?, position: Int) {
+                        txtType.tag = obj as ExpenditureType
+                        txtType.setText(text!!)
+                        dialog.dismiss()
+                    }
+                })
+                .show()
+    }
+
+    override fun onListJarLoaded(result: Boolean, msg: String, list: List<Jar>) {
+        val map: Map<String, Jar> = list.map { it.name!! to it }.toMap()
+        CustomDialogList.Builder(this)
+                .withTitle(R.string.add)
+                .withIcon(R.drawable.ic_add)
+                .withMap(map)
+                .setOnItemClick(object : CustomDialogList.OnItemClickListener {
+                    override fun onClickResult(dialog: CustomDialogList, obj: Any?, text: String?, position: Int) {
+                        txtJarName.tag = obj as Jar
+                        txtJarName.setText(text!!)
+                        dialog.dismiss()
+                    }
+                })
+                .show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+
+            R.id.itemSave -> {
+                if (txtAmount.numericValue < 1.0) {
+                    ToastHelper(applicationContext).toastWarning("Amout > 0")
+                } else if (txtType.tag == null) {
+                    ToastHelper(applicationContext).toastWarning("Choose Expenditure type")
+                } else if (txtJarName.tag == null) {
+                    ToastHelper(applicationContext).toastWarning("Choose Jar type")
+                } else {
+                    val newExpenditure = Expenditure()
+                    newExpenditure.date = curDate.toDate()
+                    newExpenditure.amount = txtAmount.numericValue
+                    newExpenditure.expenditureType = txtType.tag as ExpenditureType?
+                    newExpenditure.jar = txtJarName.tag as Jar?
+                    newExpenditure.detail = txtDetail.text.toString().trim()
+                    if (curExpenditure != null) {
+                        newExpenditure.id = curExpenditure!!.id
+                    } else {
+                        newExpenditure.id = UUID.randomUUID().toString()
+                    }
+                    presenter!!.updateExpenditure(newExpenditure)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onUpdateExpenditureResult(result: Boolean, msg: String, expenditure: Expenditure?) {
+        if (result && expenditure != null) {
+            ToastHelper(applicationContext).toastSuccess("Update Success")
+            finish()
+        } else
+            ToastHelper(applicationContext).toastError("Update Error")
+    }
+}

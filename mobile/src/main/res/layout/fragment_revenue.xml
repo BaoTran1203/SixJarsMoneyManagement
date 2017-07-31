@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWindowBackground"
-    tools:context=".management.revenue.RevenueFragment">
+    tools:context=".modules.m_revenue.view.RevenueFragment">
 
     <LinearLayout
         android:id="@+id/layout"

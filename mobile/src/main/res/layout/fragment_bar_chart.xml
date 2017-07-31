@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWindowBackground"
     android:orientation="vertical"
-    tools:context=".statistical.bar_chart.BarChartFragment">
+    tools:context=".modules.statistical_bar_chart.view.BarChartFragment">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

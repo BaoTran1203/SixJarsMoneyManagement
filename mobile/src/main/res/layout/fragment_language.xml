@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".language.LanguageFragment"
+    tools:context=".modules.language.view.LanguageFragment"
     tools:ignore="ContentDescription,DisableBaselineAlignment">
 
     <android.support.v7.widget.CardView
