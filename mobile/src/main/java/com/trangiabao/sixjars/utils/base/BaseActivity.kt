@@ -5,12 +5,11 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.trangiabao.sixjars.utils.AppConstants
 import com.trangiabao.sixjars.utils.helper.LocaleHelper
 
 @Suppress("unused")
 abstract class BaseActivity : AppCompatActivity() {
-
-    private val TAG: String = "BaseActivityTag"
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase))
@@ -30,7 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun log(message: String) {
-        Log.d(TAG, message)
+        Log.d(AppConstants.LOG_TAG, message)
     }
 
     protected fun freeMemory() {

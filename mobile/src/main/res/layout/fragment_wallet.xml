@@ -22,23 +22,22 @@
             android:textColor="@color/colorSecondaryText"
             android:textSize="18sp" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtBalance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_amount"
             android:drawableStart="@drawable/ic_amount"
             android:maxLines="1"
-            android:text="100.000.000.000"
             android:textColor="@color/colorSecondaryText"
             android:textSize="20sp"
             android:textStyle="bold" />
-
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:overScrollMode="never" />
 </LinearLayout>

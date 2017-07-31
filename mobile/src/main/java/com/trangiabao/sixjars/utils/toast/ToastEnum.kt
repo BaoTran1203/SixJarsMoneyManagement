@@ -1,4 +1,4 @@
-package com.trangiabao.sixjars.utils.component.toast
+package com.trangiabao.sixjars.utils.toast
 
 enum class ToastEnum {
     ERROR, WARNING, SUCCESS

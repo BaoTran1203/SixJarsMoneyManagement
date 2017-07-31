@@ -1,4 +1,4 @@
-package com.trangiabao.sixjars.utils.component.viewpager
+package com.trangiabao.sixjars.utils.component
 
 import android.support.v4.view.ViewPager
 import android.view.View

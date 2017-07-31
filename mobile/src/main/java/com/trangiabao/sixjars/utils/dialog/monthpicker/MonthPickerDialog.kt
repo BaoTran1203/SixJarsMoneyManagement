@@ -1,4 +1,4 @@
-package com.trangiabao.sixjars.utils.component.dialog.monthpicker
+package com.trangiabao.sixjars.utils.dialog.monthpicker
 
 import android.content.Context
 import android.os.Bundle

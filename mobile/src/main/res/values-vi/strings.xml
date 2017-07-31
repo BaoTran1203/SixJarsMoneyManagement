@@ -30,8 +30,8 @@
     <string name="total">Tổng</string>
     <string name="year">năm tới</string>
     <string name="my_money">Số tiền của tôi trong</string>
-    <string name="date_format">EEE, dd-MM-yyyy</string>
     <string name="detail">Chi tiết</string>
     <string name="done">Xong</string>
     <string name="my_income">Thu nhập của tôi</string>
+    <string name="to">đến</string>
 </resources>

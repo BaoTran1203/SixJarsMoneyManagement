@@ -4,11 +4,10 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.preference.PreferenceManager
+import com.trangiabao.sixjars.utils.AppConstants
 import java.util.*
 
 object LocaleHelper {
-
-    private val SELECTED_LANGUAGE = "LocaleHelper.Helper.Selected.Language"
 
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language)
@@ -34,13 +33,13 @@ object LocaleHelper {
 
     private fun getPersistedData(context: Context, defaultLanguage: String): String {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        return preferences.getString(SELECTED_LANGUAGE, defaultLanguage)
+        return preferences.getString(AppConstants.SELECTED_LANGUAGE, defaultLanguage)
     }
 
     private fun persist(context: Context, language: String) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = preferences.edit()
-        editor.putString(SELECTED_LANGUAGE, language)
+        editor.putString(AppConstants.SELECTED_LANGUAGE, language)
         editor.apply()
     }
 

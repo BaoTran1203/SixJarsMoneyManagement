@@ -1,4 +1,4 @@
-package com.trangiabao.sixjars.utils.component.toast
+package com.trangiabao.sixjars.utils.toast
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.trangiabao.sixjars.utils.component.dialog.catalog
+package com.trangiabao.sixjars.utils.dialog.catalog
 
 import android.content.Context
 import android.os.Bundle

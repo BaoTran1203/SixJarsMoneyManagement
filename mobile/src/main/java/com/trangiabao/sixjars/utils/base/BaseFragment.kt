@@ -3,10 +3,9 @@ package com.trangiabao.sixjars.utils.base
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.util.Log
+import com.trangiabao.sixjars.utils.AppConstants
 
 abstract class BaseFragment : Fragment() {
-
-    private val TAG: String = "TAGTAG"
 
     protected fun startActivity(newClass: Class<*>) {
         startActivity(Intent(context, newClass))
@@ -17,10 +16,10 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected fun log(msg: String) {
-        Log.d(TAG, msg)
+        Log.d(AppConstants.LOG_TAG, msg)
     }
 
     protected fun log(msg: Int) {
-        Log.d(TAG, getString(msg))
+        Log.d(AppConstants.LOG_TAG, getString(msg))
     }
 }

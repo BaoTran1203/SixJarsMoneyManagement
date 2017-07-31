@@ -1,12 +1,14 @@
-package com.trangiabao.sixjars.utils.component.toast
+package com.trangiabao.sixjars.utils.helper
 
 import android.content.Context
 import android.widget.Toast
 import com.trangiabao.sixjars.R
+import com.trangiabao.sixjars.utils.toast.CustomToast
+import com.trangiabao.sixjars.utils.toast.ToastEnum
 
-class ToastHelper(private var context: Context) {
+object ToastHelper {
 
-    fun toastSuccess(msg: Int) {
+    fun toastSuccess(context: Context, msg: Int) {
         CustomToast.Builder(context)
                 .withType(ToastEnum.SUCCESS)
                 .withMessage(msg)
@@ -15,7 +17,7 @@ class ToastHelper(private var context: Context) {
                 .show()
     }
 
-    fun toastSuccess(msg: String) {
+    fun toastSuccess(context: Context, msg: String) {
         CustomToast.Builder(context)
                 .withType(ToastEnum.SUCCESS)
                 .withMessage(msg)
@@ -24,7 +26,7 @@ class ToastHelper(private var context: Context) {
                 .show()
     }
 
-    fun toastError(msg: Int) {
+    fun toastError(context: Context, msg: Int) {
         CustomToast.Builder(context)
                 .withType(ToastEnum.ERROR)
                 .withMessage(msg)
@@ -33,7 +35,7 @@ class ToastHelper(private var context: Context) {
                 .show()
     }
 
-    fun toastError(msg: String) {
+    fun toastError(context: Context, msg: String) {
         CustomToast.Builder(context)
                 .withType(ToastEnum.ERROR)
                 .withMessage(msg)
@@ -42,7 +44,7 @@ class ToastHelper(private var context: Context) {
                 .show()
     }
 
-    fun toastWarning(msg: Int) {
+    fun toastWarning(context: Context, msg: Int) {
         CustomToast.Builder(context)
                 .withType(ToastEnum.WARNING)
                 .withMessage(msg)
@@ -51,7 +53,7 @@ class ToastHelper(private var context: Context) {
                 .show()
     }
 
-    fun toastWarning(msg: String) {
+    fun toastWarning(context: Context, msg: String) {
         CustomToast.Builder(context)
                 .withType(ToastEnum.WARNING)
                 .withMessage(msg)
