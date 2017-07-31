@@ -1,6 +1,5 @@
 package com.trangiabao.sixjars.data.database
 
-import android.util.Log
 import com.trangiabao.sixjars.data.model.Expenditure
 import io.realm.Realm
 import io.realm.Sort
@@ -23,12 +22,12 @@ object ExpenditureDB {
             realm.close()
             return list
         } catch (e: RealmException) {
-            Log.d("TAGTAG", e.printStackTrace().toString())
+            e.printStackTrace()
         }
         return mutableListOf()
     }
 
-    fun find(from: Date, to: Date): List<Expenditure> {
+    fun find(from: Date, to: Date): List<Expenditure>? {
         try {
             val realm: Realm = Realm.getDefaultInstance()
             val query = realm.where(Expenditure::class.java).between(ExpenditureDB.DATE, from, to)
@@ -37,9 +36,9 @@ object ExpenditureDB {
             realm.close()
             return list
         } catch (e: RealmException) {
-            Log.d("TAGTAG", e.printStackTrace().toString())
+            e.printStackTrace()
         }
-        return mutableListOf()
+        return null
     }
 
     fun update(obj: Expenditure): Expenditure? {

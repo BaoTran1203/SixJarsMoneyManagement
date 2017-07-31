@@ -1,6 +1,5 @@
 package com.trangiabao.sixjars.data.database
 
-import android.util.Log
 import com.trangiabao.sixjars.data.model.Revenue
 import io.realm.Realm
 import io.realm.Sort
@@ -22,23 +21,24 @@ object RevenueDB {
             realm.close()
             return list
         } catch (e: RealmException) {
-            Log.d("TAGTAG", e.printStackTrace().toString())
+            e.printStackTrace()
         }
         return mutableListOf()
     }
 
-    fun find(from: Date, to: Date): List<Revenue> {
+    fun find(from: Date, to: Date): List<Revenue>? {
+        var list: List<Revenue> = listOf()
         try {
             val realm: Realm = Realm.getDefaultInstance()
             val query = realm.where(Revenue::class.java).between(DATE, from, to)
             val result = query.findAllSorted(DATE, Sort.ASCENDING)
-            val list = realm.copyFromRealm(result).toMutableList()
+            list = realm.copyFromRealm(result).toMutableList()
             realm.close()
-            return list
         } catch (e: RealmException) {
-            Log.d("TAGTAG", e.printStackTrace().toString())
+            e.printStackTrace()
+            return null
         }
-        return mutableListOf()
+        return list
     }
 
     fun update(obj: Revenue): Revenue? {
