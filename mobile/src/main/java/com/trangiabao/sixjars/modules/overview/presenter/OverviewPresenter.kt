@@ -1,6 +1,7 @@
 package com.trangiabao.sixjars.modules.overview.presenter
 
 import android.content.Context
+import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.database.JarDB
 import com.trangiabao.sixjars.modules.overview.view.OverviewView
 
@@ -13,7 +14,10 @@ class OverviewPresenter(var context: Context, var view: OverviewView) : Overview
 
     override fun getAll() {
         val list = JarDB.getAll()
-        view.onListLoaded(list.isNotEmpty(), "There is(are) ${list.size} item(s)", list)
+        if (list.isEmpty())
+            view.onGetListFailed(R.string.app_name)
+        else
+            view.onGetListSuccessed(list)
     }
 
 }

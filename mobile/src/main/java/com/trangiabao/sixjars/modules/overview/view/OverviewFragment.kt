@@ -10,6 +10,7 @@ import com.trangiabao.sixjars.data.model.Jar
 import com.trangiabao.sixjars.modules.overview.adapter.OverviewApdater
 import com.trangiabao.sixjars.modules.overview.presenter.OverviewPresenter
 import com.trangiabao.sixjars.utils.base.BaseFragment
+import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 
 class OverviewFragment : BaseFragment(), OverviewView {
@@ -38,7 +39,11 @@ class OverviewFragment : BaseFragment(), OverviewView {
     override fun onInitEvents() {
     }
 
-    override fun onListLoaded(result: Boolean, msg: String, list: List<Jar>) {
+    override fun onGetListSuccessed(list: List<Jar>) {
         adapter!!.List = list
+    }
+
+    override fun onGetListFailed(msg: Int) {
+        ToastHelper.toastError(context, msg)
     }
 }
