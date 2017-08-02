@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.model.Jar
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.helper.LocaleHelper
 import kotlinx.android.synthetic.main.item_overview.view.*
 
@@ -30,7 +31,7 @@ class OverviewApdater : RecyclerView.Adapter<OverviewApdater.ViewHolder>() {
         holder!!.itemView.run {
             txtName.text = model.name
             txtPercent.text = "${model.percent}%"
-            if (LocaleHelper.getLanguage(context) == "vi") {
+            if (LocaleHelper.getLanguage(context) == AppConstants.LANG_CODE_VI) {
                 txtDescription.text = model.descriptionVie
                 txtFullName.text = model.nameVie
             } else {

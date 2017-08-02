@@ -10,8 +10,8 @@ object ExpenditureDB {
 
     private val ID: String = "id"
     private val DATE: String = "date"
-    private val TYPE_ID: String = "type.id"
-    private val JAR_NAME: String = "jar.name"
+    /*private val TYPE_ID: String = "type.id"
+    private val JAR_NAME: String = "jar.name"*/
 
     fun getAll(): List<Expenditure> {
         try {
@@ -24,21 +24,22 @@ object ExpenditureDB {
         } catch (e: RealmException) {
             e.printStackTrace()
         }
-        return mutableListOf()
+        return listOf()
     }
 
     fun find(from: Date, to: Date): List<Expenditure>? {
+        var list: List<Expenditure> = listOf()
         try {
             val realm: Realm = Realm.getDefaultInstance()
             val query = realm.where(Expenditure::class.java).between(ExpenditureDB.DATE, from, to)
             val result = query.findAllSorted(ExpenditureDB.DATE, Sort.ASCENDING)
-            val list = realm.copyFromRealm(result).toMutableList()
+            list = realm.copyFromRealm(result).toMutableList()
             realm.close()
-            return list
         } catch (e: RealmException) {
             e.printStackTrace()
+            return null
         }
-        return null
+        return list
     }
 
     fun update(obj: Expenditure): Expenditure? {

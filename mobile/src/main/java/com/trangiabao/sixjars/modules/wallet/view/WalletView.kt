@@ -4,6 +4,6 @@ import com.trangiabao.sixjars.data.model.Wallet
 import com.trangiabao.sixjars.utils.base.BaseView
 
 interface WalletView : BaseView {
-    fun onGetListSuccessed(list: List<Wallet>)
-    fun onError(msg: Int)
+    fun onGetWalletSuccessed(list: List<Wallet>)
+    fun onGetWalletFailed(msg: Int)
 }

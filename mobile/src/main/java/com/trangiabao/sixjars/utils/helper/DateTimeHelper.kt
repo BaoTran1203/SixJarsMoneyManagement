@@ -1,7 +1,7 @@
 package com.trangiabao.sixjars.utils.helper
 
 import android.content.Context
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import org.joda.time.DateTime
 import org.joda.time.DateTimeConstants
 import org.joda.time.LocalDate

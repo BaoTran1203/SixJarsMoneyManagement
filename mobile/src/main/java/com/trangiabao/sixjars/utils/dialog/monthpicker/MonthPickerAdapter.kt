@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.trangiabao.sixjars.R
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.helper.LocaleHelper
 import kotlinx.android.synthetic.main.item_month_picker.view.*
 

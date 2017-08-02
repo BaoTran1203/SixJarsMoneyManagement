@@ -15,7 +15,7 @@ class OverviewPresenter(var context: Context, var view: OverviewView) : Overview
     override fun getAll() {
         val list = JarDB.getAll()
         if (list.isEmpty())
-            view.onError(R.string.app_name)
+            view.onGetListFailed(R.string.get_data_failed)
         else
             view.onGetListSuccessed(list)
     }

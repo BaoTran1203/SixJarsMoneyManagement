@@ -18,7 +18,6 @@ class CustomToast(private var context: Context,
                   icon: Int?,
                   duration: Int?) : Toast(context) {
 
-
     init {
         val inflater: LayoutInflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.layout_toast, null)

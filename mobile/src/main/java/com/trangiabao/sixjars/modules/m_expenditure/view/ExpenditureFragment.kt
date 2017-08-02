@@ -12,6 +12,7 @@ import com.trangiabao.sixjars.data.model.Expenditure
 import com.trangiabao.sixjars.modules.m_expenditure.adapter.ExpenditureAdapter
 import com.trangiabao.sixjars.modules.m_expenditure.presenter.ExpenditurePresenter
 import com.trangiabao.sixjars.modules.m_expenditure_update.view.UpdateExpenditureActivity
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.base.BaseFragment
 import com.trangiabao.sixjars.utils.component.ScrollAwareFABBehavior
 import com.trangiabao.sixjars.utils.dialog.CustomDialogConfirm
@@ -64,7 +65,7 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
         _adapter!!.setOnItemClickListener(object : ExpenditureAdapter.ItemClickListener {
             override fun onClickListener(type: Expenditure, position: Int) {
                 val intent = Intent(context, UpdateExpenditureActivity::class.java)
-                intent.putExtra("typeId", type.id)
+                intent.putExtra(AppConstants.INTENT_REVENUE_ID, type.id)
                 startActivity(intent)
             }
 
@@ -75,7 +76,8 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
                         .withIcon(R.drawable.ic_delete)
                         .setOnConfirmClick(object : CustomDialogConfirm.OnConfirmListener {
                             override fun onResult(dialog: CustomDialogConfirm, result: Boolean) {
-                                presenter!!.delete(type.id!!, position)
+                                if (result)
+                                    presenter!!.delete(type.id!!, position)
                                 dialog.dismiss()
                             }
                         }).show()
@@ -112,7 +114,7 @@ class ExpenditureFragment : BaseFragment(), ExpenditureView {
 
             fab.setOnClickListener {
                 val intent = Intent(context, UpdateExpenditureActivity::class.java)
-                intent.putExtra("typeId", "")
+                intent.putExtra(AppConstants.INTENT_REVENUE_ID, "")
                 startActivity(intent)
             }
         }

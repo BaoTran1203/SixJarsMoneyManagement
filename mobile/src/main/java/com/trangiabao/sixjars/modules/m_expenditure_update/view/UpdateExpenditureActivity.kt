@@ -10,7 +10,7 @@ import com.trangiabao.sixjars.data.model.Expenditure
 import com.trangiabao.sixjars.data.model.ExpenditureType
 import com.trangiabao.sixjars.data.model.Jar
 import com.trangiabao.sixjars.modules.m_expenditure_update.presenter.UpdateExpenditurePresenter
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.base.BaseActivity
 import com.trangiabao.sixjars.utils.dialog.CustomDialogList
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
@@ -46,7 +46,7 @@ class UpdateExpenditureActivity : BaseActivity(), UpdateExpenditureView,
         dateFormat = DateTimeHelper.getDateFormat(applicationContext)
         timeFormat = DateTimeHelper.getTimeFormat(applicationContext)
 
-        typeId = intent.getStringExtra(AppConstants.SEND_VALUE_NAME_TYPE_ID)
+        typeId = intent.getStringExtra(AppConstants.INTENT_REVENUE_ID)
         if (typeId == "") {
             title = getString(R.string.add)
             txtType.tag = null

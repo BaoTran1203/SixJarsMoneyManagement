@@ -58,7 +58,7 @@ class RevenueAdapter : RecyclerView.Adapter<RevenueAdapter.ViewHolder>() {
     }
 
     interface ItemClickListener {
-        fun onClickListener(type: Revenue, position: Int)
-        fun onLongClickListener(type: Revenue, position: Int): Boolean
+        fun onClickListener(revenue: Revenue, position: Int)
+        fun onLongClickListener(revenue: Revenue, position: Int): Boolean
     }
 }

@@ -1,6 +1,6 @@
 package com.trangiabao.sixjars.utils.helper
 
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import java.math.BigDecimal
 import java.text.DecimalFormat
 

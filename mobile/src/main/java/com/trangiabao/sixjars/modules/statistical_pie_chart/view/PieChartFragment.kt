@@ -102,11 +102,11 @@ class PieChartFragment : BaseFragment(), PieChartView {
         }
     }
 
-    override fun onError(msg: Int) {
+    override fun onGetDataFailed(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 
-    override fun onWarning(msg: Int) {
-        ToastHelper.toastWarning(context, msg)
+    override fun onGetEmptyData(msg: Int) {
+        mView!!.pieChart.setNoDataText(getString(msg))
     }
 }

@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="48dp"
         android:theme="@style/CardViewStyle">
 
         <android.support.v7.widget.AppCompatTextView

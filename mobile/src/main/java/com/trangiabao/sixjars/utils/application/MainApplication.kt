@@ -7,7 +7,6 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.model.Database
-import com.trangiabao.sixjars.utils.AppConstants
 import com.trangiabao.sixjars.utils.helper.LocaleHelper
 import io.realm.Realm
 import io.realm.exceptions.RealmException

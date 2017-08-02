@@ -4,7 +4,7 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.preference.PreferenceManager
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import java.util.*
 
 object LocaleHelper {

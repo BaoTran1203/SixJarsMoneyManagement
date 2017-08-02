@@ -35,9 +35,9 @@ class ExpenditureTypeFragment : BaseFragment(), ExpenditureTypeView {
 
     override fun onInitControls() {
         mView!!.run {
-            val p = fab.layoutParams as CoordinatorLayout.LayoutParams
-            p.behavior = ScrollAwareFABBehavior()
-            fab.layoutParams = p
+            val params = fab.layoutParams as CoordinatorLayout.LayoutParams
+            params.behavior = ScrollAwareFABBehavior()
+            fab.layoutParams = params
 
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(context)

@@ -3,7 +3,7 @@ package com.trangiabao.sixjars.utils.base
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.util.Log
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 
 abstract class BaseFragment : Fragment() {
 

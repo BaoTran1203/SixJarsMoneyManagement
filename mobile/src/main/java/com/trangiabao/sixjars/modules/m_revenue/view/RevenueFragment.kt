@@ -12,7 +12,7 @@ import com.trangiabao.sixjars.data.model.Revenue
 import com.trangiabao.sixjars.modules.m_revenue.adapter.RevenueAdapter
 import com.trangiabao.sixjars.modules.m_revenue.presenter.RevenuePresenter
 import com.trangiabao.sixjars.modules.m_revenue_update.view.UpdateRevenueActivity
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.base.BaseFragment
 import com.trangiabao.sixjars.utils.component.ScrollAwareFABBehavior
 import com.trangiabao.sixjars.utils.dialog.CustomDialogConfirm
@@ -63,20 +63,21 @@ class RevenueFragment : BaseFragment(), RevenueView {
 
     override fun onInitEvents() {
         _adapter!!.setOnItemClickListener(object : RevenueAdapter.ItemClickListener {
-            override fun onClickListener(type: Revenue, position: Int) {
+            override fun onClickListener(revenue: Revenue, position: Int) {
                 val intent = Intent(context, UpdateRevenueActivity::class.java)
-                intent.putExtra(AppConstants.SEND_VALUE_NAME_TYPE_ID, type.id)
+                intent.putExtra(AppConstants.INTENT_REVENUE_ID, revenue.id)
                 startActivity(intent)
             }
 
-            override fun onLongClickListener(type: Revenue, position: Int): Boolean {
+            override fun onLongClickListener(revenue: Revenue, position: Int): Boolean {
                 CustomDialogConfirm.Builder(context)
                         .withTitle(R.string.confirm)
                         .withContent(R.string.deletion)
                         .withIcon(R.drawable.ic_delete)
                         .setOnConfirmClick(object : CustomDialogConfirm.OnConfirmListener {
                             override fun onResult(dialog: CustomDialogConfirm, result: Boolean) {
-                                presenter!!.delete(type.id!!, position)
+                                if (result)
+                                    presenter!!.delete(revenue.id!!, position)
                                 dialog.dismiss()
                             }
                         }).show()
@@ -113,7 +114,7 @@ class RevenueFragment : BaseFragment(), RevenueView {
 
             fab.setOnClickListener {
                 val intent = Intent(context, UpdateRevenueActivity::class.java)
-                intent.putExtra(AppConstants.SEND_VALUE_NAME_TYPE_ID, "")
+                intent.putExtra(AppConstants.INTENT_REVENUE_ID, "")
                 startActivity(intent)
             }
         }

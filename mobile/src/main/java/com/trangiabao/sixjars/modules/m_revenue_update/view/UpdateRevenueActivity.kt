@@ -10,7 +10,7 @@ import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.data.model.Revenue
 import com.trangiabao.sixjars.data.model.RevenueType
 import com.trangiabao.sixjars.modules.m_revenue_update.presenter.UpdateRevenuePresenter
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.base.BaseActivity
 import com.trangiabao.sixjars.utils.dialog.CustomDialogList
 import com.trangiabao.sixjars.utils.helper.DateTimeHelper
@@ -47,7 +47,7 @@ class UpdateRevenueActivity : BaseActivity(), UpdateRevenueView,
         timeFormat = DateTimeHelper.getTimeFormat(applicationContext)
         layoutJar.visibility = View.GONE
 
-        typeId = intent.getStringExtra(AppConstants.SEND_VALUE_NAME_TYPE_ID)
+        typeId = intent.getStringExtra(AppConstants.INTENT_REVENUE_ID)
         if (typeId == "") {
             title = getString(R.string.add)
             txtType.tag = null

@@ -32,9 +32,9 @@ class BarChartPresenter(private var view: BarChartView) : BarChartPresenterImpl 
         val expenditures = ExpenditureDB.find(firstDate, lastDate)
 
         if (revenues == null || expenditures == null)
-            view.onError(R.string.app_name)
+            view.onGetDataFailed(R.string.app_name)
         else if (revenues.isEmpty() && expenditures.isEmpty()) {
-            view.onWarning(R.string.app_name)
+            view.onGetEmptyData(R.string.no_data)
         } else {
             val labels = getXValues(jars)
             val yValues1 = getYValues1(jars, revenues)

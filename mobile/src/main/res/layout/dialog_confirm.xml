@@ -19,7 +19,6 @@
             android:drawableLeft="@drawable/ic_delete"
             android:drawablePadding="20dp"
             android:drawableStart="@drawable/ic_delete"
-            android:text="Title"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/bigTextSize" />
     </FrameLayout>
@@ -29,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Content content content content ?"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/titleTextSize" />
 

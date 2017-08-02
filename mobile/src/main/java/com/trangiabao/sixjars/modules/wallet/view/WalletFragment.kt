@@ -40,13 +40,13 @@ class WalletFragment : Fragment(), WalletView {
     override fun onInitEvents() {
     }
 
-    override fun onGetListSuccessed(list: List<Wallet>) {
+    override fun onGetWalletSuccessed(list: List<Wallet>) {
         adapter!!.List = list
         val balance: Double = list.sumByDouble { it.currentAmout!! }
         mView!!.txtBalance.text = NumberHelper.printBigDouble(balance)
     }
 
-    override fun onError(msg: Int) {
+    override fun onGetWalletFailed(msg: Int) {
         ToastHelper.toastError(context, msg)
     }
 

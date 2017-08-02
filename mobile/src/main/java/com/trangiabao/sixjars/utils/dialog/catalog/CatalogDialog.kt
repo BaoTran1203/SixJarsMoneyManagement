@@ -50,8 +50,9 @@ class CatalogDialog(context: Context?,
         txtType.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 txtDescription.setSelection(txtDescription.length())
+                return@setOnEditorActionListener true
             }
-            true
+            return@setOnEditorActionListener false
         }
     }
 

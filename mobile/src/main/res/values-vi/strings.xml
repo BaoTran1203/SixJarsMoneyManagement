@@ -6,8 +6,8 @@
     <string name="money_management">Quản lý chi tiêu</string>
     <string name="estimate">Ước tính</string>
     <string name="settings">Cài đặt</string>
-    <string name="revenue">DOANH THU</string>
-    <string name="expenditure">CHI TIÊU</string>
+    <string name="revenue">Doanh thu</string>
+    <string name="expenditure">Chi tiêu</string>
     <string name="jar_config">Thiết lập</string>
     <string name="statistical">Thống kê</string>
     <string name="language">Ngôn ngữ</string>
@@ -24,14 +24,18 @@
     <string name="item_deleted">Dữ liệu đã được xóa</string>
     <string name="item_added">Dữ liệu đã được thêm</string>
     <string name="deletion">Bạn có chắc muốn xóa ?</string>
-    <string name="type">Loại</string>
     <string name="description">Mô tả</string>
     <string name="update_successful">Cập nhật thành công</string>
     <string name="total">Tổng</string>
     <string name="year">năm tới</string>
-    <string name="my_money">Số tiền của tôi trong</string>
     <string name="detail">Chi tiết</string>
     <string name="done">Xong</string>
     <string name="my_income">Thu nhập của tôi</string>
     <string name="to">đến</string>
+    <string name="account_balance">Số dư tài khoản</string>
+    <string name="date_time">Ngày và Giờ</string>
+    <string name="info">Thông tin</string>
+    <string name="account_type">Loại tài khoản</string>
+    <string name="my_balance">Số tiền của tôi trong</string>
+    <string name="no_data">Không có dữ liệu</string>
 </resources>

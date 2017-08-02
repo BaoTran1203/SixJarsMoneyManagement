@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import com.trangiabao.sixjars.R
 import com.trangiabao.sixjars.modules.home.view.HomeActivity
 import com.trangiabao.sixjars.modules.language.presenter.LanguagePresenter
-import com.trangiabao.sixjars.utils.AppConstants
+import com.trangiabao.sixjars.utils.application.AppConstants
 import com.trangiabao.sixjars.utils.base.BaseFragment
 import com.trangiabao.sixjars.utils.helper.LocaleHelper
-import com.trangiabao.sixjars.utils.helper.ToastHelper
 import kotlinx.android.synthetic.main.fragment_language.view.*
 
 class LanguageFragment : BaseFragment(), LanguageView {
@@ -40,14 +39,9 @@ class LanguageFragment : BaseFragment(), LanguageView {
         }
     }
 
-    override fun onLanguageIsChanged(msg: Int, lang: String) {
+    override fun onLanguageChanged(lang: String) {
         LocaleHelper.setLocale(context, lang)
         startActivity(HomeActivity::class.java)
         finish()
-        ToastHelper.toastSuccess(context, msg)
-    }
-
-    override fun onLanguageHadChangged(msg: Int) {
-        ToastHelper.toastWarning(context, msg)
     }
 }

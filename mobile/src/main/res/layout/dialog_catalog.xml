@@ -17,9 +17,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:drawableLeft="@drawable/ic_edit"
             android:drawablePadding="20dp"
-            android:drawableStart="@drawable/ic_edit"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/bigTextSize" />
     </FrameLayout>
@@ -30,7 +28,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:hint="@string/type"
+        android:hint="@string/revenue_type"
         app:counterEnabled="true"
         app:errorEnabled="true"
         app:hintAnimationEnabled="true"

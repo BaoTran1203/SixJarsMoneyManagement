@@ -6,6 +6,6 @@ import com.trangiabao.sixjars.utils.base.BaseView
 interface PieChartView : BaseView {
     fun onGetDataFunction()
     fun onGetDataSuccessed(pieData: PieData)
-    fun onError(msg: Int)
-    fun onWarning(msg: Int)
+    fun onGetDataFailed(msg: Int)
+    fun onGetEmptyData(msg: Int)
 }
